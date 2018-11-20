@@ -1,7 +1,37 @@
 <!--index.wxml-->
 <view class="container">
+  <image bindtap="bindViewTap" class="banner" src="./imgs/banner.png" mode="cover"></image>
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111 </button>
+    <view class="repair-wrapper">
+       <text class="repair-text text">快速报修</text>
+       <image bindtap="bindViewTap" class="repair" src="./imgs/repair.png" mode="cover"></image>
+    </view>
+    <view class="flex-row design-content">
+     <view class="design-wrapper flex-1 flex-row mr-10">
+        <text class="design-text text">室内设计</text>
+        <image bindtap="bindViewTap" class="design flex-1" src="./imgs/design.png" mode="cover"></image>
+     </view>
+     <view class="design-wrapper flex-1 flex-row ml-10">
+        <text class="design-text text">进口建材</text>
+        <image bindtap="bindViewTap" class="design flex-1" src="./imgs/jink.png" mode="cover"></image>
+     </view>
+    </view>
+      <view class="flex-row design-content">
+          <view class="design-wrapper flex-1 flex-row mr-7">
+              <text class="design-text text">北美橱柜</text>
+              <image bindtap="bindViewTap" class="design flex-1" src="./imgs/chugui.png" mode="cover"></image>
+          </view>
+          <view class="design-wrapper flex-1 flex-row ml-7">
+              <text class="design-text text">专业施工</text>
+              <image bindtap="bindViewTap" class="design flex-1" src="./imgs/shigo.png" mode="cover"></image>
+          </view>
+      </view>
+      <swiper class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
+          <swiper-item><image src='./imgs/companyInfo.png' class='img'></image></swiper-item>
+          <swiper-item><image src='./imgs/companyInfo.png' class='img'></image></swiper-item>
+      </swiper>
+
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111333 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>

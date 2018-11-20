@@ -4,6 +4,10 @@ const app = getApp()
 
 Page({
   data: {
+    imgs: {
+      banner: './imgs/banner.png',
+      repair: './imgs/repair.png'
+    },
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,

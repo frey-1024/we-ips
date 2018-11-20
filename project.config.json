@@ -10,7 +10,7 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "miniprogram",
+	"compileType": "plugin",
 	"libVersion": "2.0.4",
 	"appid": "wx67e97029aa93c418",
 	"projectname": "IPS",

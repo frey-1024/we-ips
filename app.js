@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openid: 'wx051b26a66be567e3444b842bec91571f0e4ca14a1f7f91f7',
+    wx_url_1: 'https://api.weixin.qq.com/sns/jscode2session?appid=自己的APPID&secret=自己的SECRET&js_code=',
+    wx_url_2: '&grant_type=authorization_code',
   }
-})
+});
