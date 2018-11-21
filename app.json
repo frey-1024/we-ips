@@ -28,10 +28,6 @@
       "selectedIconPath": "pages/index/imgs/didanIcon_active.png"
       }, {
       "pagePath": "pages/tabOne/tabOne",
-      "text": "问问",
-      "iconPath": "pages/index/imgs/questionIcon.png"
-    }, {
-      "pagePath": "pages/tabOne/tabOne",
       "text": "我的",
       "iconPath": "pages/index/imgs/myIcon.png",
       "selectedIconPath": "pages/index/imgs/myIcon_active.png"

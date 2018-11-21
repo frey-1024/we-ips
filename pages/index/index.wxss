@@ -29,7 +29,7 @@
   bottom: 0;
   right: 0;
   opacity: 0;
-  z-index: 2;
+  z-index: 6;
 }
 .banner {
   width: 100%;
@@ -116,6 +116,33 @@
   padding: 0 30rpx 20rpx;
   display: block;
 }
+.kefu-wrapper{
+  position: fixed;
+  z-index: 3;
+  right: 20rpx;
+  bottom: 40rpx;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+}
+.kefu-wrapper::after {
+  border: 0;
+} 
+.kefu-img{
+  width: 100rpx;
+  display: block;
+  margin: auto;
+}
+.kefu-text{
+  color:#fff;
+  background-color:#6EB8F1;
+  border-radius:20rpx 20rpx;
+  font-size:30rpx;
+  padding:0 25rpx;
+  display:block;
+  line-height:1.6;
+}
+
 
 
 

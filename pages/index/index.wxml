@@ -49,6 +49,10 @@
           </view>
       </view>
   </view>
+  <button class='kefu-wrapper'>
+    <image class='kefu-img' mode="widthFix" src='./imgs2/kefu.png'></image>
+    <text class="kefu-text">在线客服</text>
+  </button>
     <button wx:if="{{!hasUserInfo && canIUse}}" class="get-user-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111333 </button>
     <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
