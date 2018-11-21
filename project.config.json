@@ -10,10 +10,10 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "plugin",
+	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wx67e97029aa93c418",
-	"projectname": "IPS",
+	"projectname": "we-ips",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
