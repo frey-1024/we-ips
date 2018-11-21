@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<view class="container">
-  <image bindtap="bindViewTap" class="banner" src="./imgs/banner.png" mode="cover"></image>
+<view class="container home">
+  <image bindtap="bindViewTap" class="banner" src="./imgs/banner.png" mode="widthFix"></image>
   <view class="userinfo">
     <view class="repair-wrapper">
        <text class="repair-text text">快速报修</text>
@@ -28,16 +28,30 @@
       </view>
       <swiper class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
           <swiper-item><image src='./imgs/companyInfo.png' class='img'></image></swiper-item>
-          <swiper-item><image src='./imgs/companyInfo.png' class='img'></image></swiper-item>
+          <swiper-item><image src='./imgs/companyInfo2.png' class='img'></image></swiper-item>
       </swiper>
-
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111333 </button>
+      <view class="fuwu-wrapper">
+          <image bindtap="bindViewTap" class="fuwu" src="./imgs/fuwu.png" mode="widthFix"></image>
+      </view>
+      <view class="jiazhuang-wrapper">
+          <text class="jiazhuang-text text">家装效果图</text>
+          <image bindtap="bindViewTap" class="jiazhuang-img" src="./imgs/jazhuang.png" mode="widthFix"></image>
+      </view>
+      <view class="jiazhuang-wrapper">
+          <text class="jiazhuang-text text">专业工装案例</text>
+          <image bindtap="bindViewTap" class="jiazhuang-img" src="./imgs/zhuanye.png" mode="widthFix"></image>
+      </view>
+      <view class="zhuangye-wrapper">
+          <text class="zhuangye-text text">专业工装案例</text>
+          <view class="zhuangye flex-row">
+              <image bindtap="bindViewTap" class="zhuangye-img flex-1 mr-7" src="./imgs/beimei.png" mode="widthFix"></image>
+              <image bindtap="bindViewTap" class="zhuangye-img flex-1 ml-7" src="./imgs/jinkocai.png" mode="widthFix"></image>
+          </view>
+      </view>
+  </view>
+    <button wx:if="{{!hasUserInfo && canIUse}}" class="get-user-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111333 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
 </view>

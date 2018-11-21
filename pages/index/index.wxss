@@ -19,7 +19,21 @@
   font-size: 32rpx;
   font-weight: bold;
 }
-
+.home{
+  position: relative;
+}
+.get-user-btn{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 2;
+}
+.banner {
+  width: 100%;
+}
 .userinfo {
   padding: 15rpx 20rpx;
   background-color: #eee;
@@ -62,15 +76,46 @@
   width: 100%;
   box-sizing: border-box;
   margin-top: 20rpx;
+  height: 160rpx;
 }
 .img{
   width: 100%;
-  height: 160rpx;
+  height: 100%;
   box-sizing: border-box;
 }
-
-
-
+.fuwu-wrapper{
+  margin-top: 20rpx;
+}
+.fuwu{
+  width: 100%;
+  display:block;
+}
+.jiazhuang-wrapper{
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+  background-color: #fff;
+}
+.jiazhuang-text{
+  padding-bottom: 20rpx;
+  display: block;
+}
+.jiazhuang-img{
+  width: 100%;
+  display:block;
+}
+.zhuangye-wrapper{
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+  background-color: #fff;
+}
+.zhuangye{
+}
+.zhuangye-text{
+  padding: 0 30rpx 20rpx;
+  display: block;
+}
 
 
 
@@ -87,8 +132,4 @@
 
 .usermotto {
   margin-top: 200px;
-}
-.banner {
-  height: 420rpx;
-  width: 100%;
 }

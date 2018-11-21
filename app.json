@@ -1,7 +1,9 @@
 {
   "pages":[
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
+    "pages/tabOne/tabOne",
+    "pages/tabTwo/tabTwo",
     "pages/logs/logs"
   ],
   "window":{
@@ -9,5 +11,31 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "IPS咻咻咻",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "color": "#4D4D4D",
+    "selectedColor": "#6EB8F1",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "pages/index/imgs/homeIcon.png",
+      "selectedIconPath": "pages/index/imgs/homeIcon_active.png"
+    }, {
+      "pagePath": "pages/tabOne/tabOne",
+      "text": "订单",
+      "iconPath": "pages/index/imgs/didanIcon.png",
+      "selectedIconPath": "pages/index/imgs/didanIcon_active.png"
+      }, {
+      "pagePath": "pages/tabOne/tabOne",
+      "text": "问问",
+      "iconPath": "pages/index/imgs/questionIcon.png"
+    }, {
+      "pagePath": "pages/tabOne/tabOne",
+      "text": "我的",
+      "iconPath": "pages/index/imgs/myIcon.png",
+      "selectedIconPath": "pages/index/imgs/myIcon_active.png"
+    }]
   }
 }
