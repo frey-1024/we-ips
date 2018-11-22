@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/mapTest/mapTest",
     "pages/about/about",
     "pages/index/index",
     "pages/tabOne/tabOne",
@@ -33,5 +34,8 @@
       "iconPath": "pages/index/imgs/myIcon.png",
       "selectedIconPath": "pages/index/imgs/myIcon_active.png"
     }]
+  },
+  "usingComponents": {
+    "wux-search-bar": "../../dist/search-bar/index"
   }
 }
