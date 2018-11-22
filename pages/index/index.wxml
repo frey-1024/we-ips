@@ -26,7 +26,7 @@
               <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/shigo.png" mode="cover"></image>
           </view>
       </view>
-      <swiper class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
+      <swiper bindtap="goAbout" class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
           <swiper-item><image src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/companyInfo.png' class='img'></image></swiper-item>
           <swiper-item><image src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/companyInfo2.png' class='img'></image></swiper-item>
       </swiper>

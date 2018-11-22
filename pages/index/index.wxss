@@ -1,24 +1,4 @@
-.flex-row{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.flex-1{
-  flex: 1;
-}
 
-.ml-7{
-  margin-left: 7rpx;
-}
-.mr-7{
-  margin-right: 7rpx;
-}
-
-.text{
-  color: #4D4D4D;
-  font-size: 32rpx;
-  font-weight: bold;
-}
 .home{
   position: relative;
 }

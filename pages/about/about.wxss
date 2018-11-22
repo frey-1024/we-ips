@@ -1,0 +1,41 @@
+/* pages/about/about.wxss */
+.about{
+  background-color: #eee;
+  padding: 20rpx 25rpx;
+}
+.content{
+  border-radius: 20rpx 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  padding: 0 30rpx 25rpx;
+  display: block;
+  margin-bottom: 15rpx;
+}
+.title{
+  display: block;
+  padding-top: 25rpx;
+  padding-bottom: 15rpx;
+  font-weight: normal;
+  font-size: 34rpx;
+}
+.msg-detail{
+  color: #808080;
+  font-size: 28rpx;
+  line-height: 1.7;
+  display: block;
+}
+.msg-icon{
+  position: relative;
+  text-indent: 50rpx;
+}
+.msg-icon:after{
+  position: absolute;
+  left: 0;
+  top: 14rpx;
+  content: "";
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #808080;
+  transform: rotate(-45deg);
+}

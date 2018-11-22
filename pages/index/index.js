@@ -19,6 +19,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  goAbout: function() {
+    wx.navigateTo({
+      url: '../about/about'
+    });
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

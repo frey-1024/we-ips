@@ -1,0 +1,26 @@
+<!--pages/about/about.wxml-->
+<view class="container about">
+    <view class="content">
+        <text class="title text">关于我们</text>
+        <text class="msg-detail">IPS & Interior Ltd）是一家专业从事室内设计及装饰服务的公司（一级装修施工资质），我司紧密结合设计、施工及项目管理的专长，为客户提供完整的一站式室内设计解决方案，主要服务对象是在大陆的跨国公司、知名外资银行及餐饮品牌连锁店和高端住宅等。</text>
+        <text class="msg-detail">IPS总部设于上海，成立至今积累约20年经验。</text>
+    </view>
+    <view class="content">
+        <text class="title text">Innovations 创意</text>
+        <text class="msg-detail">充满活力的设计团队来自多元化和国际化的背景，擅长捕捉客户的独特需求和文化。</text>
+        <text class="title text">People-oriented 以人为本</text>
+        <text class="msg-detail">我们相信，设计师应该具有积极的使命感，为人们创造更健康的生活方式，塑造可持续发展的城市空间。塑造具有沉浸感的氛围是一门艺术，我们为拥有这种独特的工艺而自豪。</text>
+        <text class="title text">Sense 智慧</text>
+        <text class="msg-detail">不论是室内设计还是项目施工，IPS均为自身的出品设置高标准。在美学价值和执行效率之间大致微妙平衡，是我们用心追求的宗旨。</text>
+        <text class="msg-detail">我们深谙美学设计与项目施工紧密结合的诀窍，根据项目的不同特点，度身订制解决方案，营造具有美感、绿色健康、丰富互动的独特空间体验。</text>
+    </view>
+    <view class="content">
+        <text class="title text">我们的服务范围</text>
+        <text class="msg-detail msg-icon">品牌零售及餐饮连锁的维修、装修。</text>
+        <text class="msg-detail msg-icon">商业空间的维保、装修(酒店/商场/会所/厂房/办公空间)。</text>
+        <text class="msg-detail msg-icon">老百姓的家庭维修、装修。</text>
+        <text class="msg-detail msg-icon"> 小区及住宅楼的维保。</text>
+        <text class="msg-detail msg-icon">提供监理及项目管理服务。</text>
+    </view>
+</view>
+
