@@ -1,8 +1,5 @@
 Component({
-    externalClasses: ['wux-class'],
-    options: {
-        multipleSlots: true
-    },
+	externalClasses: ['wux-class'],
     relations: {
         '../grids/index': {
             type: 'parent',
