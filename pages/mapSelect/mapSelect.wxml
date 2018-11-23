@@ -1,12 +1,10 @@
-<view class="container map-select">
-    <wux-search-bar clear maxlength="20" placeholder="搜索地点" bind:change="searchMap"/>
-    <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" include-points="{{points}}" markers='{{markers}}'></map>
-    <view class="content">
-        <text class="msg-detail">提交成功，请保持电话畅通</text>
-        <text class="msg-detail">我们将于2小时内联系你</text>
-        <text class="msg-detail">请耐心等待</text>
-    </view>
-    <view class="btn">
-        <wux-button block type="calm" bind:click="go">返回</wux-button>
+<view>
+    <wux-search-bar clear maxlength="40" show-cancel placeholder="搜索地点" bind:change="onSearch"/>
+    <map latitude="{{lat}}" longitude="{{lng}}" show-location markers="{{markers}}" bindmarkertap="onMapSelect" style="height: 500rpx; width: 100%"></map>
+    <view>
+        <wux-cell-group>
+            <wux-cell title="我的位置" bind:click="selectMyLocation" label="{{locationInfo.address}}"></wux-cell>
+            <wux-cell bind:click="selectSearchLocation" id="{{item.id}}" wx:for="{{list}}" wx:for-item="item" wx:key="item.id" title="{{item.title}}" label="{{item.address}}"></wux-cell>
+        </wux-cell-group>
     </view>
 </view>

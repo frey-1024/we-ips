@@ -1,36 +1,16 @@
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js');
-var util = require('../../utils/md5.js');
 var qqmapsdk;
-function caculateAKSN( $sk, $url, $querystring_arrays, $method){
-  if ($method === 'POST'){
-    ksort($querystring_arrays);
-  }
-  var $querystring = http_build_query($querystring_arrays);
-  return util.hexMD5(urlencode($url + '?' + $querystring.$sk));
-}
-function caculateAKSN( $sk, $url, $querystring_arrays, $method = 'GET'){
-  if ($method === 'POST'){
-    ksort($querystring_arrays);
-  }
-//这个 querystring 汉字和部分字符会被 url 编码，所以在后面使用前应先反编码
-  $querystring = http_build_query($querystring_arrays);
-  return md5(urlencode($url.'?'. urldecode($querystring) . $sk));
-}
-var $querystring_arrays={
-  "keyword": "酒店",
-  "boundary": "nearby(39.908491,116.374328,1000)",
-  "key": "7GUBZ-X6IKU-UNLVB-2FFA3-5BNM5-5PFMY"
-};
-caculateAKSN("7mW2LPFnPL4eIvkA63EZfhMRnRPeJXk", "https://apis.map.qq.com/ws/place/v1/search", $params, "GET")
+var timer = null;
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    latitude: null,
-    longitude: null,
+    locationInfo: {},
+    lat: 0,
+    lng: 0,
+    list: [],
     markers: []
   },
 
@@ -39,49 +19,132 @@ Page({
    */
   onLoad: function (options) {
     qqmapsdk = new QQMapWX({
-      key: '7GUBZ-X6IKU-UNLVB-2FFA3-5BNM5-5PFMY',
-      SK: 'Af23EhbXpJTWuBSZ59b0CfQSwf3bMVO'
+      key: 'SAFBZ-JWAK4-C6FUX-XTGLH-AVJBS-64FKK',
     });
-// 页面加载获取当前定位位置为地图的中心坐标
-    var _this = this;
+    var that = this;
     wx.getLocation({
-      success(data) {
-        if (data) {
-          _this.data.markers = [{
-            id:0,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            width: 32,
-            height: 32
-          }];
-          _this.setData({
-            latitude: data.latitude,
-            longitude: data.longitude,
-            markers:[{
-              id:0,
-              latitude: data.latitude,
-              longitude: data.longitude,
-              width: 32,
-              height: 32
-            }]
-          });
-        }
-      }
-    });
-  },
-  searchMap(rest) {
-    const searchVal = rest.detail.value;
-    console.log(searchVal);
-    qqmapsdk.search({
-      keyword: '酒店',
+      type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
-        console.log(res);
-      },
-      fail: function (res) {
-        console.log(res);
-      },
-      complete: function (res) {
-        console.log(res);
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude,
+          },
+          success: function(res) {
+            that.setData({
+              locationInfo: res.result
+            });
+          },
+          fail: function(res) {
+            console.log(res);
+          }
+        });
+        // success
+        that.setData({
+          lat: res.latitude,
+          lng: res.longitude,
+          markers: [{
+            id: 0,
+            latitude: res.latitude,
+            longitude: res.longitude,
+            width: 35,
+            height: 45
+          }]
+        });
+      }
+    })
+  },
+  onSearch(val) {
+    var that = this;
+    var searchVal = val.detail.value;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+      if (searchVal != '' && searchVal.trim() != '') {
+        // 调用接口
+        qqmapsdk.search({
+          keyword: searchVal,
+          success: function (res) {
+            var markers = [];
+            for (var i = 0; i < res.data.length; i++) {
+              var item = res.data[i];
+              markers.push({
+                id: item.id,
+                latitude: item.location.lat,
+                longitude: item.location.lng,
+                width: 35,
+                height: 45
+              });
+            }
+            that.setData({
+              list: res.data,
+              lat: markers[0].latitude,
+              lng: markers[0].longitude,
+              markers: markers
+            });
+          },
+          fail: function (res) {
+            console.log(res);
+          }
+        })
+      } else if (this.data.locationInfo) {
+        var locationInfo = this.data.locationInfo.location;
+        that.setData({
+          lat: locationInfo.lat,
+          lng: locationInfo.lng,
+          markers: [{
+            id: 0,
+            latitude: locationInfo.lat,
+            longitude: locationInfo.lng,
+            width: 35,
+            height: 45
+          }]
+        });
+      }
+    }, 200);
+  },
+  selectMyLocation() {
+    var locationInfo = this.data.locationInfo;
+    if (locationInfo) {
+      this.goBackPage(locationInfo.address);
+    }
+  },
+  selectSearchLocation(ev) {
+    var id = ev.target.id;
+    this.findInfoFromList(id);
+  },
+  onMapSelect(val) {
+    var id = val.markerId;
+    // 选择当前位置
+    if (id == 0) {
+      this.selectMyLocation();
+      return;
+    }
+    this.findInfoFromList(id);
+  },
+  findInfoFromList(id) {
+    var list = this.data.list;
+    var findInfo;
+    for (var i = 0, item; i < list.length; i++) {
+      item = list[i];
+      if (item.id === id) {
+        findInfo = item;
+        break
+      }
+    }
+    if (findInfo) {
+      this.goBackPage(findInfo.address);
+    }
+  },
+  goBackPage(address) {
+    wx.setStorage({
+      key: 'address',
+      data: address,
+      success: function() {
+        wx.navigateBack({
+          delta: 1
+        });
       }
     });
   },

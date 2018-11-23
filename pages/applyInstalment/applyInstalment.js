@@ -5,14 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    address: ''
+  },
+  goMapPage() {
+    wx.navigateTo({
+      url: '../mapSelect/mapSelect'
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -26,7 +30,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    wx.getStorage({
+      key: 'address',
+      success (res) {
+        that.setData({
+          address: res.data
+        });
+        wx.removeStorage({
+          key: 'address',
+        })
+      }
+    });
   },
 
   /**

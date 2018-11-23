@@ -22,6 +22,9 @@ page{
   color: #808080;
   font-size: 40rpx;
 }
+.select-content.selected{
+  color: #4D4D4D;
+}
 .right-img{
   width: 32rpx;
 }

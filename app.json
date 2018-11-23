@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/mapSelect/mapSelect",
     "pages/applyInstalment/applyInstalment",
+    "pages/mapSelect/mapSelect",
     "pages/applySuccess/applySuccess",
     "pages/instalment/instalment",
     "pages/index/index",
