@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/score/score",
     "pages/myOrder/myOrder",
     "pages/applyInstalment/applyInstalment",
     "pages/mapSelect/mapSelect",
@@ -47,6 +48,7 @@
     "wux-textarea": "../../dist/textarea/index",
     "wux-search-bar": "../../dist/search-bar/index",
     "wux-tabs": "../../dist/tabs/index",
-    "wux-tab": "../../dist/tab/index"
+    "wux-tab": "../../dist/tab/index",
+    "wux-rater": "../../dist/rater/index"
   }
 }
