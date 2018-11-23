@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/myOrder/myOrder",
     "pages/applyInstalment/applyInstalment",
     "pages/mapSelect/mapSelect",
     "pages/applySuccess/applySuccess",
@@ -27,7 +28,7 @@
       "iconPath": "pages/index/imgs/homeIcon.png",
       "selectedIconPath": "pages/index/imgs/homeIcon_active.png"
     }, {
-      "pagePath": "pages/tabOne/tabOne",
+      "pagePath": "pages/myOrder/myOrder",
       "text": "订单",
       "iconPath": "pages/index/imgs/didanIcon.png",
       "selectedIconPath": "pages/index/imgs/didanIcon_active.png"
@@ -44,6 +45,8 @@
     "wux-cell": "../../dist/cell/index",
     "wux-input": "../../dist/input/index",
     "wux-textarea": "../../dist/textarea/index",
-    "wux-search-bar": "../../dist/search-bar/index"
+    "wux-search-bar": "../../dist/search-bar/index",
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index"
   }
 }
