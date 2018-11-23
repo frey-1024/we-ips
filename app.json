@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/personal/personal",
     "pages/orderDetail/orderDetail",
     "pages/score/score",
     "pages/myOrder/myOrder",
@@ -9,8 +10,6 @@
     "pages/instalment/instalment",
     "pages/index/index",
     "pages/about/about",
-    "pages/tabOne/tabOne",
-    "pages/tabTwo/tabTwo",
     "pages/logs/logs"
   ],
   "window":{
@@ -35,7 +34,7 @@
       "iconPath": "pages/index/imgs/didanIcon.png",
       "selectedIconPath": "pages/index/imgs/didanIcon_active.png"
       }, {
-      "pagePath": "pages/tabOne/tabOne",
+      "pagePath": "pages/personal/personal",
       "text": "我的",
       "iconPath": "pages/index/imgs/myIcon.png",
       "selectedIconPath": "pages/index/imgs/myIcon_active.png"
