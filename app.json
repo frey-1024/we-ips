@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/decorationImpression/decorationImpression",
+    "pages/importedCabinets/importedCabinets",
     "pages/verifyPhone/verifyPhone",
     "pages/highTeam/highTeam",
     "pages/goodDesign/goodDesign",
@@ -52,6 +54,7 @@
     "wux-search-bar": "../../dist/search-bar/index",
     "wux-tabs": "../../dist/tabs/index",
     "wux-tab": "../../dist/tab/index",
-    "wux-rater": "../../dist/rater/index"
+    "wux-rater": "../../dist/rater/index",
+    "wux-select": "../../dist/select/index"
   }
 }

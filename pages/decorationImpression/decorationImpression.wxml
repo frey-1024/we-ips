@@ -1,0 +1,9 @@
+<view class="container decoration-impression">
+    <wux-cell-group>
+        <wux-cell bind:click="onClick1" class="select-type">
+            <text wx:if="{{!selectedValue}}">筛选</text>
+            <text wx:if="{{selectedValue}}">{{selectedValue}}</text>
+        </wux-cell>
+    </wux-cell-group>
+    <wux-select id="wux-select1" />
+</view>
