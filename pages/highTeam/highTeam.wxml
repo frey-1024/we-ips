@@ -1,0 +1,55 @@
+<view class="container high-team">
+    <view class="my-provide">
+        <text class="provide-title">我们提供</text>
+        <view class="provide-icons flex-row">
+            <view class="flex-1 provide-item">
+                <image class="provide-img" src="../index/imgs2/high1.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1 provide-item">
+                <image class="provide-img" src="../index/imgs2/high2.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1 provide-item">
+                <image class="provide-img" src="../index/imgs2/high3.png" mode="widthFix"></image>
+            </view>
+        </view>
+        <text class="provide-tip">我们的设计既有很高的艺术性的要求，涉及很高的技术含量，并且把一些新兴学科，例如人体工程学、环境学、环境物理学等关系融入到我们的设计里面。在环境设计中发展成为独立的新兴学科。</text>
+        <text class="provide-tip">我们拥有专业的团队及工厂定制，从装修准备到材料选择，设计技巧到施工细节及后期保养维护，另外还配备资深设计师作详细解答，把多年装修经验与心得倾囊相授，让装修施工不再繁琐昂贵。我们致力于提供专业，简单，高效的服务。</text>
+        <text class="provide-tip">我们拥有非常专业的项目管理能力，在有限的资源约束下，运用系统的观点、方法和理论，对项目涉及的全部工作进行有效地管理。我们可以从项目的投资决策开始到项目结束的全过程进行规划、组织、指挥、协调、控制和评价，以实现项目的目标。</text>
+    </view>
+
+    <view class="my-promise">
+        <text class="promise-title">我们承诺</text>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">工作时间：</text>
+            <text class="flex-3 pl-30">工作日9：00-18:00</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">安全措施：</text>
+            <text class="flex-3 pl-30 text-break">IPS施工人员，配备安全帽，统一着装上门服务，实施精细施工，安全规范操作，同时也拥有专业的机电工程师配合。</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">施工阶段：</text>
+            <text class="flex-3 pl-30 text-break">IPS确保施工中每个阶段都会有文件记录传达给业主，根据施工方案和方法，特别将重点放在安全、质量、成本、进度和时间上，以满足业主的特殊要求。</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">工程验收：</text>
+            <text class="flex-3 pl-30 text-break">验收工程必须有客户和施工人员共同验收，若存在问题，及时修改，直至验收完毕，客户签署验收单合格为止。</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">结算收费：</text>
+            <text class="flex-3 pl-30 text-break">收费结算模式暂时为通过“银联”网络平台结算，客户也可通过“银联”系统刷卡支付。也可以支付现金，可于工程验收合格后交由现场管理人员代为操作 。</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">售后服务：</text>
+            <text class="flex-3 pl-30 text-break">我们确保施工完成后有一套完整的售后维护维修服务，IPS会在接到报修的24小时内提供维修服务。</text>
+        </view>
+        <view class="flex-row row-left promise-item col-top">
+            <text class="flex-1 text-bold">我们承诺：</text>
+            <text class="flex-3 pl-30 text-break">凡是根据图纸报价，经由客户审核后，我们一律不再无故额外增加施工费用。</text>
+        </view>
+    </view>
+    <image class="rongyu-img" src="../index/imgs2/rongyu.png" mode="widthFix"></image>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="go">预约施工队</wux-button>
+    </view>
+</view>

@@ -1,0 +1,71 @@
+page{
+    height: 100%;
+    background-color: #eee;
+}
+.high-team{
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+.my-provide, .my-promise{
+    margin-top: 20rpx;
+    background-color: #fff;
+    padding: 20rpx 40rpx 0;
+    text-align: center;
+}
+.provide-title, .promise-title{
+    font-size: 35rpx;
+    color: #4D4D4D;
+    padding-bottom: 20rpx;
+    display: block;
+    text-align: center;
+}
+.provide-icons{
+    padding-bottom: 20rpx;
+}
+.provide-item{
+    padding-right: 90rpx;
+    box-sizing: border-box;
+}
+.provide-item:last-child{
+    padding-right: 0;
+}
+.provide-img{
+    width: 100%;
+    display: block;
+}
+.provide-tip, .promise-item{
+    font-size: 28rpx;
+    color: #4D4D4D;
+    line-height: 1.6;
+    padding-bottom: 30rpx;
+    text-align: left;
+}
+.provide-tip{
+    display: block;
+}
+.my-promise{
+    text-align: left;
+    margin-top: 10rpx;
+}
+.promise-item{
+
+}
+
+
+.rongyu-img{
+    width: 100%;
+    display: block;
+    margin-top: 10rpx;
+    margin-bottom: 150rpx;
+}
+
+
+.btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx 30rpx 20rpx;
+}

@@ -68,3 +68,7 @@ page{
 .btn-click-calm{
     background-color: #11c1f3;
 }
+.btn-click-calm:after{
+    border-radius: 0;
+    border-color: #11c1f3;
+}

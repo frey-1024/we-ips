@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/highTeam/highTeam",
     "pages/goodDesign/goodDesign",
     "pages/personal/personal",
     "pages/orderDetail/orderDetail",

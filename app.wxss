@@ -8,27 +8,36 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 .row-left{
   justify-content: flex-start;
+}
+.col-top{
+  align-items: flex-start;
 }
 .col-center{
   align-items: center;
 }
 .flex-1{
   flex: 1;
+  box-sizing: border-box;
 }
 .flex-2{
   flex: 2;
+  box-sizing: border-box;
 }
 .flex-3{
   flex: 3;
+  box-sizing: border-box;
 }
 .flex-4{
   flex: 4;
+  box-sizing: border-box;
 }
 .flex-5{
   flex: 5;
+  box-sizing: border-box;
 }
 
 .ml-7{
@@ -39,6 +48,10 @@
 }
 .mt-20{
   margin-top: 20rpx;
+}
+
+.pl-30{
+  padding-left: 30rpx;
 }
 .text{
   color: #4D4D4D;
@@ -54,4 +67,7 @@
 }
 .text-gray{
   color: #808080;
+}
+.text-bold{
+  font-weight: bold;
 }
