@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/applyRepair/applyRepair",
     "pages/decorationImpression/decorationImpression",
     "pages/importedCabinets/importedCabinets",
     "pages/verifyPhone/verifyPhone",
