@@ -1,0 +1,17 @@
+<view class="container verify-phone">
+    <image class="verify-img" src="../index/imgs2/verifyBg.png" mode="widthFix"></image>
+    <view class="verify-info">
+        <view class="flex-row phone-item-1 col-center">
+            <text class="phone-label">手机号</text>
+            <input class="flex-1" placeholder-class="placeholderClass" placeholder="注册或绑定手机号"/>
+        </view>
+        <view class="flex-row phone-item-2 col-center">
+            <text class="phone-label">验证码</text>
+            <input class="flex-1" placeholder-class="placeholderClass" placeholder="输入六位验证码"/>
+            <wux-button size="small" type="calm" bind:click="go">获取验证码</wux-button>
+        </view>
+        <view class="btn">
+            <wux-button block type="calm" bind:click="go">确认</wux-button>
+        </view>
+    </view>
+</view>

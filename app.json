@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/verifyPhone/verifyPhone",
     "pages/highTeam/highTeam",
     "pages/goodDesign/goodDesign",
     "pages/personal/personal",
