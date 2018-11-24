@@ -1,0 +1,52 @@
+<view class="container good-design">
+    <view class="good-icons flex-row">
+        <view class="flex-1 good-item">
+            <image class="good-img" src="../index/imgs2/good1.png" mode="widthFix"></image>
+            <text class="text-break good-text">提交设计需求选满意设计师</text>
+        </view>
+        <view class="flex-1 good-item">
+            <image class="good-img" src="../index/imgs2/good2.png" mode="widthFix"></image>
+            <text class="text-break good-text">沟通设计需求申请专属设计</text>
+        </view>
+        <view class="flex-1 good-item">
+            <image class="good-img" src="../index/imgs2/good3.png" mode="widthFix"></image>
+            <text class="text-break good-text">绘制设计图纸提前预览新家</text>
+        </view>
+    </view>
+    <image class="good-liu" src="../index/imgs2/good-liu.png" mode="widthFix"></image>
+    <view class="good-more-list">
+        <image class="good-liu" src="../index/imgs2/good-more.png" mode="widthFix"></image>
+        <view class="flex-row">
+            <view class="flex-1">
+                <image class="good-img" src="../index/imgs2/nv1.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1">
+                <image class="good-img" src="../index/imgs2/nv2.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1">
+                <image class="good-img" src="../index/imgs2/nv3.png" mode="widthFix"></image>
+            </view>
+        </view>
+        <view class="flex-row">
+            <view class="flex-1">
+                <image class="good-img" src="../index/imgs2/nv4.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1">
+                <image class="good-img" src="../index/imgs2/nv5.png" mode="widthFix"></image>
+            </view>
+            <view class="flex-1 bg-white"></view>
+        </view>
+        <view class="flex-row">
+            <view class="flex-1 bg-blue h-125">
+            </view>
+            <view class="flex-1 bg-white h-125">
+            </view>
+            <view class="flex-1 bg-blue h-125">
+            </view>
+        </view>
+    </view>
+    <view class="btn flex-row">
+        <button class="flex-2 btn-click" bind:click="go">快速找到您的专属设计</button>
+        <button class="flex-1 btn-click btn-click-calm" bind:click="go">立即预约</button>
+    </view>
+</view>

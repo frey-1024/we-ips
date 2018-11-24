@@ -1,5 +1,0 @@
-<view>
-  <wux-search-bar clear maxlength="40" show-cancel placeholder="搜索地点" bind:change="onSearch"/>
-  <map id="myMap" latitude="{{lat}}" longitude="{{lng}}" markers="{{markers}}" wx:if="{{hasMarkers}}" bind-callouttap="onMyChange" bindcontroltap='onMyChange' bindregionchange='onMyChange' bindtap="onMyChange" bindpoitap='onMyChange' style="height: 600rpx; width: 100%"></map>
-<view>////{{msg}}</view>
-</view>

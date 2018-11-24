@@ -1,0 +1,70 @@
+page{
+    height: 100%;
+    background-color: #eee;
+}
+.good-design{
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+.good-icons{
+    padding: 40rpx 30rpx;
+    background-color: #fff;
+    text-align: center;
+}
+.good-item{
+    padding-right: 40rpx;
+    box-sizing: border-box;
+}
+.good-item:last-child{
+    padding-right: 0;
+}
+.good-img{
+    width: 100%;
+    display: block;
+}
+.good-text{
+    font-size: 30rpx;
+    padding-top: 30rpx;
+    display: block;
+}
+.good-liu{
+    width: 100%;
+    display: block;
+}
+.good-more-list{
+    background-color: #fff;
+    padding: 0 30rpx 20rpx;
+    box-sizing: border-box;
+    margin-bottom: 110rpx;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-blue{
+    background-color: #6EB8F1;
+}
+.h-125{
+    height: 260rpx;
+}
+
+.btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.btn-click{
+    border-radius: 0;
+    background-color: #6BF3D4;
+    color: #fff;
+    font-size: 32rpx;
+}
+.btn-click:after{
+    border-radius: 0;
+    border-color: #6BF3D4;
+}
+.btn-click-calm{
+    background-color: #11c1f3;
+}
