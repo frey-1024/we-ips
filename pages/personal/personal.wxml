@@ -6,7 +6,7 @@
         </view>
         <view class="flex-row col-center row-left">
             <text>{{user.nickName}}</text>
-            <image class="gender-img" src="../index/imgs2/nan.png" mode="scaleToFill"></image></view>
+            <image class="gender-img" src="../index/imgs2/generNV.png" mode="scaleToFill"></image></view>
     </view>
     <view class="content">
         <wux-cell-group>
