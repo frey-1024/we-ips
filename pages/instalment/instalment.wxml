@@ -1,0 +1,16 @@
+<!--pages/instalment/instalment.wxml-->
+<view class="container instalment">
+    <image class="ins-img" src="../index/imgs2/lixi.png" mode="widthFix"></image>
+    <view class="content">
+        <text class="text title">0利息分期</text>
+        <text class="text title">最高50万元专享额度</text>
+        <text class="msg-detail sub-title">IPS与建行合作的乐享安居分期贷款服务：</text>
+        <text class="msg-detail">中国建设银行作为四大国有银行将发挥个人信贷领域的专业优势， 为IPS装饰的用户们提供更好的服务。</text>
+        <text class="msg-detail">此次与建行合作的装修贷款业务服务, 有以下产品优势，涵盖范围广，
+        硬装、软装、家具、家电等百万商户都可以任选，最高50万专享额度，日常用卡不用愁，最长可以分
+        36期，百分之百0利息，享受超低费率优惠。</text>
+    </view>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="go">立即前往分期</wux-button>
+    </view>
+</view>

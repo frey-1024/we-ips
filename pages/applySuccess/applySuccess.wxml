@@ -1,0 +1,11 @@
+<view class="container apply-success">
+    <image class="aps-img" src="../index/imgs2/file.png" mode="widthFix"></image>
+    <view class="content">
+        <text class="msg-detail">提交成功，请保持电话畅通</text>
+        <text class="msg-detail">我们将于2小时内联系你</text>
+        <text class="msg-detail">请耐心等待</text>
+    </view>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="go">返回</wux-button>
+    </view>
+</view>

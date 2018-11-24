@@ -24,6 +24,11 @@ Page({
       url: '../about/about'
     });
   },
+  goInstalment: function() {
+    wx.navigateTo({
+      url: '../instalment/instalment'
+    });
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

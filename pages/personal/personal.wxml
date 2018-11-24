@@ -1,0 +1,20 @@
+<view class="container personal">
+    <image class="personal-img" src="../index/imgs2/personal.png" mode="widthFix"></image>
+    <view class="user-info" wx:if="{{user}}">
+        <view class="user-header">
+            <image class="user-img" src="{{user.avatarUrl}}" mode="scaleToFill"></image>
+        </view>
+        <view class="flex-row col-center row-left">
+            <text>{{user.nickName}}</text>
+            <image class="gender-img" src="../index/imgs2/nan.png" mode="scaleToFill"></image></view>
+    </view>
+    <view class="content">
+        <wux-cell-group>
+            <wux-cell thumb="../../pages/index/imgs2/p-home.png" title="我的报修" is-link></wux-cell>
+            <wux-cell thumb="../../pages/index/imgs2/p-j.png" title="设计报名" is-link></wux-cell>
+            <wux-cell thumb="../../pages/index/imgs2/p-j.png" title="建材报名" is-link></wux-cell>
+            <wux-cell thumb="../../pages/index/imgs2/p-s.png" title="施工报名" is-link></wux-cell>
+            <wux-cell thumb="../../pages/index/imgs2/p-c.png" title="橱柜申请" is-link></wux-cell>
+        </wux-cell-group>
+    </view>
+</view>

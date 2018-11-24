@@ -1,10 +1,15 @@
 {
   "pages":[
-    "pages/mapTest/mapTest",
-    "pages/about/about",
+    "pages/personal/personal",
+    "pages/orderDetail/orderDetail",
+    "pages/score/score",
+    "pages/myOrder/myOrder",
+    "pages/applyInstalment/applyInstalment",
+    "pages/mapSelect/mapSelect",
+    "pages/applySuccess/applySuccess",
+    "pages/instalment/instalment",
     "pages/index/index",
-    "pages/tabOne/tabOne",
-    "pages/tabTwo/tabTwo",
+    "pages/about/about",
     "pages/logs/logs"
   ],
   "window":{
@@ -24,18 +29,26 @@
       "iconPath": "pages/index/imgs/homeIcon.png",
       "selectedIconPath": "pages/index/imgs/homeIcon_active.png"
     }, {
-      "pagePath": "pages/tabOne/tabOne",
+      "pagePath": "pages/myOrder/myOrder",
       "text": "订单",
       "iconPath": "pages/index/imgs/didanIcon.png",
       "selectedIconPath": "pages/index/imgs/didanIcon_active.png"
       }, {
-      "pagePath": "pages/tabOne/tabOne",
+      "pagePath": "pages/personal/personal",
       "text": "我的",
       "iconPath": "pages/index/imgs/myIcon.png",
       "selectedIconPath": "pages/index/imgs/myIcon_active.png"
     }]
   },
   "usingComponents": {
-    "wux-search-bar": "../../dist/search-bar/index"
+    "wux-button": "./dist/button/index",
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-input": "../../dist/input/index",
+    "wux-textarea": "../../dist/textarea/index",
+    "wux-search-bar": "../../dist/search-bar/index",
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index",
+    "wux-rater": "../../dist/rater/index"
   }
 }

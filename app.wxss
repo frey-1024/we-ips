@@ -9,8 +9,26 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.row-left{
+  justify-content: flex-start;
+}
+.col-center{
+  align-items: center;
+}
 .flex-1{
   flex: 1;
+}
+.flex-2{
+  flex: 2;
+}
+.flex-3{
+  flex: 3;
+}
+.flex-4{
+  flex: 4;
+}
+.flex-5{
+  flex: 5;
 }
 
 .ml-7{
@@ -19,9 +37,21 @@
 .mr-7{
   margin-right: 7rpx;
 }
-
+.mt-20{
+  margin-top: 20rpx;
+}
 .text{
   color: #4D4D4D;
   font-size: 32rpx;
   font-weight: bold;
+}
+.text-break{
+  white-space: normal;
+  word-break: break-all;
+}
+.text-right{
+  text-align: right;
+}
+.text-gray{
+  color: #808080;
 }

@@ -1,0 +1,26 @@
+<view class="container apply-success">
+    <view class="input-list">
+        <wux-cell-group>
+            <wux-cell hover-class="none">
+                <wux-input label="联系人" placeholder="先生/女士"/>
+            </wux-cell>
+            <wux-cell hover-class="none">
+                <wux-input label="联系电话" placeholder="联系电话"/>
+            </wux-cell>
+            <wux-cell hover-class="none" bind:click="goMapPage">
+                <view class="flex-row select-wrapper col-center">
+                    <text class="select-label">所在区域</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
+                    <image class="right-img" src="../index/imgs2/right.png" mode="widthFix"></image>
+                </view>
+            </wux-cell>
+            <wux-cell hover-class="none">
+                <wux-textarea label="详细地址" rows="3" placeholder="需详细地址、如小区、楼座、门牌号等" />
+            </wux-cell>
+        </wux-cell-group>
+    </view>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="go">返回</wux-button>
+    </view>
+</view>

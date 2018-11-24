@@ -1,18 +1,30 @@
-// pages/tabTwo/tabTwo.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    user: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    console.log(app.globalData.userInfo);
+    wx.getUserInfo({
+      success: res => {
+        console.log(res.userInfo);
+        that.setData({
+          user: res.userInfo,
+        })
+      }
+    });
+    wx.setNavigationBarTitle({
+      title: '个人中心'
+    });
   },
 
   /**
