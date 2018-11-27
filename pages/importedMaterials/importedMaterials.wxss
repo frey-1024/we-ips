@@ -1,0 +1,53 @@
+.import-materials{
+    background-color: #fff;
+}
+.item{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20rpx 50rpx;
+    border-bottom: 1px solid #eee;
+}
+.right-img{
+    width: 24rpx;
+    margin-left: 10rpx;
+}
+.item-img{
+    width: 200rpx;
+    height: 150rpx;
+}
+.item-text{
+    padding: 20rpx 30rpx;
+}
+.see-more{
+    color: #808080;
+    font-size: 28rpx;
+    padding-top: 50rpx;
+}
+
+.title{
+    display: block;
+    padding-top: 25rpx;
+    padding-bottom: 15rpx;
+    font-weight: normal;
+    font-size: 34rpx;
+}
+.msg-detail{
+    color: #808080;
+    font-size: 28rpx;
+    line-height: 1.7;
+    display: block;
+}
+.msg-icon{
+    position: relative;
+    text-indent: 50rpx;
+}
+.msg-icon:after{
+    position: absolute;
+    left: 0;
+    top: 14rpx;
+    content: "";
+    width: 20rpx;
+    height: 20rpx;
+    background-color: #808080;
+    transform: rotate(-45deg);
+}

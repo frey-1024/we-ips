@@ -6,11 +6,11 @@
        <image class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
     </view>
     <view class="flex-row design-content">
-     <view class="design-wrapper flex-1 flex-row mr-10" bindtap="goGoodDesign">
+     <view class="design-wrapper flex-1 flex-row mr-7" bindtap="goGoodDesign">
         <text class="design-text text">室内设计</text>
         <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/design.png" mode="cover"></image>
      </view>
-     <view class="design-wrapper flex-1 flex-row ml-10">
+     <view class="design-wrapper flex-1 flex-row ml-7" bindtap="goImportedMaterials">
         <text class="design-text text">进口建材</text>
         <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jink.png" mode="cover"></image>
      </view>
@@ -44,7 +44,7 @@
           <text class="zhuangye-text text">家居建材</text>
           <view class="zhuangye flex-row">
               <image bindtap="goImportedCabinets" class="zhuangye-img flex-1 mr-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/beimei.png" mode="widthFix"></image>
-              <image class="zhuangye-img flex-1 ml-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jinkocai.png" mode="widthFix"></image>
+              <image bindtap="goImportedMaterials" class="zhuangye-img flex-1 ml-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jinkocai.png" mode="widthFix"></image>
           </view>
       </view>
   </view>

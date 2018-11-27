@@ -1,0 +1,62 @@
+<view class="container import-materials">
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/tile/Caesar-3-2-2.jpg'></image>
+        <view class="flex-col item-text">
+            <text class="text">意大利进口瓷砖</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/DuPont/DuPont1.jpg'></image>
+        <view class="flex-col item-text">
+            <text class="text">杜邦人造石</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/floor/floor10.jpg'></image>
+        <view class="flex-col item-text">
+            <text class="text">进口地板</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/curtains/curtains9.png'></image>
+        <view class="flex-col item-text">
+            <text class="text">进口窗帘</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/wallpaper/wallpaper8.png'></image>
+        <view class="flex-col item-text">
+            <text class="text">进口墙纸</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="item flex-row row-left col-center">
+        <image class='item-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/woodveneer/woodveneer1.jpg'></image>
+        <view class="flex-col item-text">
+            <text class="text">进口木饰面</text>
+            <view class="flex-row row-left col-center see-more">
+                <text>点击查看更多</text>
+                <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+</view>

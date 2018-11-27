@@ -6,7 +6,7 @@
                     <text class="select-label">报修类型</text>
                     <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
                     <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
-                    <image class="right-img" src="../index/imgs2/right.png" mode="widthFix"></image>
+                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none" bind:click="goMapPage">
@@ -14,7 +14,7 @@
                     <text class="select-label">维修类目</text>
                     <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
                     <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
-                    <image class="right-img" src="../index/imgs2/right.png" mode="widthFix"></image>
+                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none">
@@ -28,7 +28,7 @@
                     <text class="select-label text-break">预约上门时间</text>
                     <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
                     <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
-                    <image class="right-img" src="../index/imgs2/right.png" mode="widthFix"></image>
+                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none" bind:click="goMapPage">
@@ -36,7 +36,7 @@
                     <text class="select-label">所在区域</text>
                     <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
                     <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
-                    <image class="right-img" src="../index/imgs2/right.png" mode="widthFix"></image>
+                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none">
@@ -67,4 +67,5 @@
     <view class="btn">
         <wux-button block type="calm" bind:click="go">提交</wux-button>
     </view>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">1111</button>
 </view>

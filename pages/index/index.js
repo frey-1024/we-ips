@@ -43,6 +43,11 @@ Page({
       url: '../decorationImpression/decorationImpression'
     });
   },
+  goImportedMaterials: function() {
+    wx.navigateTo({
+      url: '../importedMaterials/importedMaterials'
+    });
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
