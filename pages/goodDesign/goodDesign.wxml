@@ -1,38 +1,45 @@
 <view class="container good-design">
     <view class="good-icons flex-row">
         <view class="flex-1 good-item">
-            <image class="good-img" src="../index/imgs2/good1.png" mode="widthFix"></image>
+            <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/one%403x.png" mode="widthFix"></image>
             <text class="text-break good-text">提交设计需求选满意设计师</text>
         </view>
         <view class="flex-1 good-item">
-            <image class="good-img" src="../index/imgs2/good2.png" mode="widthFix"></image>
+            <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/two%403x.png" mode="widthFix"></image>
             <text class="text-break good-text">沟通设计需求申请专属设计</text>
         </view>
         <view class="flex-1 good-item">
-            <image class="good-img" src="../index/imgs2/good3.png" mode="widthFix"></image>
+            <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/three%403x.png" mode="widthFix"></image>
             <text class="text-break good-text">绘制设计图纸提前预览新家</text>
         </view>
     </view>
-    <image class="good-liu" src="../index/imgs2/good-liu.png" mode="widthFix"></image>
+    <swiper class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart1.jpg' class="good-liu"></image></swiper-item>
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart2.jpg' class="good-liu"></image></swiper-item>
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart3.jpg' class="good-liu"></image></swiper-item>
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart4.jpg' class="good-liu"></image></swiper-item>
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart5.jpg' class="good-liu"></image></swiper-item>
+        <swiper-item><image mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/rotationchart6.jpg' class="good-liu"></image></swiper-item>
+    </swiper>
     <view class="good-more-list">
-        <image class="good-liu" src="../index/imgs2/good-more.png" mode="widthFix"></image>
+        <image class="good-more" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/good-more.png" mode="widthFix"></image>
         <view class="flex-row">
             <view class="flex-1">
-                <image class="good-img" src="../index/imgs2/nv1.png" mode="widthFix"></image>
+                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer1.jpg" mode="widthFix"></image>
             </view>
             <view class="flex-1">
-                <image class="good-img" src="../index/imgs2/nv2.png" mode="widthFix"></image>
+                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer2.jpg" mode="widthFix"></image>
             </view>
             <view class="flex-1">
-                <image class="good-img" src="../index/imgs2/nv3.png" mode="widthFix"></image>
+                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer3.jpg" mode="widthFix"></image>
             </view>
         </view>
         <view class="flex-row">
             <view class="flex-1">
-                <image class="good-img" src="../index/imgs2/nv4.png" mode="widthFix"></image>
+                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer4.jpg" mode="widthFix"></image>
             </view>
             <view class="flex-1">
-                <image class="good-img" src="../index/imgs2/nv5.png" mode="widthFix"></image>
+                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer5.jpg" mode="widthFix"></image>
             </view>
             <view class="flex-1 bg-white"></view>
         </view>

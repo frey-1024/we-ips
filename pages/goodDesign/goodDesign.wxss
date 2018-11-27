@@ -28,7 +28,17 @@ page{
     padding-top: 30rpx;
     display: block;
 }
+.swiper{
+    width: 100%;
+    box-sizing: border-box;
+    height: 430rpx;
+}
 .good-liu{
+    width: 100%;
+    display: block;
+    height: 430rpx;
+}
+.good-more{
     width: 100%;
     display: block;
 }

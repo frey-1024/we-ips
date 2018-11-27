@@ -1,28 +1,28 @@
 <view class="container home">
-  <image bindtap="bindViewTap" class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner.png" mode="widthFix"></image>
+  <image class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner.png" mode="widthFix"></image>
   <view class="userinfo">
     <view class="repair-wrapper" bindtap="goApplyRepair">
        <text class="repair-text text">快速报修</text>
-       <image bindtap="bindViewTap" class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
+       <image class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
     </view>
     <view class="flex-row design-content">
      <view class="design-wrapper flex-1 flex-row mr-10" bindtap="goGoodDesign">
         <text class="design-text text">室内设计</text>
-        <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/design.png" mode="cover"></image>
+        <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/design.png" mode="cover"></image>
      </view>
      <view class="design-wrapper flex-1 flex-row ml-10">
         <text class="design-text text">进口建材</text>
-        <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jink.png" mode="cover"></image>
+        <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jink.png" mode="cover"></image>
      </view>
     </view>
       <view class="flex-row design-content">
           <view class="design-wrapper flex-1 flex-row mr-7" bindtap="goImportedCabinets">
               <text class="design-text text">北美橱柜</text>
-              <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/chugui.png" mode="cover"></image>
+              <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/chugui.png" mode="cover"></image>
           </view>
           <view class="design-wrapper flex-1 flex-row ml-7" bindtap="goHighTeam">
               <text class="design-text text">专业施工</text>
-              <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/shigo.png" mode="cover"></image>
+              <image class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/shigo.png" mode="cover"></image>
           </view>
       </view>
       <swiper class="swiper" autoplay="true" interval="5000" duration="500" circular="true">
@@ -30,21 +30,21 @@
           <swiper-item bindtap="goInstalment"><image src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/companyInfo2.png' class='img'></image></swiper-item>
       </swiper>
       <view class="fuwu-wrapper">
-          <image bindtap="bindViewTap" class="fuwu" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/fuwu.png" mode="widthFix"></image>
+          <image class="fuwu" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/fuwu.png" mode="widthFix"></image>
       </view>
       <view class="jiazhuang-wrapper" bindtap="goDecorationImpression">
           <text class="jiazhuang-text text">家装效果图</text>
-          <image bindtap="bindViewTap" class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jazhuang.png" mode="widthFix"></image>
+          <image class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jazhuang.png" mode="widthFix"></image>
       </view>
       <view class="jiazhuang-wrapper" bindtap="goDecorationImpression">
           <text class="jiazhuang-text text">专业工装案例</text>
-          <image bindtap="bindViewTap" class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/zhuanye.png" mode="widthFix"></image>
+          <image class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/zhuanye.png" mode="widthFix"></image>
       </view>
       <view class="zhuangye-wrapper">
           <text class="zhuangye-text text">家居建材</text>
           <view class="zhuangye flex-row">
               <image bindtap="goImportedCabinets" class="zhuangye-img flex-1 mr-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/beimei.png" mode="widthFix"></image>
-              <image bindtap="bindViewTap" class="zhuangye-img flex-1 ml-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jinkocai.png" mode="widthFix"></image>
+              <image class="zhuangye-img flex-1 ml-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jinkocai.png" mode="widthFix"></image>
           </view>
       </view>
   </view>
