@@ -1,15 +1,10 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
-    imgs: {
-      banner: './imgs/banner.png',
-      repair: './imgs/repair.png'
-    },
-    motto: 'Hello World',
-    userInfo: {},
+    isShowAhturoizeWarning: false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -24,15 +19,39 @@ Page({
       url: '../about/about'
     });
   },
+  goApplyRepair: function() {
+    wx.navigateTo({
+      url: '../applyRepair/applyRepair'
+    });
+  },
+  goGoodDesign: function() {
+    wx.navigateTo({
+      url: '../goodDesign/goodDesign'
+    });
+  },
+  goImportedCabinets: function() {
+    wx.navigateTo({
+      url: '../importedCabinets/importedCabinets'
+    });
+  },
   goInstalment: function() {
     wx.navigateTo({
       url: '../instalment/instalment'
     });
   },
+  goHighTeam: function() {
+    wx.navigateTo({
+      url: '../highTeam/highTeam'
+    });
+  },
+  goDecorationImpression: function() {
+    wx.navigateTo({
+      url: '../decorationImpression/decorationImpression'
+    });
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
@@ -40,17 +59,14 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
           hasUserInfo: true
         })
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.userInfo = res.userInfo;
           this.setData({
-            userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
@@ -58,10 +74,25 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo;
+    var that = this;
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo;
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+    } else {
+      that.setData({
+        isShowAhturoizeWarning: true
+      });
+    }
+  },
+  getAuthorize(e) {
+    this.getUserInfo(e);
+  },
+  hideModal() {
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+      isShowAhturoizeWarning: false
+    });
   }
 });

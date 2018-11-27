@@ -1,13 +1,12 @@
-<!--index.wxml-->
 <view class="container home">
   <image bindtap="bindViewTap" class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner.png" mode="widthFix"></image>
   <view class="userinfo">
-    <view class="repair-wrapper">
+    <view class="repair-wrapper" bindtap="goApplyRepair">
        <text class="repair-text text">快速报修</text>
        <image bindtap="bindViewTap" class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
     </view>
     <view class="flex-row design-content">
-     <view class="design-wrapper flex-1 flex-row mr-10">
+     <view class="design-wrapper flex-1 flex-row mr-10" bindtap="goGoodDesign">
         <text class="design-text text">室内设计</text>
         <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/design.png" mode="cover"></image>
      </view>
@@ -17,11 +16,11 @@
      </view>
     </view>
       <view class="flex-row design-content">
-          <view class="design-wrapper flex-1 flex-row mr-7">
+          <view class="design-wrapper flex-1 flex-row mr-7" bindtap="goImportedCabinets">
               <text class="design-text text">北美橱柜</text>
               <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/chugui.png" mode="cover"></image>
           </view>
-          <view class="design-wrapper flex-1 flex-row ml-7">
+          <view class="design-wrapper flex-1 flex-row ml-7" bindtap="goHighTeam">
               <text class="design-text text">专业施工</text>
               <image bindtap="bindViewTap" class="design flex-1" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/shigo.png" mode="cover"></image>
           </view>
@@ -33,29 +32,42 @@
       <view class="fuwu-wrapper">
           <image bindtap="bindViewTap" class="fuwu" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/fuwu.png" mode="widthFix"></image>
       </view>
-      <view class="jiazhuang-wrapper">
+      <view class="jiazhuang-wrapper" bindtap="goDecorationImpression">
           <text class="jiazhuang-text text">家装效果图</text>
           <image bindtap="bindViewTap" class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jazhuang.png" mode="widthFix"></image>
       </view>
-      <view class="jiazhuang-wrapper">
+      <view class="jiazhuang-wrapper" bindtap="goDecorationImpression">
           <text class="jiazhuang-text text">专业工装案例</text>
           <image bindtap="bindViewTap" class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/zhuanye.png" mode="widthFix"></image>
       </view>
       <view class="zhuangye-wrapper">
-          <text class="zhuangye-text text">专业工装案例</text>
+          <text class="zhuangye-text text">家居建材</text>
           <view class="zhuangye flex-row">
-              <image bindtap="bindViewTap" class="zhuangye-img flex-1 mr-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/beimei.png" mode="widthFix"></image>
+              <image bindtap="goImportedCabinets" class="zhuangye-img flex-1 mr-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/beimei.png" mode="widthFix"></image>
               <image bindtap="bindViewTap" class="zhuangye-img flex-1 ml-7" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jinkocai.png" mode="widthFix"></image>
           </view>
       </view>
   </view>
   <button class='kefu-wrapper'>
-    <image class='kefu-img' mode="widthFix" src='./imgs2/kefu.png'></image>
+    <image class='kefu-img' mode="widthFix" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/kefu.png'></image>
     <text class="kefu-text">在线客服</text>
   </button>
-    <button wx:if="{{!hasUserInfo && canIUse}}" class="get-user-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称1111333 </button>
-    <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    <button wx:if="{{!hasUserInfo && canIUse}}" class="get-user-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+    <view class="authorize-warning" wx:if="{{isShowAhturoizeWarning}}">
+        <view class="box">
+            <view class="title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要微信授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getAuthorize">前往授权</button>
+            </view>
+        </view>
+    </view>
 </view>
