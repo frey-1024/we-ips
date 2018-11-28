@@ -1,15 +1,17 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/importedMaterials/importedMaterials",
+    "pages/orderDetail/orderDetail",
+    "pages/applyDesign/applyDesign",
     "pages/applyRepair/applyRepair",
+    "pages/index/index",
+    "pages/goodDesign/goodDesign",
+    "pages/importedTiles/importedTiles",
+    "pages/importedMaterials/importedMaterials",
     "pages/decorationImpression/decorationImpression",
     "pages/importedCabinets/importedCabinets",
     "pages/verifyPhone/verifyPhone",
     "pages/highTeam/highTeam",
-    "pages/goodDesign/goodDesign",
     "pages/personal/personal",
-    "pages/orderDetail/orderDetail",
     "pages/score/score",
     "pages/myOrder/myOrder",
     "pages/applyInstalment/applyInstalment",
@@ -57,6 +59,8 @@
     "wux-tabs": "../../dist/tabs/index",
     "wux-tab": "../../dist/tab/index",
     "wux-rater": "../../dist/rater/index",
-    "wux-select": "../../dist/select/index"
+    "wux-select": "../../dist/select/index",
+    "wux-row": "../../dist/row/index",
+    "wux-col": "../../dist/col/index"
   }
 }

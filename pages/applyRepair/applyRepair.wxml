@@ -1,71 +1,71 @@
 <view class="container apply-repair">
     <view class="input-list">
         <wux-cell-group>
-            <wux-cell hover-class="none" bind:click="goMapPage">
+            <wux-cell hover-class="none" bind:click="selectingType">
                 <view class="flex-row select-wrapper col-center">
                     <text class="select-label">报修类型</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
-                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{selectedType == ''}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{selectedType}}</text>
                     <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
-            <wux-cell hover-class="none" bind:click="goMapPage">
+            <wux-cell hover-class="none" bind:click="selectingCategory">
                 <view class="flex-row select-wrapper col-center">
                     <text class="select-label">维修类目</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
-                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{selectedCategory == ''}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{selectedCategory}}</text>
                     <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none">
-                <wux-input label="联系人" placeholder="先生/女士"/>
+                <wux-input label="联系人" bind:change="onContactsChange" placeholder="先生/女士"/>
             </wux-cell>
             <wux-cell hover-class="none">
-                <wux-input label="联系电话" placeholder="联系电话"/>
+                <wux-input label="联系电话" bind:change="onPhoneChange" placeholder="联系电话"/>
             </wux-cell>
-            <wux-cell hover-class="none" bind:click="goMapPage">
-                <view class="flex-row select-wrapper col-center">
-                    <text class="select-label text-break">预约上门时间</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
-                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
-                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
-                </view>
+            <wux-cell hover-class="none">
+                <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+                    <view class="flex-row select-wrapper col-center">
+                        <text class="select-label text-break">预约上门时间</text>
+                        <text class="flex-1 placeholderStyle select-content" wx:if="{{!time}}">请选择</text>
+                        <text class="flex-1 placeholderStyle select-content selected" wx:else>{{time}}</text>
+                        <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+                    </view>
+                </picker>
             </wux-cell>
             <wux-cell hover-class="none" bind:click="goMapPage">
                 <view class="flex-row select-wrapper col-center">
                     <text class="select-label">所在区域</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!address}}">请选择</text>
-                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{address}}</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!area}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{area}}</text>
                     <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>
             </wux-cell>
             <wux-cell hover-class="none">
-                <wux-textarea label="详细地址" rows="3" placeholder="需详细地址、如小区、楼座、门牌号等" />
+                <wux-textarea label="详细地址" bind:change="onAddressChange" rows="3" placeholder="需详细地址、如小区、楼座、门牌号等" />
             </wux-cell>
             <wux-cell hover-class="none">
                 <view class="select-wrapper">
                     <text class="select-label" style="padding-bottom: 10rpx; display: block">问题描述</text>
-                    <textarea class="textarea" placeholder="请描述需要服务的具体内容。" />
-                    <text class="placeholderStyle select-content number">0/200</text>
+                    <textarea class="textarea" bindinput="onDescribeChange" placeholder="请描述需要服务的具体内容。" />
+                    <text class="placeholderStyle select-content number">{{describeLength}}/200</text>
                     <view class="flex-row row-left col-center upload-img-list">
-                        <!--<view class="flex-1 img-wrapper">-->
-                            <!--<image src="../index/imgs2/empty.png" mode="scaleToFill" class="upload-img"></image>-->
-                            <!--<image src="../../images/deltel.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image-->
-                        <!--</view>-->
-                        <!--<view class="flex-1 img-wrapper">-->
-                            <!--<image src="../index/imgs2/empty.png" mode="scaleToFill" class="upload-img"></image>-->
-                            <!--<image src="../../images/deltel.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image-->
-                        <!--</view>-->
-                        <!--<view class="flex-1 img-wrapper" bindtap="joinPicture" data-index="{{0}}">-->
-                            <!--<image src="../../images/add.png"></image>-->
-                        <!--</view>-->
+                        <view class="img-wrapper" wx:for="{{imgList}}" wx:for-item="item" wx:key="item">
+                            <image src="{{item}}" mode="scaleToFill" class="upload-img"></image>
+                            <view class="cover-de"></view>
+                            <image src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/delete.png" mode="widthFix" bindtap='clearImg' data-index="{{index}}" class="delete-img"></image>
+                        </view>
+                        <view class="img-wrapper" wx:if="{{imgList.length < 3}}" bindtap="joinPicture" data-index="{{0}}">
+                            <image mode="scaleToFill" class="upload-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/add.png"></image>
+                        </view>
                     </view>
                 </view>
             </wux-cell>
         </wux-cell-group>
     </view>
     <view class="btn">
-        <wux-button block type="calm" bind:click="go">提交</wux-button>
+        <wux-button block type="calm" bind:click="submitApply">提交</wux-button>
     </view>
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">1111</button>
+    <wux-select id="wux-select1" />
+    <wux-select id="wux-select2" />
 </view>

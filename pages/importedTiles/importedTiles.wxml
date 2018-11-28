@@ -1,0 +1,14 @@
+<view class="container decoration-impression">
+    <view class="flex-row row-list">
+        <view class="flex-1 type-item" bindtap="selectingBrand">
+            <text wx:if="{{!selectedBrand}}">按品牌筛选</text>
+            <text wx:if="{{selectedBrand}}">{{selectedBrand}}</text>
+        </view>
+        <view class="flex-1 border-left type-item" bindtap="selectingStyle">
+            <text wx:if="{{!selectedStyle}}">按款式筛选</text>
+            <text wx:if="{{selectedStyle}}">{{selectedStyle}}</text>
+        </view>
+    </view>
+    <wux-select id="wux-select1" />
+    <wux-select id="wux-select2" />
+</view>

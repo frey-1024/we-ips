@@ -1,17 +1,26 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    var that = this;
+    this.wxLogin = function () {
+      // 登录
+      wx.login({
+        success: res => {
+          this.globalData.code = res.code;
+          wx.request({
+            url: that.globalData.base_url + '/users/3rdsession?code=' + res.code,
+            success: res => {
+              this.globalData.sessionid = res.data.data.sessionid;
+              if (this.userSessionIdReadyCallback) {
+                this.userSessionIdReadyCallback(res.data.data.sessionid)
+              }
+            }
+          });
+        }
+      });
+    };
+    this.wxLogin();
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -29,6 +38,7 @@ App({
     })
   },
   globalData: {
+    base_url: 'http://rap2api.taobao.org/app/mock/118824',
     userInfo: null,
     openid: 'wx051b26a66be567e3',
     wx_url_1: 'https://api.weixin.qq.com/sns/jscode2session?appid=自己的APPID&secret=自己的SECRET&js_code=',

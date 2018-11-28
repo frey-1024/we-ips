@@ -1,0 +1,21 @@
+page{
+  height: 100%;
+}
+.decoration-impression{
+  background-color: #eee;
+  height: 100%;
+  position: relative;
+}
+
+.row-list{
+  background-color: #fff;
+  text-align: center;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.type-item{
+  padding: 20rpx;
+}
+.border-left{
+  border-left: 1px solid #eee;
+}

@@ -1,4 +1,5 @@
 <view class="container good-design">
+    <view>{{test}}</view>
     <view class="good-icons flex-row">
         <view class="flex-1 good-item">
             <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/one%403x.png" mode="widthFix"></image>
@@ -52,8 +53,25 @@
             </view>
         </view>
     </view>
+    <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
+        <view class="box">
+            <view class="title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要微信授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getPhoneNumber" bindtap="hideModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
+            </view>
+        </view>
+    </view>
     <view class="btn flex-row">
         <button class="flex-2 btn-click" bind:click="go">快速找到您的专属设计</button>
-        <button class="flex-1 btn-click btn-click-calm" bind:click="go">立即预约</button>
+        <button class="flex-1 btn-click btn-click-calm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即预约</button>
     </view>
 </view>

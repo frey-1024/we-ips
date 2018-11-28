@@ -43,3 +43,31 @@ page{
     box-sizing: border-box;
     padding: 30rpx 30rpx 20rpx;
 }
+.img-wrapper{
+    position: relative;
+    margin-right: 30rpx;
+}
+.upload-img{
+    width: 200rpx;
+    height: 180rpx;
+}
+.delete-img{
+    position: absolute;
+    right: -25rpx;
+    top: -25rpx;
+    width: 60rpx;
+    height: 60rpx;
+    display: block;
+    z-index: 3;
+
+}
+.cover-de{
+    position: absolute;
+    right: -10rpx;
+    top: -10rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background-color: #fff;
+    border-radius: 50% 50%;
+    z-index: 2;
+}

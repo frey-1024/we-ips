@@ -1,74 +1,39 @@
 import { $wuxSelect } from '../../dist/index';
-var dateTimePicker = require('../../libs/dateTimePicker.js');
 var uploadImage = require('../../libs/uploadFile.js');
 var util = require('../../libs/util.js');
 const app = getApp();
-// https://blog.csdn.net/weixin_38668828/article/details/79272455
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    startYear: 2000,
-    endYear: 2050,
+    isPreviewDetail: false,
     imgList: [],
     area: '',
-    describe: '',
-    describeLength: 0,
     contacts: '',
     phone: '',
-    time: '',
-    selectedType: '',
-    selectedTypeIndex: '',
-    selectedCategory: '',
-    selectedCategoryIndex: '',
-    dateTime1: null,
-    dateTimeArray1: null,
+    selectedBudget: '',
+    selectedBudgetIndex: '',
   },
   goMapPage() {
     wx.navigateTo({
       url: '../mapSelect/mapSelect'
     })
   },
-  selectingType() {
+  selectingBudget() {
     $wuxSelect('#wux-select1').open({
       value: this.data.selectedType,
       options: [
-        '个人',
-        '企业'
+        '20-50万',
+        '50-100万',
+        '100万以上'
       ],
       onConfirm: (value, index, options) => {
         if (index !== -1) {
           this.setData({
-            selectedType: value,
-            selectedTypeIndex: index,
-          })
-        }
-      },
-    })
-  },
-  selectingCategory() {
-    $wuxSelect('#wux-select2').open({
-      value: this.data.selectedCategory,
-      options: [
-        '开关电路',
-        '厨卫',
-        '开锁换锁',
-        '阀门龙头',
-        '门窗',
-        '墙面地面',
-        '打孔疏通',
-        '灯具',
-        '家具',
-        '家电',
-        '其他',
-      ],
-      onConfirm: (value, index, options) => {
-        if (index !== -1) {
-          this.setData({
-            selectedCategory: value,
-            selectedCategoryIndex: index,
+            selectedBudget: value,
+            selectedBudgetIndex: index,
           })
         }
       },
@@ -80,44 +45,13 @@ Page({
     });
   },
   onPhoneChange(e) {
-    // const isTel = (value) => !/^1[34578]\d{9}$/.test(value);
     this.setData({
       phone: e.detail.value,
     });
   },
   onAddressChange(e) {
-    // const isTel = (value) => !/^1[34578]\d{9}$/.test(value);
     this.setData({
       address: e.detail.value,
-    });
-  },
-  onDescribeChange(e) {
-    var val = e.detail.value;
-    this.setData({
-      describe: val,
-      describeLength: val.length
-    });
-  },
-  getTwoNumber(val) {
-    if (val < 10) {
-      return '0' + val;
-    }
-    return val;
-  },
-  changeDateTime1(e) {
-    const val = e.detail.value;
-    this.setData({
-      dateTime1: e.detail.value,
-      time: '20'+ val[0] + '-' + this.getTwoNumber((val[1] + 1)) + '-' + this.getTwoNumber((val[2] + 1)) + ' ' + this.getTwoNumber(val[3]) + ':' + this.getTwoNumber(val[4])
-    });
-  },
-  changeDateTimeColumn1(e) {
-    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
-    arr[e.detail.column] = e.detail.value;
-    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
-    this.setData({
-      dateTimeArray1: dateArr,
-      dateTime1: arr
     });
   },
   clearImg(e) {
@@ -159,10 +93,8 @@ Page({
               that.setData({
                 imgList: imgList,
               });
-              console.log('success', result);
             }, function (result) {
               wx.hideLoading();
-              console.log('error', result);
             }
           )
         }
@@ -179,14 +111,6 @@ Page({
   submitApply() {
     var that = this;
     var data = that.data;
-    if (data.selectedTypeIndex === '') {
-      that.alertErrorToast('请选择报修类型');
-      return;
-    }
-    if (data.selectedCategoryIndex === '') {
-      that.alertErrorToast('请选择维修类目');
-      return;
-    }
     if (data.contacts === '') {
       that.alertErrorToast('请填写联系人');
       return;
@@ -200,10 +124,6 @@ Page({
       that.alertErrorToast('请填写正确的联系电话');
       return;
     }
-    if (data.time === '') {
-      that.alertErrorToast('请选择预约上门时间');
-      return;
-    }
     if (data.area === '') {
       that.alertErrorToast('请选择所在区域');
       return;
@@ -212,8 +132,8 @@ Page({
       that.alertErrorToast('请填写详细地址');
       return;
     }
-    if (data.describe === '') {
-      that.alertErrorToast('请描述需要服务的具体内容');
+    if (data.selectedBudgetIndex === '') {
+      that.alertErrorToast('请选择报修类型');
       return;
     }
     if (!data.imgList.length) {
@@ -224,15 +144,13 @@ Page({
       title: '提交中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/repair/apply',
+      url: app.globalData.base_url + '/design/apply',
       data:{
-        type: data.selectedTypeIndex,
-        contacts: data.selectedCategoryIndex,
+        budget: data.selectedBudgetIndex,
         phone: data.phone,
-        time: data.time,
+        name: data.contacts,
         area: data.area,
         address: data.address,
-        describe: data.describe,
         imgs: data.imgList,
       },
       header: {
@@ -264,12 +182,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取完整的年月日 时分秒，以及默认显示的数组
-    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    var str = options.detail;
     this.setData({
-        dateTimeArray1: obj1.dateTimeArray.slice(0, 5),
-        dateTime1: obj1.dateTime.slice(0, 5),
-    })
+      isPreviewDetail: !!str,
+    });
   },
 
   /**
