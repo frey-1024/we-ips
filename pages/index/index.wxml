@@ -48,7 +48,7 @@
           </view>
       </view>
   </view>
-  <button class='kefu-wrapper'>
+  <button class='kefu-wrapper' open-type="contact">
     <image class='kefu-img' mode="widthFix" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/kefu.png'></image>
     <text class="kefu-text">在线客服</text>
   </button>

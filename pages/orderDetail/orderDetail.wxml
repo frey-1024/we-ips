@@ -1,29 +1,23 @@
 <view class="container order-detail">
-    <image class="order-img" src="../index/imgs2/detail1.png" mode="widthFix"></image>
+    <image class="order-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail1.png" mode="widthFix"></image>
     <view class="content">
         <wux-cell-group>
-            <wux-cell title="订单号" extra="112018092615240278"></wux-cell>
-            <wux-cell title="服务类目" extra="灯具"></wux-cell>
-            <wux-cell title="联系人" extra="安小姐"></wux-cell>
-            <wux-cell title="联系电话" extra="1391233234324"></wux-cell>
-            <wux-cell title="上门时间" extra="2018年12月23日  16:00"></wux-cell>
+            <wux-cell title="订单号" extra="{{info.ordernum}}"></wux-cell>
+            <wux-cell title="服务类目" extra="{{info.category}}"></wux-cell>
+            <wux-cell title="联系人" extra="{{info.contacts}}"></wux-cell>
+            <wux-cell title="联系电话" extra="{{info.phone}}"></wux-cell>
+            <wux-cell title="上门时间" extra="{{info.time}}"></wux-cell>
             <wux-cell>
                 <view class="flex-row col-center">
                     <text class="flex-1">服务地址</text>
-                    <text class="flex-2 text-break text-right text-gray">上海市浦东新区纳贤路800号科海大厦B座201室</text>
+                    <text class="flex-2 text-break text-right text-gray">{{info.area}}</text>
                 </view>
             </wux-cell>
-            <wux-cell title="问题描述" extra="灯光一闪一闪的，不稳定"></wux-cell>
+            <wux-cell title="问题描述" extra="{{info.describe}}"></wux-cell>
             <wux-cell>
                 <view class="flex-row row-left col-center upload-img-list">
-                    <view class="flex-1 img-wrapper">
-                        <image src="../index/imgs2/empty.png" mode="scaleToFill" class="upload-img"></image>
-                    </view>
-                    <view class="flex-1 img-wrapper">
-                        <image src="../index/imgs2/empty.png" mode="scaleToFill" class="upload-img"></image>
-                    </view>
-                    <view class="flex-1 img-wrapper">
-                        <image src="../index/imgs2/empty.png" mode="scaleToFill" class="upload-img"></image>
+                    <view class="flex-1 img-wrapper" wx:for="{{info.imgs}}" wx:for-item="item" wx:key="item">
+                        <image src="{{item}}" mode="scaleToFill" class="upload-img"></image>
                     </view>
                 </view>
             </wux-cell>

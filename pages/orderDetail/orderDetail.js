@@ -1,20 +1,50 @@
-// pages/orderDetail/orderDetail.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.setNavigationBarTitle({
       title: '订单详情'
     });
+    var ordernum = options.ordernum;
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/orders/details?ordernum='+ ordernum,
+      header: {
+        "Content-Type": "applciation/json",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "GET",
+      success: function(res){
+        console.log(res);
+        that.setData({
+          info: res.data.data,
+        });
+      },
+      fail: function(err){
+        wx.showToast({
+          title: '加载失败，请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      },//请求失败
+      complete: function(){
+        wx.hideLoading();
+      }//请求完成后执行的函数
+    })
   },
 
   /**
