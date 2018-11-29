@@ -30,8 +30,27 @@ Page({
       method: "GET",
       success: function(res){
         console.log(res);
+        var detail = res.data.data;
+        // 订单状态 0 - 代接单 1 - 已接单 2- 已完成 3- 已取消
+        switch (detail.status) {
+          case 0:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail1.png';
+            break;
+          case 1:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail2.png';
+            break;
+          case 2:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail3.png';
+            break;
+          case 3:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail4.png';
+            break;
+          case 4:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail5.png';
+            break;
+        }
         that.setData({
-          info: res.data.data,
+          info: detail,
         });
       },
       fail: function(err){

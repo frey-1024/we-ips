@@ -186,6 +186,9 @@ Page({
     this.setData({
       isPreviewDetail: !!str,
     });
+    wx.setNavigationBarTitle({
+      title: '设计申请'
+    });
   },
 
   /**

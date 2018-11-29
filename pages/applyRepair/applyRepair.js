@@ -264,12 +264,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '设计申请'
+    });
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     this.setData({
         dateTimeArray1: obj1.dateTimeArray.slice(0, 5),
         dateTime1: obj1.dateTime.slice(0, 5),
-    })
+    });
   },
 
   /**

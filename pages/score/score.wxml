@@ -2,24 +2,24 @@
     <view>
         <wux-cell-group>
             <wux-cell title="上门速度" hover-class="none">
-                <wux-rater slot="footer" value="{{ speedVal }}" bind:change="speed" controlled active-color="#6EB8F1" allow-touch-move="true"/>
+                <wux-rater slot="footer" value="{{ speed }}" bind:change="speed" controlled active-color="#6EB8F1" allow-touch-move="true"/>
             </wux-cell>
             <wux-cell title="服务态度" hover-class="none">
-                <wux-rater slot="footer" value="{{ attitudeVal }}" bind:change="attitude" controlled active-color="#6EB8F1" allow-touch-move="true"/>
+                <wux-rater slot="footer" value="{{ attitude }}" bind:change="attitude" controlled active-color="#6EB8F1" allow-touch-move="true"/>
             </wux-cell>
             <wux-cell title="维修效果" hover-class="none">
-                <wux-rater slot="footer" value="{{ effectVal }}" bind:change="effect" controlled active-color="#6EB8F1" allow-touch-move="true"/>
+                <wux-rater slot="footer" value="{{ effect }}" bind:change="effect" controlled active-color="#6EB8F1" allow-touch-move="true"/>
             </wux-cell>
         </wux-cell-group>
     </view>
     <view class="reason">
         <wux-cell-group>
             <wux-cell hover-class="none">
-                <wux-textarea rows="4" placeholder="您的鼓励与鞭策，是我们努力前行的动力。请对我们的服务评价。" />
+                <wux-textarea rows="4" bind:change="onCommentChange" placeholder="您的鼓励与鞭策，是我们努力前行的动力。请对我们的服务评价。" />
             </wux-cell>
         </wux-cell-group>
     </view>
     <view class="btn">
-        <wux-button block type="calm" bind:click="go">提交</wux-button>
+        <wux-button block type="calm" bind:click="submitScore">提交</wux-button>
     </view>
 </view>
