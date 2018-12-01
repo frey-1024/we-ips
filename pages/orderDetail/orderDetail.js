@@ -31,7 +31,7 @@ Page({
       success: function(res){
         console.log(res);
         var detail = res.data.data;
-        // 订单状态 0 - 代接单 1 - 已接单 2- 已完成 3- 已取消
+        // 订单状态 0 待接单 1 待上门 2 待确认	3 已完成 4 已取消
         switch (detail.status) {
           case 0:
             detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail1.png';

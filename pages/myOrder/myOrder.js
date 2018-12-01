@@ -1,4 +1,5 @@
-// pages/myOrder/myOrder.js
+const app = getApp();
+
 Page({
 
   /**
@@ -66,21 +67,25 @@ Page({
         var orders = res.data.data.orders;
         for (var i = 0, item; i < orders.length; i++) {
           item = orders[i];
-          // 订单状态 0 - 代接单 1 - 已接单 2- 已完成 3- 已取消
+          // 0 待接单 1 待上门 2 待确认	3 已完成 4 已取消
           switch (item.status) {
             case 0:
-              item.statusStr = '代接单';
+              item.statusStr = '待接单';
               item.statusClass = 'text-red';
               break;
             case 1:
-              item.statusStr = '已接单';
+              item.statusStr = '待上门';
               item.statusClass = 'text-red';
               break;
             case 2:
-              item.statusStr = '已完成';
+              item.statusStr = '待确认';
               item.statusClass = 'text-normal';
               break;
             case 3:
+              item.statusStr = '已完成';
+              item.statusClass = 'text-gray';
+              break;
+            case 4:
               item.statusStr = '已取消';
               item.statusClass = 'text-gray';
               break;
