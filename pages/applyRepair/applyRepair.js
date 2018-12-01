@@ -1,4 +1,3 @@
-import { $wuxSelect } from '../../dist/index';
 var dateTimePicker = require('../../libs/dateTimePicker.js');
 var uploadImage = require('../../libs/uploadFile.js');
 var util = require('../../libs/util.js');
@@ -12,6 +11,23 @@ Page({
   data: {
     startYear: 2000,
     endYear: 2050,
+    typeList: [
+      '个人',
+      '企业'
+    ],
+    categoryList: [
+      '开关电路',
+      '厨卫',
+      '开锁换锁',
+      '阀门龙头',
+      '门窗',
+      '墙面地面',
+      '打孔疏通',
+      '灯具',
+      '家具',
+      '家电',
+      '其他',
+    ],
     imgList: [],
     area: '',
     describe: '',
@@ -31,48 +47,19 @@ Page({
       url: '../mapSelect/mapSelect'
     })
   },
-  selectingType() {
-    $wuxSelect('#wux-select1').open({
-      value: this.data.selectedType,
-      options: [
-        '个人',
-        '企业'
-      ],
-      onConfirm: (value, index, options) => {
-        if (index !== -1) {
-          this.setData({
-            selectedType: value,
-            selectedTypeIndex: index,
-          })
-        }
-      },
-    })
+  selectingType(e) {
+    const val = e.detail.value;
+    this.setData({
+      selectedType: this.data.typeList[val],
+      selectedTypeIndex: val,
+    });
   },
-  selectingCategory() {
-    $wuxSelect('#wux-select2').open({
-      value: this.data.selectedCategory,
-      options: [
-        '开关电路',
-        '厨卫',
-        '开锁换锁',
-        '阀门龙头',
-        '门窗',
-        '墙面地面',
-        '打孔疏通',
-        '灯具',
-        '家具',
-        '家电',
-        '其他',
-      ],
-      onConfirm: (value, index, options) => {
-        if (index !== -1) {
-          this.setData({
-            selectedCategory: value,
-            selectedCategoryIndex: index,
-          })
-        }
-      },
-    })
+  selectingCategory(e) {
+    const val = e.detail.value;
+    this.setData({
+      selectedCategory: this.data.categoryList[val],
+      selectedCategoryIndex: val,
+    });
   },
   onContactsChange(e) {
     this.setData({
@@ -166,7 +153,9 @@ Page({
             }
           )
         }
-      }
+      },
+      fail: function (err) {},
+      complete: function (e) {}
     })
   },
   alertErrorToast(tip) {

@@ -1,10 +1,11 @@
 page{
     background-color: #eee;
-    padding-bottom: 220rpx;
 }
 .apply-repair{
-    background-color: #fff;
     position: relative;
+}
+.input-list{
+    background-color: #fff;
 }
 .select-label{
     margin-left:0;
@@ -36,9 +37,6 @@ page{
     width: 100%;
 }
 .btn{
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
     box-sizing: border-box;
     padding: 30rpx 30rpx 20rpx;
