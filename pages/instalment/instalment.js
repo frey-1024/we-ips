@@ -1,10 +1,64 @@
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    show: false,
+    isShowPhoneWarning: false,
+    test: '',
+  },
+  decodePhoneNumber(encryptedData, iv) {
+    wx.request({
+      url: app.globalData.base_url + '/users/phone',
+      data:{
+        encryptedData: encryptedData,
+        iv: iv
+      },
+      header:{
+        "Content-Type":"applciation/json",
+        "sessionid": app.globalData.sessionid
+      },
+      method:"POST",
+      success:function(res){
+        app.globalData.phoneNumber = res.data.data.phoneNumber;
+        console.log(res);
+        wx.navigateTo({
+          url: '../applyDesign/applyDesign'
+        });
+      },
+      fail:function(err){},//请求失败
+      complete:function(){}//请求完成后执行的函数
+    })
+  },
+  getPhoneNumber(e) {
+    this.setData({
+      test: JSON.stringify(e)
+    });
+    var that = this;
+    if (e.detail.errMsg.indexOf(':fail') > -1) {
+      that.setData({
+        isShowPhoneWarning: true
+      });
+    } else {
+      if (!app.globalData.sessionid) {
+        app.userSessionIdReadyCallback = res => {
+          that.decodePhoneNumber(e.detail.encryptedData, e.detail.iv);
+        }
+      } else {
+        that.decodePhoneNumber(e.detail.encryptedData, e.detail.iv);
+      }
+    }
+  },
+  hideModal() {
+    this.setData({
+      test: ''
+    });
+    this.setData({
+      isShowPhoneWarning: false
+    });
   },
 
   /**
@@ -13,6 +67,13 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '0利息分期'
+    });
+    wx.checkSession({
+      success: function () {
+      },
+      fail:function(err){
+        app.wxLogin();
+      },
     });
   },
 

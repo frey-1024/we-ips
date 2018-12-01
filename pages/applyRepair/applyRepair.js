@@ -254,7 +254,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '设计申请'
+      title: '报修申请'
     });
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
