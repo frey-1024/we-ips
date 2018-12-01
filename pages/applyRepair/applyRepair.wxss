@@ -18,7 +18,7 @@ page{
 }
 .select-content{
     color: #808080;
-    font-size: 40rpx;
+    font-size: 36rpx;
 }
 .select-content.selected{
     color: #4D4D4D;

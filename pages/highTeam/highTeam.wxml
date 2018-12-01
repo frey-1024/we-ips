@@ -3,13 +3,13 @@
         <text class="provide-title">我们提供</text>
         <view class="provide-icons flex-row">
             <view class="flex-1 provide-item">
-                <image class="provide-img" src="../index/imgs2/high1.png" mode="widthFix"></image>
+                <image class="provide-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/high1.png" mode="widthFix"></image>
             </view>
             <view class="flex-1 provide-item">
-                <image class="provide-img" src="../index/imgs2/high2.png" mode="widthFix"></image>
+                <image class="provide-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/high2.png" mode="widthFix"></image>
             </view>
             <view class="flex-1 provide-item">
-                <image class="provide-img" src="../index/imgs2/high3.png" mode="widthFix"></image>
+                <image class="provide-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/high3.png" mode="widthFix"></image>
             </view>
         </view>
         <text class="provide-tip">我们的设计既有很高的艺术性的要求，涉及很高的技术含量，并且把一些新兴学科，例如人体工程学、环境学、环境物理学等关系融入到我们的设计里面。在环境设计中发展成为独立的新兴学科。</text>
@@ -48,7 +48,7 @@
             <text class="flex-3 pl-10 text-break">凡是根据图纸报价，经由客户审核后，我们一律不再无故额外增加施工费用。</text>
         </view>
     </view>
-    <image class="rongyu-img" src="../index/imgs2/rongyu.png" mode="widthFix"></image>
+    <image class="rongyu-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/rongyu.png" mode="widthFix"></image>
     <view class="btn">
         <wux-button block type="calm" bind:click="go">预约施工队</wux-button>
     </view>
