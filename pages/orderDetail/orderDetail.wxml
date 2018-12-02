@@ -23,12 +23,21 @@
             </wux-cell>
         </wux-cell-group>
     </view>
-    <view class="content mt-20">
+    <view class="content mt-20" wx:if="{{info.status !== 0}}">
         <wux-cell-group>
-            <wux-cell title="维修师傅" is-link extra="小王"></wux-cell>
+            <wux-cell title="维修师傅" is-link extra="{{info.pname}}"></wux-cell>
         </wux-cell-group>
     </view>
-    <view class="btn">
-        <wux-button block type="calm" bind:click="go">立即前往分期</wux-button>
+    <view class="btn flex-row" wx:if="{{info.status <= 1}}">
+        <wux-button type="calm" block class="flex-1" bind:click="cancelOrder">取消订单</wux-button>
+    </view>
+    <view class="btn flex-row" wx:if="{{info.status === 2}}">
+        <wux-button type="calm" block class="flex-1" bind:click="completeOrder">确认完成</wux-button>
+    </view>
+    <view class="btn flex-row" wx:if="{{info.status === 3}}">
+        <wux-button type="calm" block class="flex-1" bind:click="goScore">去评价</wux-button>
+    </view>
+    <view class="btn flex-row" wx:if="{{info.status === 4}}">
+        <wux-button type="light" block disabled class="flex-1">已取消</wux-button>
     </view>
 </view>

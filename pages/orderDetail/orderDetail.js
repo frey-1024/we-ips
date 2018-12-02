@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: {}
+    info: {},
+    ordernum: ''
   },
 
   /**
@@ -18,6 +19,9 @@ Page({
       title: '订单详情'
     });
     var ordernum = options.ordernum;
+    that.setData({
+      ordernum: options.ordernum
+    });
     wx.showLoading({
       title: '加载中...',
     });
@@ -65,7 +69,94 @@ Page({
       }//请求完成后执行的函数
     })
   },
+  cancelOrder() {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '你确定要删除吗？',
+      success: function(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '删除中...',
+          });
 
+          wx.request({
+            url: app.globalData.base_url + '/orders/cancel',
+            data:{
+              ordernum: that.data.ordernum,
+            },
+            header:{
+              "Content-Type":"applciation/json",
+              "sessionid": app.globalData.sessionid
+            },
+            method:"POST",
+            success:function(res){
+              wx.showToast({title: '删除成功', success: res => {
+                that.setData({
+                  info: {},
+                  ordernum: ''
+                });
+                //用onLoad周期方法重新加载，实现当前页面的刷新
+                that.onLoad()
+              }});
+              console.log(res);
+              wx.navigateBack({
+                delta: 1
+              })
+            },
+            fail:function(err){},//请求失败
+            complete:function(){
+              wx.hideLoading();
+            }//请求完成后执行的函数
+          })
+        } else if (res.cancel) {
+        }
+      }
+    });
+  },
+  completeOrder() {
+    wx.showLoading({
+      title: '提交中...',
+    });
+    var that = this;
+    wx.request({
+      url: app.globalData.base_url + '/orders/complete',
+      data:{
+        ordernum: that.data.ordernum,
+      },
+      header:{
+        "Content-Type":"applciation/json",
+        "sessionid": app.globalData.sessionid
+      },
+      method:"POST",
+      success: function(res){
+        wx.showLoading({
+          title: '已确认完成',
+        });
+        wx.showToast({title: '已确认完成', success: res => {
+          that.setData({
+            info: {},
+            ordernum: ''
+          });
+          //用onLoad周期方法重新加载，实现当前页面的刷新
+          that.onLoad()
+        }});
+        console.log(res);
+        wx.navigateBack({
+          delta: 1
+        })
+      },
+      fail:function(err){},//请求失败
+      complete:function(){
+        wx.hideLoading();
+      }//请求完成后执行的函数
+    })
+  },
+  goScore() {
+    wx.navigateTo({
+      url: '../score/score'
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

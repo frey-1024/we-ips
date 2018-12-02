@@ -70,6 +70,7 @@ Page({
         attitude: data.attitude,
         effect: data.effect,
         comment: data.comment,
+        ordernum: that.data.ordernum,
       },
       header: {
         "Content-Type": "applciation/json",
@@ -102,6 +103,10 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '发表评论'
+    });
+    var ordernum = options.ordernum;
+    that.setData({
+      ordernum: options.ordernum
     });
   },
 

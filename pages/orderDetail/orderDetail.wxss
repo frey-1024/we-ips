@@ -5,7 +5,6 @@ page{
 .order-detail{
   height: 100%;
   position: relative;
-  margin-bottom: 180rpx;
 }
 .order-img{
   width: 100%;
@@ -46,9 +45,6 @@ page{
 }
 
 .btn{
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   box-sizing: border-box;
   padding: 30rpx 30rpx 20rpx;
