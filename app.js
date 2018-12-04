@@ -6,16 +6,11 @@ App({
       // 登录
       wx.login({
         success: res => {
+          console.log(res);
           this.globalData.code = res.code;
-          wx.request({
-            url: that.globalData.base_url + '/users/3rdsession?code=' + res.code,
-            success: res => {
-              this.globalData.sessionid = res.data.data.sessionid;
-              if (this.userSessionIdReadyCallback) {
-                this.userSessionIdReadyCallback(res.data.data.sessionid)
-              }
-            }
-          });
+          if (this.userSessionIdReadyCallback) {
+            this.userSessionIdReadyCallback(res);
+          }
         }
       });
     };
@@ -38,7 +33,8 @@ App({
     })
   },
   globalData: {
-    base_url: 'http://rap2api.taobao.org/app/mock/118824',
+    // base_url: 'http://rap2api.taobao.org/app/mock/118824',
+    base_url: 'http://43.247.90.152:8081',
     userInfo: null,
     openid: 'wx051b26a66be567e3',
     wx_url_1: 'https://api.weixin.qq.com/sns/jscode2session?appid=自己的APPID&secret=自己的SECRET&js_code=',
