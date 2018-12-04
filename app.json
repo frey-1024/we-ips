@@ -1,9 +1,9 @@
 {
   "pages":[
+    "pages/index/index",
+    "pages/applyRepair/applyRepair",
     "pages/orderDetail/orderDetail",
     "pages/applyDesign/applyDesign",
-    "pages/applyRepair/applyRepair",
-    "pages/index/index",
     "pages/goodDesign/goodDesign",
     "pages/importedTiles/importedTiles",
     "pages/importedMaterials/importedMaterials",
@@ -17,8 +17,8 @@
     "pages/applyInstalment/applyInstalment",
     "pages/mapSelect/mapSelect",
     "pages/applySuccess/applySuccess",
-    "pages/instalment/instalment",
     "pages/about/about",
+    "pages/instalment/instalment",
     "pages/logs/logs"
   ],
   "window":{
