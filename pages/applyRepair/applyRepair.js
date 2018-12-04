@@ -135,7 +135,7 @@ Page({
         for (var i = 0; i < tempFilePaths.length; i++) {
           //显示消息提示框
           wx.showLoading({
-            title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
+            title: '上传中...',
             mask: true
           });
           uploadImage(tempFilePaths[i], 'cbb/' + nowTime + '/',
@@ -146,15 +146,16 @@ Page({
               that.setData({
                 imgList: imgList,
               });
-              console.log('success', result);
-            }, function (result) {
+            }, function () {
               wx.hideLoading();
-              console.log('error', result);
+              that.alertErrorToast('上传图片失败，请重试');
             }
           )
         }
       },
-      fail: function (err) {},
+      fail: function (err) {
+        that.alertErrorToast('上传图片失败，请重试');
+      },
       complete: function (e) {}
     })
   },
@@ -212,6 +213,7 @@ Page({
     wx.showLoading({
       title: '提交中...',
     });
+    console.log(app.globalData);
     wx.request({
       url: app.globalData.base_url + '/repair/apply',
       data:{
@@ -230,19 +232,23 @@ Page({
       },
       method: "POST",
       success: function(res){
+        var data = res.data;
         console.log(res);
+        if (data.code !== 0) {
+          that.alertErrorToast(data.msg || '报修申请失败，请重试');
+          return;
+        }
         wx.showToast({
-          title: '申请失败，请重试',
+          title: '报修申请成功',
           icon: 'success',
           duration: 3000
         });
+        wx.navigateTo({
+          url: '../applyRepairSuccess/applyRepairSuccess'
+        });
       },
       fail: function(err){
-        wx.showToast({
-          title: '申请失败，请重试',
-          icon: 'none',
-          duration: 3000
-        });
+        that.alertErrorToast('报修申请失败，请重试');
       },//请求失败
       complete: function(){
         wx.hideLoading();

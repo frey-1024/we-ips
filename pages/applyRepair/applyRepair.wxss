@@ -21,7 +21,7 @@ page{
     font-size: 36rpx;
 }
 .select-content.selected{
-    color: #4D4D4D;
+    color: #000;
 }
 .right-img{
     width: 32rpx;

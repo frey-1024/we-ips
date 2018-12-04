@@ -1,5 +1,5 @@
 <view class="container import-cabinet">
-    <image class="cabinet-img" src="../index/imgs2/importBanner.png" mode="widthFix"></image>
+    <image class="cabinet-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/importBanner.png" mode="widthFix"></image>
     <wux-cell-group>
         <wux-cell bind:click="onClick1" class="select-type">
             <text wx:if="{{!selectedValue}}">筛选</text>

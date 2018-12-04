@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/applyRepair/applyRepair",
+    "pages/applyRepairSuccess/applyRepairSuccess",
     "pages/orderDetail/orderDetail",
     "pages/applyDesign/applyDesign",
     "pages/goodDesign/goodDesign",

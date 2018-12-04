@@ -1,5 +1,5 @@
 <view class="container apply-success">
-    <image class="aps-img" src="../index/imgs2/file.png" mode="widthFix"></image>
+    <image class="aps-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/file.png" mode="widthFix"></image>
     <view class="content">
         <text class="msg-detail">提交成功，请保持电话畅通</text>
         <text class="msg-detail">我们将于2小时内联系你</text>

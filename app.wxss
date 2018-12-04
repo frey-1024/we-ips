@@ -55,7 +55,12 @@
 .mt-20{
   margin-top: 20rpx;
 }
-
+.ml-15{
+  margin-left: 15rpx;
+}
+.mr-15{
+  margin-right: 15rpx;
+}
 .pl-30{
   padding-left: 30rpx;
 }

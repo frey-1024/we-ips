@@ -1,0 +1,17 @@
+<view class="container apply-success">
+    <image class="aps-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/file.png" mode="widthFix"></image>
+    <view class="content">
+        <text class="msg-detail">提交成功，请耐心等待接单</text>
+    </view>
+    <view class="tips">
+        <text class="tips-title tip-content">温馨提示</text>
+        <text class="tip-content">1.请务必确认订单信息无误</text>
+        <text class="tip-content">2.平台只提供维修渠道，不涉及维修款项支付</text>
+        <text class="tip-content">3.为保障您自身权益，请在维修师上门前协商好维修金额</text>
+    </view>
+
+    <view class="btn flex-row">
+        <wux-button type="calm" block class="flex-1 mr-15" bind:click="goBackPage">返回</wux-button>
+        <wux-button type="calm" block class="flex-1 ml-15" bind:click="goOrderList">查看订单</wux-button>
+    </view>
+</view>

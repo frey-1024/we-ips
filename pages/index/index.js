@@ -74,38 +74,17 @@ Page({
     var that = this;
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo;
-      wx.request({
-        method: 'POST',
-        url: 'http://43.247.90.152:8081/auth',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-          code: app.globalData.code,
-          rawData: e.detail.rawData,
-          signature: e.detail.signature,
-          encrypteData: e.detail.encryptedData,
-          iv: e.detail.iv
-        },
-        success: res => {
-          console.log(res);
-          this.globalData.sessionid = res.data.data.sessionid;
-          if (this.userSessionIdReadyCallback) {
-            this.userSessionIdReadyCallback(res.data.data.sessionid)
-          }
-        }
-      });
-      this.setData({
-        hasUserInfo: true
-      })
+      app.wxLogin(e.detail);
+      app.userSessionIdReadyCallback = res => {
+        that.setData({
+          hasUserInfo: true
+        })
+      };
     } else {
       that.setData({
         isShowAhturoizeWarning: true
       });
     }
-  },
-  getAuthorize(e) {
-    this.getUserInfo(e);
   },
   hideModal() {
     this.setData({

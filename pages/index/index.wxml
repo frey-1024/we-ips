@@ -53,7 +53,7 @@
     <text class="kefu-text">在线客服</text>
   </button>
     <button wx:if="{{!hasUserInfo && canIUse}}" class="get-user-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
-    <view class="authorize-warning" wx:if="{{isShowAhturoizeWarning}}">
+    <view class="authorize-warning" hidden="{{!isShowAhturoizeWarning}}">
         <view class="box">
             <view class="title">授权IPS咻咻咻</view>
             <view class="content">
@@ -66,7 +66,7 @@
                 </view>
             </view>
             <view class="footer">
-                <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getAuthorize">前往授权</button>
+                <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getUserInfo">前往授权</button>
             </view>
         </view>
     </view>
