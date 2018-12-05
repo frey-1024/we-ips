@@ -35,11 +35,11 @@ function apiError(app, code, msg) {
   if (code === 200) {
     return true;
   }
+  alertErrorToast(msg);
   switch (code) {
     // sessionId 过期
     case 403:
       app.getUserInfoBySetting(true);
-      alertErrorToast(msg);
       return false;
     default:
       return false;

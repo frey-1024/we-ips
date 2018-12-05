@@ -39,13 +39,18 @@ App({
               console.log(sessionData, 'sessionData');
               if (sessionData.data.code !== 200) {
                 wx.showToast({
-                  title: (sessionData.data && sessionData.data.msg) || '获取用户信息失败' ,
+                  title: (sessionData.data && sessionData.data.msg) || '授权失败' ,
                   icon: 'none',
                   duration: 2000
                 });
                 that.onLoad();
                 return;
               }
+              wx.showToast({
+                title: '授权成功' ,
+                icon: 'success',
+                duration: 2000
+              });
               that.globalData.sessionid = sessionData.data.data.sessionid;
               wx.setStorage({
                 key: 'sessionid',
@@ -98,6 +103,11 @@ App({
             that.getUserInfoBySetting(true);
             return;
           }
+          wx.showToast({
+            title: '手机授权成功' ,
+            icon: 'success',
+            duration: 2000
+          });
           console.log('get phone success////');
           that.globalData.phoneInfo = phoneData.data.data;
           if (that.userPhoneReadyCallback) {

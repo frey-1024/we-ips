@@ -35,6 +35,7 @@ Page({
       },
       method: "POST",
       success: function(res){
+        wx.hideLoading();
         console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取详情失败，请重试');
@@ -72,15 +73,13 @@ Page({
         });
       },
       fail: function(err){
+        wx.hideLoading();
         wx.showToast({
           title: '加载失败，请重试',
           icon: 'none',
           duration: 3000
         });
-      },//请求失败
-      complete: function(){
-        wx.hideLoading();
-      }//请求完成后执行的函数
+      }
     })
   },
   cancelOrder() {
