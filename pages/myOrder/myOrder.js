@@ -45,10 +45,18 @@ Page({
       });
     }
   },
+  alertErrorToast(tip) {
+    wx.showToast({
+      title: tip,
+      icon: 'none',
+      duration: 2000
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.setNavigationBarTitle({
       title: '我的订单'
     });
@@ -56,15 +64,25 @@ Page({
       title: '加载中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/orders/list',
+      url: app.globalData.base_url + '/repair/applies?offset=1&limit=-1',
       header: {
-        "Content-Type": "applciation/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
-      method: "GET",
+      method: "POST",
       success: function(res){
         console.log(res);
-        var orders = res.data.data.orders;
+        var data = res.data;
+        if (data.code !== 200) {
+          that.alertErrorToast(data.msg || '获取列表失败，请重试');
+          return;
+        }
+        wx.showToast({
+          title: '报修申请成功',
+          icon: 'success',
+          duration: 3000
+        });
+        var orders = data.data.orders;
         for (var i = 0, item; i < orders.length; i++) {
           item = orders[i];
           // 0 待接单 1 待上门 2 待确认	3 已完成 4 已取消
@@ -97,11 +115,7 @@ Page({
         });
       },
       fail: function(err){
-        wx.showToast({
-          title: '加载失败，请重试',
-          icon: 'none',
-          duration: 3000
-        });
+        that.alertErrorToast(err.msg || '获取列表失败，请重试');
       },//请求失败
       complete: function(){
         wx.hideLoading();

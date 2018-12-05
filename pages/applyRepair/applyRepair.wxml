@@ -25,7 +25,7 @@
                 <wux-input label="联系人" bind:change="onContactsChange" placeholder="先生/女士"/>
             </wux-cell>
             <wux-cell hover-class="none">
-                <wux-input label="联系电话" bind:change="onPhoneChange" placeholder="联系电话"/>
+                <wux-input label="联系电话" controlled value="{{phone}}" bind:change="onPhoneChange" placeholder="联系电话"/>
             </wux-cell>
             <wux-cell hover-class="none">
                 <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">

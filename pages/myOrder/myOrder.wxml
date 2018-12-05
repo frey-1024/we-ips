@@ -6,24 +6,24 @@
         <wux-tab key="4" title="已取消"></wux-tab>
     </wux-tabs>
     <view wx:if="{{show}}" class="list-wrapper">
-        <view class="list-item" wx:for="{{previewOrders}}" wx:for-item="item" wx:key="item.ordernum">
+        <view class="list-item" wx:for="{{previewOrders}}" wx:for-item="item" wx:key="item.tid">
             <view class="flex-row col-center title">
                 <text class="left-title text">维修大类</text>
-                <text class="right-title">订单编号{{item.ordernum}}</text>
+                <text class="right-title">订单编号{{item.tid}}</text>
             </view>
             <view class="content">
                 <view class="flex-row col-center content-item">
                     <text>下单时间</text>
-                    <text>{{item.createtime}}</text>
+                    <text>{{item.applyTime}}</text>
                 </view>
                 <view class="flex-row col-center content-item bottom">
                     <text>上门时间</text>
-                    <text>{{item.time}}</text>
+                    <text>{{item.appointmentTime}}</text>
                 </view>
             </view>
             <view class="flex-row footer">
                 <text class="left-footer flex-1 {{item.statusClass}}">{{item.statusStr}}</text>
-                <text class="right-footer flex-1 text-el">{{item.area}}</text>
+                <text class="right-footer flex-1 text-el">{{item.address}}</text>
             </view>
         </view>
     </view>

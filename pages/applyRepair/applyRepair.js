@@ -218,23 +218,24 @@ Page({
       url: app.globalData.base_url + '/repair/apply',
       data:{
         type: data.selectedTypeIndex,
-        contacts: data.selectedCategoryIndex,
+        category: data.selectedCategoryIndex,
+        contact: data.contacts,
         phone: data.phone,
-        time: data.time,
+        appointmentTime: data.time,
         area: data.area,
         address: data.address,
-        describe: data.describe,
+        description: data.describe,
         imgs: data.imgList,
       },
       header: {
-        "Content-Type": "applciation/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
       method: "POST",
       success: function(res){
         var data = res.data;
         console.log(res);
-        if (data.code !== 0) {
+        if (data.code !== 200) {
           that.alertErrorToast(data.msg || '报修申请失败，请重试');
           return;
         }
@@ -259,6 +260,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.phoneInfo);
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phone: app.globalData.phoneInfo.phoneNumber,
+      });
+    }
     wx.setNavigationBarTitle({
       title: '报修申请'
     });

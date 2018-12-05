@@ -1,9 +1,11 @@
 <view class="container home">
   <image class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner.png" mode="widthFix"></image>
   <view class="userinfo">
-    <view class="repair-wrapper" bindtap="goApplyRepair">
-       <text class="repair-text text">快速报修</text>
-       <image class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
+    <view class="repair-wrapper">
+        <button wx:if="{{!phoneInfo}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+        <button wx:else class="get-phone-btn" bindtap="goApplyRepair"></button>
+        <text class="repair-text text">快速报修</text>
+        <image class="repair" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/repair.png" mode="cover"></image>
     </view>
     <view class="flex-row design-content">
      <view class="design-wrapper flex-1 flex-row mr-7" bindtap="goGoodDesign">
@@ -67,6 +69,23 @@
             </view>
             <view class="footer">
                 <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getUserInfo">前往授权</button>
+            </view>
+        </view>
+    </view>
+    <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
+        <view class="box">
+            <view class="authorize-warning-title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要手机号授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getPhoneNumber" bindtap="hidePhoneModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
             </view>
         </view>
     </view>

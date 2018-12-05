@@ -2,18 +2,15 @@ const app = getApp();
 
 Page({
   data: {
+    phoneInfo: app.globalData.phoneInfo,
     isShowAhturoizeWarning: false,
+    isShowPhoneWarning: false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   goAbout: function() {
     wx.navigateTo({
       url: '../about/about'
-    });
-  },
-  goApplyRepair: function() {
-    wx.navigateTo({
-      url: '../applyRepair/applyRepair'
     });
   },
   goGoodDesign: function() {
@@ -29,6 +26,11 @@ Page({
   goInstalment: function() {
     wx.navigateTo({
       url: '../instalment/instalment'
+    });
+  },
+  goApplyRepair: function() {
+    wx.navigateTo({
+      url: '../applyRepair/applyRepair'
     });
   },
   goHighTeam: function() {
@@ -90,5 +92,34 @@ Page({
     this.setData({
       isShowAhturoizeWarning: false
     });
-  }
+  },
+  getPhoneNumber(e) {
+    var that = this;
+    if (e.detail.errMsg.indexOf(':fail') > -1) {
+      that.setData({
+        isShowPhoneWarning: true
+      });
+    } else {
+      app.getPhoneInfo(e.detail, function(phoneInfo) {
+        app.globalData.phoneInfo = phoneInfo;
+        wx.navigateTo({
+          url: '../applyRepair/applyRepair'
+        });
+      });
+    }
+  },
+  hidePhoneModal() {
+    this.setData({
+      isShowPhoneWarning: false
+    });
+  },
+  onShow: function () {
+    app.userPhoneReadyCallback = () => {
+      if (app.globalData.phoneInfo) {
+        this.setData({
+          phoneInfo: app.globalData.phoneInfo,
+        });
+      }
+    };
+  },
 });

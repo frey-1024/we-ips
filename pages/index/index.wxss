@@ -11,6 +11,15 @@
   opacity: 0;
   z-index: 6;
 }
+.get-phone-btn{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 3;
+}
 .banner {
   width: 100%;
   display: block;
@@ -26,6 +35,8 @@
    display: flex;
    align-items: flex-start;
    padding: 15rpx;
+  position: relative;
+  width: 100%;
 }
 .repair-text, .design-text{
    padding: 15rpx 20rpx;
@@ -220,4 +231,14 @@
   height: 10rpx;
   background-color: #888;
   border-radius: 50% 50%;
+}
+.authorize-warning-title{
+  font-size: 35rpx;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 25rpx 10rpx;
 }
