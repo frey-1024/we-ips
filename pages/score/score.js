@@ -1,3 +1,4 @@
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 Page({
 
@@ -9,6 +10,7 @@ Page({
     attitude: 0,
     effect: 0,
     comment: '',
+    tid: ''
   },
 
   speed(e) {
@@ -64,13 +66,13 @@ Page({
       title: '提交中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/orders/comment',
+      url: app.globalData.base_url + '/repair/comment',
       data:{
         speed: data.speed,
         attitude: data.attitude,
         effect: data.effect,
         comment: data.comment,
-        ordernum: that.data.ordernum,
+        ordernum: that.data.tid,
       },
       header: {
         "Content-Type": "applciation/json",
@@ -78,35 +80,43 @@ Page({
       },
       method: "POST",
       success: function(res){
+        wx.hideLoading();
         console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '提交失败，请重试');
+        if (!aipStatus) {
+          return;
+        }
         wx.showToast({
           title: '提交成功',
           icon: 'success',
           duration: 3000
         });
+        wx.navigateBack({
+          delta: 2
+        });
       },
       fail: function(err){
+        wx.hideLoading();
         wx.showToast({
           title: '申请失败，请重试',
           icon: 'none',
           duration: 3000
         });
-      },//请求失败
-      complete: function(){
-        wx.hideLoading();
-      }//请求完成后执行的函数
+      }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.setNavigationBarTitle({
       title: '发表评论'
     });
-    var ordernum = options.ordernum;
+    var tid = options.tid;
     that.setData({
-      ordernum: options.ordernum
+      tid: options.tid
     });
   },
 

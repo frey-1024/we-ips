@@ -2,15 +2,15 @@
     <image class="order-img" src="{{info.statusImg}}" mode="widthFix"></image>
     <view class="content">
         <wux-cell-group>
-            <wux-cell title="订单号" extra="{{info.ordernum}}"></wux-cell>
-            <wux-cell title="服务类目" extra="{{info.category}}"></wux-cell>
-            <wux-cell title="联系人" extra="{{info.contacts}}"></wux-cell>
+            <wux-cell title="订单号" extra="{{info.tid}}"></wux-cell>
+            <wux-cell title="服务类目" extra="{{info.categoryStr}}"></wux-cell>
+            <wux-cell title="联系人" extra="{{info.contact}}"></wux-cell>
             <wux-cell title="联系电话" extra="{{info.phone}}"></wux-cell>
-            <wux-cell title="上门时间" extra="{{info.time}}"></wux-cell>
+            <wux-cell title="上门时间" extra="{{info.appointmentTime}}"></wux-cell>
             <wux-cell>
                 <view class="flex-row col-center">
                     <text class="flex-1">服务地址</text>
-                    <text class="flex-2 text-break text-right text-gray">{{info.area}}</text>
+                    <text class="flex-2 text-break text-right text-gray">{{info.area}},{{detail.address}}</text>
                 </view>
             </wux-cell>
             <wux-cell title="问题描述" extra="{{info.describe}}"></wux-cell>
@@ -25,7 +25,7 @@
     </view>
     <view class="content mt-20" wx:if="{{info.status !== 0}}">
         <wux-cell-group>
-            <wux-cell title="维修师傅" is-link extra="{{info.pname}}"></wux-cell>
+            <wux-cell title="维修师傅" is-link extra="{{info.maintenanceman}}"></wux-cell>
         </wux-cell-group>
     </view>
     <view class="btn flex-row" wx:if="{{info.status <= 1}}">

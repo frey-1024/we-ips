@@ -2,9 +2,8 @@ const app = getApp();
 
 Page({
   data: {
-    show: false,
     isShowPhoneWarning: false,
-    test: ''
+    phoneInfo: app.globalData.phoneInfo,
   },
   onChange(e) {
     console.log(e.detail.key);
@@ -24,46 +23,53 @@ Page({
       },
     });
   },
-  decodePhoneNumber(encryptedData, iv) {
+  getDesignDetail() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    });
     wx.request({
-      url: app.globalData.base_url + '/users/phone',
-      data:{
-        encryptedData: encryptedData,
-        iv: iv
-      },
-      header:{
-        "Content-Type":"applciation/json",
+      url: app.globalData.base_url + '/repair/applies?offset=0&limit=199999999',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
-      method:"POST",
-      success:function(res){
-        app.globalData.phoneNumber = res.data.data.phoneNumber;
+      method: "POST",
+      success: function(res){
         console.log(res);
+        var data = res.data;
+        if (data.code !== 200) {
+          that.alertErrorToast('获取列表失败，请重试');
+          return;
+        }
+        var orders = data.data.rows;
+        that.setData({
+          orders: orders,
+          previewOrders: orders
+        });
       },
-      fail:function(err){},//请求失败
-      complete:function(){}//请求完成后执行的函数
+      fail: function(err){
+        that.alertErrorToast(err.msg || '获取列表失败，请重试');
+      },//请求失败
+      complete: function(){
+        wx.hideLoading();
+      }//请求完成后执行的函数
     })
   },
   getPhoneNumber(e) {
     var that = this;
-    if (e.detail.errMsg.indexOf(':fail user deny') > -1) {
+    if (e.detail.errMsg.indexOf(':fail') > -1) {
       that.setData({
         isShowPhoneWarning: true
       });
     } else {
-      if (!app.globalData.sessionid) {
-        app.userSessionIdReadyCallback = res => {
-          that.decodePhoneNumber(e.detail.encryptedData, e.detail.iv);
-        }
-      } else {
-        that.decodePhoneNumber(e.detail.encryptedData, e.detail.iv);
-      }
+      app.getPhoneInfo(e.detail, function(phoneInfo) {
+        app.globalData.phoneInfo = phoneInfo;
+        that.getDesignDetail();
+      });
     }
   },
-  hideModal() {
-    this.setData({
-      test: ''
-    });
+  hidePhoneModal() {
     this.setData({
       isShowPhoneWarning: false
     });
@@ -79,7 +85,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phoneInfo: app.globalData.phoneInfo,
+      });
+    }
+    app.userPhoneReadyCallback = () => {
+      if (app.globalData.phoneInfo) {
+        this.setData({
+          phoneInfo: app.globalData.phoneInfo,
+        });
+      }
+    };
   },
 
   /**

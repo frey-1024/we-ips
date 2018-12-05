@@ -3,7 +3,13 @@ App({
   onLaunch: function () {
     var that = this;
     that.wxLogin = function (user) {
-      console.log(user);
+      wx.removeStorage({key: 'sessionid'});
+      that.globalData.phoneInfo = null;
+      that.globalData.sessionid = null;
+      if (that.removePhoneInfoCallback) {
+        that.removePhoneInfoCallback();
+      }
+
       // 登录
       wx.login({
         success: res => {
@@ -29,6 +35,7 @@ App({
               iv: user.iv
             },
             success: sessionData => {
+              wx.hideLoading();
               console.log(sessionData, 'sessionData');
               if (sessionData.data.code !== 200) {
                 wx.showToast({
@@ -36,6 +43,7 @@ App({
                   icon: 'none',
                   duration: 2000
                 });
+                that.onLoad();
                 return;
               }
               that.globalData.sessionid = sessionData.data.data.sessionid;
@@ -48,15 +56,13 @@ App({
               }
             },
             fail: function(err){
+              wx.hideLoading();
               wx.showToast({
                 title: (err.data && err.data.msg) || '获取用户信息失败' ,
                 icon: 'none',
                 duration: 2000
               });
             },//请求失败
-            complete: function(){
-              wx.hideLoading();
-            }//请求完成后执行的函数
           });
         }
       });
@@ -80,19 +86,20 @@ App({
           iv: info.iv
         },
         success: phoneData => {
+          wx.hideLoading();
+          console.log(phoneData, 'sessi/////////onid');
           if (phoneData.data.code !== 200) {
+            console.log('aaaaa');
             wx.showToast({
-              title: (err.data && err.data.msg) || '获取手机号码失败',
+              title: '获取手机号码失败, 请重试',
               icon: 'none',
               duration: 2000
             });
+            that.getUserInfoBySetting(true);
             return;
           }
+          console.log('get phone success////');
           that.globalData.phoneInfo = phoneData.data.data;
-          wx.setStorage({
-            key: 'phoneInfo',
-            data: phoneData.data.data
-          });
           if (that.userPhoneReadyCallback) {
             that.userPhoneReadyCallback(phoneData.data.data)
           }
@@ -101,56 +108,48 @@ App({
           }
         },
         fail: function (err) {
+          wx.hideLoading();
           wx.showToast({
             title: (err.data && err.data.msg) || '获取手机号码失败',
             icon: 'none',
             duration: 2000
           });
         },//请求失败
-        complete: function () {
-          wx.hideLoading();
-        }//请求完成后执行的函数
       });
     };
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: user => {
-              console.log(user);
-              that.globalData.userInfo = user.userInfo;
-              if (that.userInfoReadyCallback) {
-                that.userInfoReadyCallback(user)
-              }
-              wx.getStorage({
-                key: 'sessionid',
-                success (sessionData) {
-                  that.globalData.sessionid = sessionData.data;
-                  console.log(sessionData.data);
-                },
-                fail () {
+    that.getUserInfoBySetting = function(isRefresh) {
+      // 获取用户信息
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            wx.getUserInfo({
+              success: user => {
+                console.log(user);
+                that.globalData.userInfo = user.userInfo;
+                if (that.userInfoReadyCallback) {
+                  that.userInfoReadyCallback(user)
+                }
+                if (!isRefresh) {
+                  wx.getStorage({
+                    key: 'sessionid',
+                    success (sessionData) {
+                      that.globalData.sessionid = sessionData.data;
+                      console.log(sessionData.data);
+                    },
+                    fail () {
+                      that.wxLogin(user);
+                    }
+                  });
+                } else {
                   that.wxLogin(user);
                 }
-              });
-              wx.getStorage({
-                key: 'phoneInfo',
-                success (phoneData) {
-                  that.globalData.phoneInfo = phoneData.data;
-                  console.log('aaaccc', that.globalData.phoneInfo);
-                  if (that.userPhoneReadyCallback) {
-                    that.userPhoneReadyCallback(phoneData.data)
-                  }
-                },
-                fail () {
-                }
-              });
-            }
-          })
+              }
+            })
+          }
         }
-      }
-    })
+      });
+    };
+    that.getUserInfoBySetting();
   },
   globalData: {
     // base_url: 'http://rap2api.taobao.org/app/mock/118824',

@@ -70,17 +70,11 @@ page{
     background-color: #6BF3D4;
     color: #fff;
     font-size: 32rpx;
-}
-.btn-click:after{
-    border-radius: 0;
-    border-color: #6BF3D4;
+    padding: 25rpx;
+    text-align: center;
 }
 .btn-click-calm{
     background-color: #11c1f3;
-}
-.btn-click-calm:after{
-    border-radius: 0;
-    border-color: #11c1f3;
 }
 
 .authorize-warning{
@@ -101,7 +95,7 @@ page{
     background-color: #fff;
     border-radius: 10rpx 10rpx;
 }
-.title{
+.authorize-warning-title{
     font-size: 35rpx;
     font-weight: bold;
     text-align: center;
@@ -162,4 +156,14 @@ page{
     height: 10rpx;
     background-color: #888;
     border-radius: 50% 50%;
+}
+
+.get-phone-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 3;
 }

@@ -1,3 +1,4 @@
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 
 Page({
@@ -7,34 +8,47 @@ Page({
    */
   data: {
     info: {},
-    ordernum: ''
+    tid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
       title: '订单详情'
     });
-    var ordernum = options.ordernum;
+    var tid = options.tid;
     that.setData({
-      ordernum: options.ordernum
+      tid: options.tid
     });
     wx.showLoading({
       title: '加载中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/orders/details?ordernum='+ ordernum,
+      url: app.globalData.base_url + '/repair/detail/apply/'+ tid,
       header: {
-        "Content-Type": "applciation/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
-      method: "GET",
+      method: "POST",
       success: function(res){
         console.log(res);
-        var detail = res.data.data;
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取详情失败，请重试');
+        if (!aipStatus) {
+          return;
+        }
+        var detail = data.data;
+        var addressInfo = stringUtil.splitAddress(detail.address);
+        detail.address = addressInfo.address;
+        detail.area = addressInfo.area;
+        detail.tid = tid;
+        detail.typeStr =  stringUtil.typeList()[detail.type];
+        detail.categoryStr =  stringUtil.categoryList()[detail.category];
+        detail.tid = tid;
         // 订单状态 0 待接单 1 待上门 2 待确认	3 已完成 4 已取消
         switch (detail.status) {
           case 0:
@@ -81,16 +95,22 @@ Page({
           });
 
           wx.request({
-            url: app.globalData.base_url + '/orders/cancel',
+            url: app.globalData.base_url + '/repair/cancel/' + that.data.tid,
             data:{
               ordernum: that.data.ordernum,
             },
-            header:{
-              "Content-Type":"applciation/json",
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
               "sessionid": app.globalData.sessionid
             },
             method:"POST",
             success:function(res){
+              wx.hideLoading();
+              var data = res.data;
+              var aipStatus = stringUtil.apiError(app, data.code, '删除失败，请重试');
+              if (!aipStatus) {
+                return;
+              }
               wx.showToast({title: '删除成功', success: res => {
                 that.setData({
                   info: {},
@@ -104,10 +124,9 @@ Page({
                 delta: 1
               })
             },
-            fail:function(err){},//请求失败
-            complete:function(){
+            fail:function(err){
               wx.hideLoading();
-            }//请求完成后执行的函数
+            },//请求失败
           })
         } else if (res.cancel) {
         }
@@ -120,16 +139,19 @@ Page({
     });
     var that = this;
     wx.request({
-      url: app.globalData.base_url + '/orders/complete',
-      data:{
-        ordernum: that.data.ordernum,
-      },
-      header:{
-        "Content-Type":"applciation/json",
+      url: app.globalData.base_url + '/repair/complete/' + that.data.tid,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
       method:"POST",
       success: function(res){
+        wx.hideLoading();
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '删除失败，请重试');
+        if (!aipStatus) {
+          return;
+        }
         wx.showLoading({
           title: '已确认完成',
         });
@@ -146,15 +168,15 @@ Page({
           delta: 1
         })
       },
-      fail:function(err){},//请求失败
-      complete:function(){
+      fail:function(err){
         wx.hideLoading();
-      }//请求完成后执行的函数
+      },//请求失败
     })
   },
   goScore() {
+    var that = this;
     wx.navigateTo({
-      url: '../score/score'
+      url: '../score/score?tid=' + that.data.tid
     });
   },
   /**

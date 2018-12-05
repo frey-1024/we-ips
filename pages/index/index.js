@@ -114,12 +114,22 @@ Page({
     });
   },
   onShow: function () {
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phoneInfo: app.globalData.phoneInfo,
+      });
+    }
     app.userPhoneReadyCallback = () => {
       if (app.globalData.phoneInfo) {
         this.setData({
           phoneInfo: app.globalData.phoneInfo,
         });
       }
+    };
+    app.removePhoneInfoCallback = () => {
+      this.setData({
+        phoneInfo: null,
+      });
     };
   },
 });

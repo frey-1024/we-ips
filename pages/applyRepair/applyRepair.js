@@ -1,6 +1,7 @@
 var dateTimePicker = require('../../libs/dateTimePicker.js');
 var uploadImage = require('../../libs/uploadFile.js');
 var util = require('../../libs/util.js');
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 // https://blog.csdn.net/weixin_38668828/article/details/79272455
 Page({
@@ -11,23 +12,8 @@ Page({
   data: {
     startYear: 2000,
     endYear: 2050,
-    typeList: [
-      '个人',
-      '企业'
-    ],
-    categoryList: [
-      '开关电路',
-      '厨卫',
-      '开锁换锁',
-      '阀门龙头',
-      '门窗',
-      '墙面地面',
-      '打孔疏通',
-      '灯具',
-      '家具',
-      '家电',
-      '其他',
-    ],
+    typeList: stringUtil.typeList(),
+    categoryList: stringUtil.categoryList(),
     imgList: [],
     area: '',
     describe: '',
@@ -222,8 +208,7 @@ Page({
         contact: data.contacts,
         phone: data.phone,
         appointmentTime: data.time,
-        area: data.area,
-        address: data.address,
+        address: stringUtil.connAddress(data.area, data.address),
         description: data.describe,
         imgs: data.imgList,
       },

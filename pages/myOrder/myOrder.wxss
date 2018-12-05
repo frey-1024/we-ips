@@ -19,6 +19,7 @@ page{
 .list-item{
   background-color: #fff;
   width: 100%;
+  margin-bottom: 20rpx;
 }
 .title{
   border-bottom: 1px solid #eee;
@@ -56,6 +57,7 @@ page{
 }
 .right-footer{
   color: #4D4D4D;
+  text-align: right;
 }
 
 .text-red{
