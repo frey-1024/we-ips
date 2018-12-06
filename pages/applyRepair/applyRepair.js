@@ -218,10 +218,10 @@ Page({
       },
       method: "POST",
       success: function(res){
+        wx.hideLoading();
         var data = res.data;
-        console.log(res);
-        if (data.code !== 200) {
-          that.alertErrorToast(data.msg || '报修申请失败，请重试');
+        var aipStatus = stringUtil.apiError(app, data.code, '删除失败，请重试');
+        if (!aipStatus) {
           return;
         }
         wx.showToast({
@@ -234,11 +234,9 @@ Page({
         });
       },
       fail: function(err){
-        that.alertErrorToast('报修申请失败，请重试');
-      },//请求失败
-      complete: function(){
         wx.hideLoading();
-      }//请求完成后执行的函数
+        that.alertErrorToast('报修申请失败，请重试');
+      }
     })
   },
   /**
