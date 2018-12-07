@@ -36,12 +36,13 @@ App({
               wx.hideLoading();
               console.log(sessionData, 'sessionData');
               if (sessionData.data.code !== 200) {
-                wx.showToast({
-                  title: (sessionData.data && sessionData.data.msg) || '授权失败' ,
-                  icon: 'none',
-                  duration: 2000
-                });
-                that.onLoad();
+                if (!hideToast) {
+                  wx.showToast({
+                    title: (sessionData.data && sessionData.data.msg) || '授权失败' ,
+                    icon: 'none',
+                    duration: 2000
+                  });
+                }
                 return;
               }
               if (!hideToast) {
@@ -58,11 +59,13 @@ App({
             },
             fail: function(err){
               wx.hideLoading();
-              wx.showToast({
-                title: (err.data && err.data.msg) || '获取用户信息失败' ,
-                icon: 'none',
-                duration: 2000
-              });
+              if (!hideToast) {
+                wx.showToast({
+                  title: (err.data && err.data.msg) || '获取用户信息失败' ,
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
             },//请求失败
           });
         }
