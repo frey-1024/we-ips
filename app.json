@@ -9,6 +9,7 @@
     "pages/importedTiles/importedTiles",
     "pages/importedMaterials/importedMaterials",
     "pages/decorationImpression/decorationImpression",
+    "pages/toolingEffect/toolingEffect",
     "pages/importedCabinets/importedCabinets",
     "pages/verifyPhone/verifyPhone",
     "pages/highTeam/highTeam",

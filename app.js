@@ -2,14 +2,12 @@
 App({
   onLaunch: function () {
     var that = this;
-    that.wxLogin = function (user) {
-      wx.removeStorage({key: 'sessionid'});
+    that.wxLogin = function (user, hideToast) {
       that.globalData.phoneInfo = null;
       that.globalData.sessionid = null;
       if (that.removePhoneInfoCallback) {
         that.removePhoneInfoCallback();
       }
-
       // 登录
       wx.login({
         success: res => {
@@ -46,16 +44,14 @@ App({
                 that.onLoad();
                 return;
               }
-              wx.showToast({
-                title: '授权成功' ,
-                icon: 'success',
-                duration: 2000
-              });
+              if (!hideToast) {
+                wx.showToast({
+                  title: '授权成功' ,
+                  icon: 'success',
+                  duration: 2000
+                });
+              }
               that.globalData.sessionid = sessionData.data.data.sessionid;
-              wx.setStorage({
-                key: 'sessionid',
-                data: sessionData.data.data.sessionid
-              });
               if (that.userSessionIdReadyCallback) {
                 that.userSessionIdReadyCallback(sessionData.data.data.sessionid)
               }
@@ -127,7 +123,7 @@ App({
         },//请求失败
       });
     };
-    that.getUserInfoBySetting = function(isRefresh) {
+    that.getUserInfoBySetting = function(a, hideToast) {
       // 获取用户信息
       wx.getSetting({
         success: res => {
@@ -139,32 +135,20 @@ App({
                 if (that.userInfoReadyCallback) {
                   that.userInfoReadyCallback(user)
                 }
-                if (!isRefresh) {
-                  wx.getStorage({
-                    key: 'sessionid',
-                    success (sessionData) {
-                      that.globalData.sessionid = sessionData.data;
-                      console.log(sessionData.data);
-                    },
-                    fail () {
-                      that.wxLogin(user);
-                    }
-                  });
-                } else {
-                  that.wxLogin(user);
-                }
+                that.wxLogin(user, hideToast);
               }
             })
           }
         }
       });
     };
-    that.getUserInfoBySetting();
+    that.getUserInfoBySetting(false, true);
   },
   globalData: {
     // base_url: 'http://rap2api.taobao.org/app/mock/118824',
     // base_url: 'http://43.247.90.152:8081',
     base_url: 'https://wx.ipsinteriors.com/api',
+    base_img_url: 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg',
     sessionid: null,
     userInfo: null,
     phoneInfo: null,

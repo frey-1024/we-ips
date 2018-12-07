@@ -69,6 +69,58 @@ function typeList() {
   ];
 }
 
+function decorationImpressionList() {
+  return [
+    '全部',
+    '波西米亚风',
+    '极简主义-轻奢风',
+    '简欧风',
+    '美式复古风',
+    '美式现代风',
+    '奢华时尚新古典风',
+    '时尚简约现代风',
+    '田园风',
+    '现代复试风',
+    '现代新古典风',
+    '现代新中式风',
+  ];
+}
+function decorationImpressionEnList() {
+  return [
+    'bohemia',
+    'miniextra',
+    'simpleEuropean',
+    'Americanretro',
+    'Americanmodern',
+    'fashionclassic',
+    'fashionsimplicity',
+    'pastoral',
+    'modernduplex',
+    'Modernclassic',
+    'modernChinese',
+  ];
+}
+
+function toolEffectList() {
+  return [
+    '全部',
+    '办公室',
+    '酒店住宅',
+    '零售餐饮',
+    '银行'
+  ];
+}
+function toolEffectEnList() {
+  return [
+    'office',
+    'hotel',
+    'restaurant',
+    'bank'
+  ];
+}
+
+
+
 module.exports = {
   splitAddress: splitAddress,
   connAddress: connAddress,
@@ -76,4 +128,8 @@ module.exports = {
   apiError: apiError,
   categoryList: categoryList,
   typeList: typeList,
+  decorationImpressionList: decorationImpressionList,
+  decorationImpressionEnList: decorationImpressionEnList,
+  toolEffectList: toolEffectList,
+  toolEffectEnList: toolEffectEnList,
 };

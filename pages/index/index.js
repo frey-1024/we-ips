@@ -43,6 +43,11 @@ Page({
       url: '../decorationImpression/decorationImpression'
     });
   },
+  goToolingEffect: function() {
+    wx.navigateTo({
+      url: '../toolingEffect/toolingEffect'
+    });
+  },
   goImportedMaterials: function() {
     wx.navigateTo({
       url: '../importedMaterials/importedMaterials'

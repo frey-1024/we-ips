@@ -7,11 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    filterList: stringUtil.decorationImpressionList(),
-    filterEnList: stringUtil.decorationImpressionEnList(),
-    imgNumberList: [24, 24, 25, 52, 19, 32, 25, 29, 42, 34, 26],
+    filterList: stringUtil.toolEffectList(),
+    filterEnList: stringUtil.toolEffectEnList(),
+    imgNumberList: [36, 35, 73, 49],
     selectedIndex: 0,
-    selectedText: stringUtil.decorationImpressionList()[0],
+    selectedText: stringUtil.toolEffectList()[0],
     user: null,
     selectedValue: '',
     previewList: [],
@@ -29,7 +29,7 @@ Page({
     var selectedIndex = that.data.selectedIndex;
     var filterEnList = that.data.filterEnList;
     var imgNumberList = that.data.imgNumberList;
-    var baseImgUrl = app.globalData.base_img_url + '/homedesign';
+    var baseImgUrl = app.globalData.base_img_url + '/industrydesign';
     var previewList = [], i, l, fileName, z;
     // 全部
     if (selectedIndex == 0) {
@@ -59,7 +59,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.setNavigationBarTitle({
-      title: '装修效果图'
+      title: '工装效果图'
     });
   },
 

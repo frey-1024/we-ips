@@ -1,13 +1,26 @@
-
 page{
     height: 100%;
+    background-color: #fff;
 }
 .decoration-impression{
-    background-color: #eee;
     height: 100%;
     position: relative;
 }
 
 .select-type{
     text-align: center;
+}
+.imgs-wrapper{
+    padding: 5rpx 20rpx;
+    overflow: auto;
+}
+.imgs-item{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5rpx;
+}
+.imgs-content{
+    width: 100%;
+    display: block;
 }
