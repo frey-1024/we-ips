@@ -22,6 +22,11 @@ Page({
       url: '../applyConstruction/applyConstruction'
     });
   },
+  goApplyCabinet() {
+    wx.navigateTo({
+      url: '../applyCabinet/applyCabinet'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

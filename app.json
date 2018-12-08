@@ -18,6 +18,7 @@
     "pages/myOrder/myOrder",
     "pages/applyMaterials/applyMaterials",
     "pages/applyConstruction/applyConstruction",
+    "pages/applyCabinet/applyCabinet",
     "pages/mapSelect/mapSelect",
     "pages/applySuccess/applySuccess",
     "pages/about/about",
