@@ -187,6 +187,12 @@ Page({
     wx.setNavigationBarTitle({
       title: '设计申请'
     });
+    console.log(app.globalData.phoneInfo);
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phone: app.globalData.phoneInfo.phoneNumber,
+      });
+    }
   },
 
   /**

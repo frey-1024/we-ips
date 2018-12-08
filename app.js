@@ -33,10 +33,10 @@ App({
               iv: user.iv
             },
             success: sessionData => {
-              wx.hideLoading();
               console.log(sessionData, 'sessionData166');
               if (sessionData.data.code !== 200) {
                 if (!hideToast) {
+                  wx.hideLoading();
                   wx.showToast({
                     title: (sessionData.data && sessionData.data.msg) || '授权失败' ,
                     icon: 'none',
@@ -47,6 +47,7 @@ App({
                 }
                 return;
               }
+              wx.hideLoading();
               if (!hideToast) {
                 wx.showToast({
                   title: '授权成功' ,
@@ -143,6 +144,10 @@ App({
                 that.wxLogin(user, hideToast);
               }
             })
+          } else {
+            if (that.userNotAuthCallback) {
+              that.userNotAuthCallback()
+            }
           }
         }
       });

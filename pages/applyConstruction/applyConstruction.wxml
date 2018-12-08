@@ -5,7 +5,7 @@
                 <wux-input label="联系人" bind:change="onContactsChange" placeholder="先生/女士"/>
             </wux-cell>
             <wux-cell hover-class="none">
-                <wux-input label="联系电话" bind:change="onPhoneChange" placeholder="联系电话"/>
+                <wux-input label="联系电话" controlled value="{{phone}}" bind:change="onPhoneChange" placeholder="联系电话"/>
             </wux-cell>
             <wux-cell hover-class="none" bind:click="goMapPage">
                 <view class="flex-row select-wrapper col-center">

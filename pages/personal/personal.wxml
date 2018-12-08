@@ -10,13 +10,52 @@
             <image wx:if="{{userInfo.gender != 1}}" class="gender-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/generNV.png" mode="scaleToFill"></image>
         </view>
     </view>
-    <view class="content">
+    <view class="content-a">
         <wux-cell-group>
-            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-home.png" title="我的报修" is-link></wux-cell>
+            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-home.png" title="我的报修" is-link bind:click="goMyOrder"></wux-cell>
+        </wux-cell-group>
+    </view>
+    <view class="content-a">
+        <button wx:if="{{!phoneInfo}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+        <wux-cell-group>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="设计报名" is-link bind:click="goApplyDesign"></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="建材报名" is-link bind:click="goApplyMaterials"></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-s.png" title="施工报名" is-link bind:click="goApplyConstruction"></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-c.png" title="橱柜申请" is-link bind:click="goApplyCabinet"></wux-cell>
         </wux-cell-group>
+    </view>
+    <view class="authorize-warning" hidden="{{!isShowAhturoizeWarning}}">
+        <view class="box">
+            <view class="title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要微信授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getUserInfo">前往授权</button>
+            </view>
+        </view>
+    </view>
+    <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
+        <view class="box">
+            <view class="authorize-warning-title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要手机号授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getPhoneNumber" bindtap="hidePhoneModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
+            </view>
+        </view>
     </view>
 </view>

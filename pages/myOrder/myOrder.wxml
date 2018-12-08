@@ -11,7 +11,7 @@
                 <text class="left-title text">维修大类</text>
                 <text class="right-title">订单编号{{item.tid}}</text>
             </view>
-            <view class="content">
+            <view class="content-b">
                 <view class="flex-row col-center content-item">
                     <text>下单时间</text>
                     <text>{{item.applyTime}}</text>
@@ -21,7 +21,7 @@
                     <text>{{item.appointmentTime}}</text>
                 </view>
             </view>
-            <view class="flex-row footer">
+            <view class="flex-row footer-b">
                 <text class="left-footer flex-1 {{item.statusClass}}">{{item.statusStr}}</text>
                 <text class="right-footer flex-1 text-el">{{item.area}}</text>
             </view>
@@ -30,5 +30,22 @@
     <view class="empty-wrapper" wx:if="{{previewOrders && !previewOrders.length}}">
         <image class="empty-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/empty.png" mode="widthFix"></image>
         <text class="empty-msg text">此分类下没有订单</text>
+    </view>
+    <view class="authorize-warning" hidden="{{!isShowAhturoizeWarning}}">
+        <view class="box">
+            <view class="title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要微信授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getUserInfo" bindtap="hideModal" bindgetuserinfo="getUserInfo">前往授权</button>
+            </view>
+        </view>
     </view>
 </view>

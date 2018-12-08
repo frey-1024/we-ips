@@ -6,6 +6,16 @@ Page({
    */
   data: {
     userInfo: null,
+    phoneInfo: null,
+    selectedBtn: null,
+    isShowPhoneWarning: false,
+    isShowAhturoizeWarning: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  goMyOrder() {
+    wx.switchTab({
+      url: '../myOrder/myOrder'
+    })
   },
   goApplyDesign() {
     wx.navigateTo({
@@ -27,6 +37,47 @@ Page({
       url: '../applyCabinet/applyCabinet'
     });
   },
+  getUserInfo: function(e) {
+    var that = this;
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo;
+      that.setData({
+        userInfo: e.detail.userInfo,
+      });
+      app.wxLogin(e.detail);
+      app.userSessionIdReadyCallback = res => {
+        that.setData({
+          isShowAhturoizeWarning: false
+        })
+      };
+    } else {
+      that.setData({
+        isShowAhturoizeWarning: true
+      });
+    }
+  },
+  hideModal() {
+    this.setData({
+      isShowAhturoizeWarning: false
+    });
+  },
+  getPhoneNumber(e) {
+    var that = this;
+    if (e.detail.errMsg.indexOf(':fail') > -1) {
+      that.setData({
+        isShowPhoneWarning: true
+      });
+    } else {
+      app.getPhoneInfo(e.detail, function(phoneInfo) {
+        app.globalData.phoneInfo = phoneInfo;
+      });
+    }
+  },
+  hidePhoneModal() {
+    this.setData({
+      isShowPhoneWarning: false
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,16 +86,30 @@ Page({
       title: '个人中心'
     });
     var that = this;
-    console.log(app.globalData.userInfo);
-    if (!app.globalData.userInfo) {
+    if (app.globalData.userInfo) {
+      that.setData({
+        userInfo: app.globalData.userInfo,
+        isShowAhturoizeWarning: false
+      })
+    } else {
+      that.setData({
+        isShowAhturoizeWarning: true
+      });
       app.userInfoReadyCallback = (user) => {
         that.setData({
           userInfo: user.userInfo,
+          isShowAhturoizeWarning: false,
         })
       };
-    } else {
+      app.userSessionIdReadyCallback = res => {
+        that.setData({
+          isShowAhturoizeWarning: false
+        })
+      };
+    }
+    app.userNotAuthCallback = res => {
       that.setData({
-        userInfo: app.globalData.userInfo,
+        isShowAhturoizeWarning: true
       })
     }
   },
@@ -60,7 +125,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phoneInfo: app.globalData.phoneInfo,
+      });
+    }
+    app.userPhoneReadyCallback = () => {
+      if (app.globalData.phoneInfo) {
+        this.setData({
+          phoneInfo: app.globalData.phoneInfo,
+        });
+      }
+    };
+    app.removePhoneInfoCallback = () => {
+      this.setData({
+        phoneInfo: null,
+      });
+    };
   },
 
   /**

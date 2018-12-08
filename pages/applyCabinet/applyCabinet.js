@@ -122,6 +122,12 @@ Page({
     wx.setNavigationBarTitle({
       title: '橱柜申请'
     });
+    console.log(app.globalData.phoneInfo);
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phone: app.globalData.phoneInfo.phoneNumber,
+      });
+    }
   },
 
   /**

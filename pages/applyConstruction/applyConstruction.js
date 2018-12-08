@@ -141,6 +141,12 @@ Page({
     wx.setNavigationBarTitle({
       title: '施工申请'
     });
+    console.log(app.globalData.phoneInfo);
+    if (app.globalData.phoneInfo) {
+      this.setData({
+        phone: app.globalData.phoneInfo.phoneNumber,
+      });
+    }
   },
 
   /**

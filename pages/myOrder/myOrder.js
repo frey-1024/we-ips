@@ -8,8 +8,10 @@ Page({
    */
   data: {
     orders: [],
-    previewOrders: [],
+    previewOrders: null,
     current: '1',
+    isShowAhturoizeWarning: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   findListByFilter(currentStatus1, currentStatus2, currentStatus3) {
     var data = this.data;
@@ -62,6 +64,31 @@ Page({
       duration: 2000
     });
   },
+  getUserInfo: function(e) {
+    var that = this;
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo;
+      that.setData({
+        userInfo: e.detail.userInfo,
+      });
+      app.wxLogin(e.detail);
+      app.userSessionIdReadyCallback = res => {
+        that.setData({
+          isShowAhturoizeWarning: false
+        });
+        that.getList();
+      };
+    } else {
+      that.setData({
+        isShowAhturoizeWarning: true
+      });
+    }
+  },
+  hideModal() {
+    this.setData({
+      isShowAhturoizeWarning: false
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -69,6 +96,35 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的订单'
     });
+    var that = this;
+    if (app.globalData.userInfo) {
+      that.setData({
+        userInfo: app.globalData.userInfo,
+        isShowAhturoizeWarning: false
+      });
+    } else {
+      that.setData({
+        isShowAhturoizeWarning: true
+      });
+      app.userInfoReadyCallback = (user) => {
+        that.setData({
+          userInfo: user.userInfo,
+          isShowAhturoizeWarning: false,
+        });
+        that.getList();
+      };
+      app.userSessionIdReadyCallback = res => {
+        that.setData({
+          isShowAhturoizeWarning: false
+        });
+        that.getList();
+      };
+    }
+    app.userNotAuthCallback = res => {
+      that.setData({
+        isShowAhturoizeWarning: true
+      })
+    }
   },
   goOrderDetail(e) {
     console.log(e);
@@ -88,6 +144,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (app.globalData.sessionid) {
+      this.getList();
+    }
+  },
+
+  getList() {
     var that = this;
     wx.showLoading({
       title: '加载中...',
