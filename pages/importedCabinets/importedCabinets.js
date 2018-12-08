@@ -1,4 +1,4 @@
-import { $wuxSelect } from '../../dist/index'
+var stringUtil = require('../../utils/stringUtil.js');
 
 const app = getApp();
 Page({
@@ -7,46 +7,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: null,
-    selectedValue: ''
+    filterList: stringUtil.cabinetsList(),
+    selectedIndex: 0,
+    selectedText: stringUtil.cabinetsList()[0],
+    previewList: [],
   },
-
+  selectingFilter(e) {
+    const val = e.detail.value;
+    this.setData({
+      selectedText: this.data.filterList[val],
+      selectedIndex: val,
+    });
+    this.packagePreviewUrlList();
+  },
+  packagePreviewUrlList() {
+    var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/cupboard/list?offset=0&limit=199999999&style=' + that.data.selectedIndex,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取图片列表失败， 请重试');
+        if (!aipStatus) {
+          return;
+        }
+        that.setData({
+          previewList: data.data.rows,
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取图片列表失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    console.log(app.globalData.userInfo);
-    wx.getUserInfo({
-      success: res => {
-        console.log(res.userInfo);
-        that.setData({
-          user: res.userInfo,
-        })
-      }
-    });
     wx.setNavigationBarTitle({
       title: '进口橱柜'
     });
-  },
-  onClick1() {
-    $wuxSelect('#wux-select1').open({
-      value: this.data.selectedValue,
-      options: [
-        '全部风格',
-        '传统风',
-        '当代',
-        '地中海'
-      ],
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            selectedValue: value,
-          })
-        }
-      },
-    })
+    that.packagePreviewUrlList();
   },
 
   /**

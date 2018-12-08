@@ -1,0 +1,29 @@
+<view class="container apply-design">
+    <view class="input-list">
+        <wux-cell-group>
+            <wux-cell hover-class="none">
+                <wux-input label="联系人" bind:change="onContactsChange" placeholder="先生/女士"/>
+            </wux-cell>
+            <wux-cell hover-class="none">
+                <wux-input label="联系电话" bind:change="onPhoneChange" placeholder="联系电话"/>
+            </wux-cell>
+            <wux-cell hover-class="none" bind:click="goMapPage">
+                <view class="flex-row select-wrapper col-center">
+                    <text class="select-label">所在区域</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!area}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{area}}</text>
+                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+                </view>
+            </wux-cell>
+            <wux-cell hover-class="none">
+                <wux-textarea label="详细地址" bind:change="onAddressChange" rows="3" placeholder="需详细地址、如小区、楼座、门牌号等" />
+            </wux-cell>
+            <wux-cell hover-class="none">
+                <wux-textarea label="申请描述" bind:change="onDetailChange" rows="3" placeholder="品类、数量" />
+            </wux-cell>
+        </wux-cell-group>
+    </view>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="submitApply">提交</wux-button>
+    </view>
+</view>

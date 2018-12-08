@@ -1,10 +1,18 @@
 <view class="container import-cabinet">
     <image class="cabinet-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/importBanner.png" mode="widthFix"></image>
-    <wux-cell-group>
-        <wux-cell bind:click="onClick1" class="select-type">
-            <text wx:if="{{!selectedValue}}">筛选</text>
-            <text wx:if="{{selectedValue}}">{{selectedValue}}</text>
-        </wux-cell>
-    </wux-cell-group>
-    <wux-select id="wux-select1" />
+    <picker mode="selector" value="{{selectedIndex}}" bindchange="selectingFilter" range="{{filterList}}">
+        <wux-cell-group>
+            <wux-cell class="select-type">
+                <text>{{selectedText}}</text>
+            </wux-cell>
+        </wux-cell-group>
+    </picker>
+    <view class="imgs-wrapper">
+        <view class="imgs-item" wx:for="{{previewList}}" wx:for-item="item" wx:key="item.tid">
+            <image class="imgs-content" src="{{item.imglink}}" mode="widthFix"></image>
+        </view>
+    </view>
+    <view class="btn">
+        <wux-button block type="calm" bind:click="submitApply">定制橱柜申请</wux-button>
+    </view>
 </view>

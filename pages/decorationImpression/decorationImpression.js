@@ -12,8 +12,6 @@ Page({
     imgNumberList: [24, 24, 25, 52, 19, 32, 25, 29, 42, 34, 26],
     selectedIndex: 0,
     selectedText: stringUtil.decorationImpressionList()[0],
-    user: null,
-    selectedValue: '',
     previewList: [],
   },
   selectingFilter(e) {

@@ -15,3 +15,27 @@ page{
 .select-type{
     text-align: center;
 }
+
+.imgs-wrapper{
+    padding: 5rpx 20rpx;
+    overflow: auto;
+}
+.imgs-item{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5rpx;
+}
+.imgs-content{
+    width: 100%;
+    display: block;
+}
+
+.btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx 30rpx 20rpx;
+}

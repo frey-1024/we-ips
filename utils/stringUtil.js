@@ -85,6 +85,18 @@ function decorationImpressionList() {
     '现代新中式风',
   ];
 }
+
+function cabinetsList() {
+  return [
+    '全部',
+    '传统风',
+    '当代',
+    '地中海',
+    '工业风',
+    '简约风',
+    '维多利亚风',
+  ];
+}
 function decorationImpressionEnList() {
   return [
     'bohemia',
@@ -163,4 +175,5 @@ module.exports = {
   toolEffectEnList: toolEffectEnList,
   brandList: brandList,
   brandStyleList: brandStyleList,
+  cabinetsList: cabinetsList,
 };

@@ -1,18 +1,20 @@
 <view class="container personal">
     <image class="personal-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/personal.png" mode="widthFix"></image>
-    <view class="user-info" wx:if="{{user}}">
+    <view class="user-info" wx:if="{{userInfo}}">
         <view class="user-header">
-            <image class="user-img" src="{{user.avatarUrl}}" mode="scaleToFill"></image>
+            <image class="user-img" src="{{userInfo.avatarUrl}}" mode="scaleToFill"></image>
         </view>
         <view class="flex-row col-center row-left">
-            <text>{{user.nickName}}</text>
-            <image class="gender-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/generNV.png" mode="scaleToFill"></image></view>
+            <text>{{userInfo.nickName}}</text>
+            <image wx:if="{{userInfo.gender == 1}}" class="gender-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/generNan.png" mode="scaleToFill"></image>
+            <image wx:if="{{userInfo.gender != 1}}" class="gender-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/generNV.png" mode="scaleToFill"></image>
+        </view>
     </view>
     <view class="content">
         <wux-cell-group>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-home.png" title="我的报修" is-link></wux-cell>
-            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="设计报名" is-link></wux-cell>
-            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="建材报名" is-link></wux-cell>
+            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="设计报名" is-link bind:click="goApplyDesign"></wux-cell>
+            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="建材报名" is-link bind:click="goApplyMaterials"></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-s.png" title="施工报名" is-link></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-c.png" title="橱柜申请" is-link></wux-cell>
         </wux-cell-group>

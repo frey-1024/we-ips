@@ -5,26 +5,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: null,
+    userInfo: null,
   },
-
+  goApplyDesign() {
+    wx.navigateTo({
+      url: '../applyDesign/applyDesign'
+    });
+  },
+  goApplyMaterials() {
+    wx.navigateTo({
+      url: '../applyMaterials/applyMaterials'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    console.log(app.globalData.userInfo);
-    wx.getUserInfo({
-      success: res => {
-        console.log(res.userInfo);
-        that.setData({
-          user: res.userInfo,
-        })
-      }
-    });
     wx.setNavigationBarTitle({
       title: '个人中心'
     });
+    var that = this;
+    console.log(app.globalData.userInfo);
+    if (!app.globalData.userInfo) {
+      app.userInfoReadyCallback = (user) => {
+        that.setData({
+          userInfo: user.userInfo,
+        })
+      };
+    } else {
+      that.setData({
+        userInfo: app.globalData.userInfo,
+      })
+    }
   },
 
   /**
