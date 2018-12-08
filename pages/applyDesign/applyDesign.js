@@ -1,6 +1,6 @@
-import { $wuxSelect } from '../../dist/index';
 var uploadImage = require('../../libs/uploadFile.js');
 var util = require('../../libs/util.js');
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 Page({
 
@@ -10,6 +10,7 @@ Page({
   data: {
     isPreviewDetail: false,
     imgList: [],
+    budgetList: ['20-50万', '50-100万', '100万以上'],
     area: '',
     contacts: '',
     phone: '',
@@ -21,23 +22,13 @@ Page({
       url: '../mapSelect/mapSelect'
     })
   },
-  selectingBudget() {
-    $wuxSelect('#wux-select1').open({
-      value: this.data.selectedType,
-      options: [
-        '20-50万',
-        '50-100万',
-        '100万以上'
-      ],
-      onConfirm: (value, index, options) => {
-        if (index !== -1) {
-          this.setData({
-            selectedBudget: value,
-            selectedBudgetIndex: index,
-          })
-        }
-      },
-    })
+  selectingBudget(e) {
+    var that = this;
+    const val = e.detail.value;
+    this.setData({
+      selectedBudget: that.data.budgetList[val],
+      selectedBudgetIndex: val,
+    });
   },
   onContactsChange(e) {
     this.setData({
@@ -82,7 +73,7 @@ Page({
         for (var i = 0; i < tempFilePaths.length; i++) {
           //显示消息提示框
           wx.showLoading({
-            title: '上传中' + (i + 1) + '/' + tempFilePaths.length,
+            title: '上传中...',
             mask: true
           });
           uploadImage(tempFilePaths[i], 'cbb/' + nowTime + '/',
@@ -93,12 +84,17 @@ Page({
               that.setData({
                 imgList: imgList,
               });
-            }, function (result) {
+            }, function () {
               wx.hideLoading();
+              that.alertErrorToast('上传图片失败，请重试');
             }
           )
         }
-      }
+      },
+      fail: function (err) {
+        that.alertErrorToast('上传图片失败，请重试');
+      },
+      complete: function (e) {}
     })
   },
   alertErrorToast(tip) {
@@ -148,34 +144,40 @@ Page({
       data:{
         budget: data.selectedBudgetIndex,
         phone: data.phone,
-        name: data.contacts,
-        area: data.area,
-        address: data.address,
+        contact: data.contacts,
+        address: stringUtil.connAddress(data.area, data.address),
         imgs: data.imgList,
       },
       header: {
-        "Content-Type": "applciation/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
       method: "POST",
       success: function(res){
+        wx.hideLoading();
         console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '申请失败，请重试');
+        if (!aipStatus) {
+          return;
+        }
         wx.showToast({
-          title: '申请失败，请重试',
+          title: '申请成功',
           icon: 'success',
           duration: 3000
         });
+        wx.navigateTo({
+          url: '../applySuccess/applySuccess'
+        });
       },
       fail: function(err){
+        wx.hideLoading();
         wx.showToast({
           title: '申请失败，请重试',
           icon: 'none',
           duration: 3000
         });
-      },//请求失败
-      complete: function(){
-        wx.hideLoading();
-      }//请求完成后执行的函数
+      }
     })
   },
   /**

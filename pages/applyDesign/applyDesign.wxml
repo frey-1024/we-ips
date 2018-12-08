@@ -18,13 +18,15 @@
             <wux-cell hover-class="none">
                 <wux-textarea label="详细地址" bind:change="onAddressChange" rows="3" placeholder="需详细地址、如小区、楼座、门牌号等" />
             </wux-cell>
-            <wux-cell hover-class="none" bind:click="selectingBudget">
-                <view class="flex-row select-wrapper col-center">
-                    <text class="select-label">装修预算</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{selectedBudget == ''}}">请选择</text>
-                    <text class="flex-1 placeholderStyle select-content selected" wx:else>{{selectedBudget}}</text>
-                    <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
-                </view>
+            <wux-cell hover-class="none">
+                <picker mode="selector" value="{{selectedBudgetIndex}}" bindchange="selectingBudget" range="{{budgetList}}">
+                    <view class="flex-row select-wrapper col-center">
+                        <text class="select-label">装修预算</text>
+                        <text class="flex-1 placeholderStyle select-content" wx:if="{{selectedBudget == ''}}">请选择</text>
+                        <text class="flex-1 placeholderStyle select-content selected" wx:else>{{selectedBudget}}</text>
+                        <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
+                    </view>
+                </picker>
             </wux-cell>
             <wux-cell hover-class="none">
                 <view class="select-wrapper">
@@ -43,8 +45,6 @@
         </wux-cell-group>
     </view>
     <view class="btn">
-        <wux-button wx:if="{{!isPreviewDetail}}" block type="calm" bind:click="submitApply">提交</wux-button>
-        <wux-button block type="calm" disabled wx:else>已提交</wux-button>
+        <wux-button block type="calm" bind:click="submitApply">提交</wux-button>
     </view>
-    <wux-select id="wux-select1" />
 </view>
