@@ -59,13 +59,13 @@ Page({
             detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail2.png';
             break;
           case 2:
-            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail3.png';
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail5.png';
             break;
           case 3:
             detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail4.png';
             break;
           case 4:
-            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail5.png';
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail3.png';
             break;
         }
         that.setData({
@@ -86,7 +86,7 @@ Page({
     var that = this;
     wx.showModal({
       title: '提示',
-      content: '你确定要删除吗？',
+      content: '您确定要取消订单吗？',
       success: function(res) {
         if (res.confirm) {
           wx.showLoading({

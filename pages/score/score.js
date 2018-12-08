@@ -72,7 +72,7 @@ Page({
         attitude: data.attitude,
         effect: data.effect,
         comment: data.comment,
-        ordernum: that.data.tid,
+        ordernum: parseInt(that.data.tid),
       },
       header: {
         "Content-Type": "applciation/json",

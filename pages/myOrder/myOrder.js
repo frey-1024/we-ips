@@ -9,6 +9,7 @@ Page({
   data: {
     orders: [],
     previewOrders: [],
+    current: '1',
   },
   findListByFilter(currentStatus1, currentStatus2, currentStatus3) {
     var data = this.data;
@@ -21,10 +22,8 @@ Page({
     }
     return list;
   },
-  onChange(e) {
+  showPreview(that, key) {
     var data = this.data;
-    var that = this;
-    var key = e.detail.key;
     var list;
     // 订单状态 0 待接单 1 待上门 2 待确认	3 已完成 4 已取消
     if (key == 1) {
@@ -47,6 +46,14 @@ Page({
         previewOrders: list
       });
     }
+  },
+  onChange(e) {
+    var that = this;
+    var key = e.detail.key;
+    this.setData({
+      current: key,
+    });
+    this.showPreview(that, key);
   },
   alertErrorToast(tip) {
     wx.showToast({
@@ -84,6 +91,9 @@ Page({
     var that = this;
     wx.showLoading({
       title: '加载中...',
+    });
+    that.setData({
+      current: '1',
     });
     wx.request({
       url: app.globalData.base_url + '/repair/applies?offset=0&limit=199999999',
@@ -131,8 +141,8 @@ Page({
         }
         that.setData({
           orders: orders,
-          previewOrders: orders
         });
+        that.showPreview(that, "1");
       },
       fail: function(err){
         that.alertErrorToast(err.msg || '获取列表失败，请重试');

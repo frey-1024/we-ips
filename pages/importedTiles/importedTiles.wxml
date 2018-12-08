@@ -1,14 +1,24 @@
 <view class="container decoration-impression">
-    <view class="flex-row row-list">
-        <view class="flex-1 type-item" bindtap="selectingBrand">
-            <text wx:if="{{!selectedBrand}}">按品牌筛选</text>
-            <text wx:if="{{selectedBrand}}">{{selectedBrand}}</text>
-        </view>
-        <view class="flex-1 border-left type-item" bindtap="selectingStyle">
-            <text wx:if="{{!selectedStyle}}">按款式筛选</text>
-            <text wx:if="{{selectedStyle}}">{{selectedStyle}}</text>
+    <view class="flex-row row-list fixed-header" wx:if="{{tid == 0}}">
+        <picker class="flex-1" mode="selector" value="{{selectedBrandIndex}}" bindchange="selectingBrandFilter" range="{{brandFilterListName}}">
+            <view class="type-item">
+                <text wx:if="{{!selectedBrandText}}">按品牌筛选</text>
+                <text wx:if="{{selectedBrandText}}">{{selectedBrandText}}</text>
+            </view>
+        </picker>
+        <picker class="flex-1" mode="selector" value="{{selectedBrandStyleIndex}}" bindchange="selectingBrandStyleFilter" range="{{brandStyleFilterListName}}">
+            <view class="border-left type-item">
+                <text wx:if="{{!selectedBrandStyleText}}">按款式筛选</text>
+                <text wx:if="{{selectedBrandStyleText}}">{{selectedBrandStyleText}}</text>
+            </view>
+        </picker>
+    </view>
+    <view class="imgs-wrapper">
+        <view class="imgs-item" wx:for="{{previewList}}" wx:for-item="item" wx:key="item.tid">
+            <image class="imgs-content" src="{{item.imglink}}" mode="widthFix"></image>
         </view>
     </view>
-    <wux-select id="wux-select1" />
-    <wux-select id="wux-select2" />
+    <view class="btn">
+        <wux-button block type="calm" bind:click="submitApply">建材申请</wux-button>
+    </view>
 </view>

@@ -21,7 +21,7 @@ App({
           });
           wx.request({
             method: 'POST',
-            url: that.globalData.base_url + '/users/3rdsession',
+            url: that.globalData.base_url + '/users/3rdsession?v=' + new Date().getTime(),
             header: {
               "Content-Type": "application/x-www-form-urlencoded"
             },
@@ -34,7 +34,7 @@ App({
             },
             success: sessionData => {
               wx.hideLoading();
-              console.log(sessionData, 'sessionData');
+              console.log(sessionData, 'sessionData166');
               if (sessionData.data.code !== 200) {
                 if (!hideToast) {
                   wx.showToast({
@@ -42,6 +42,8 @@ App({
                     icon: 'none',
                     duration: 2000
                   });
+                } else {
+                  that.getUserInfoBySetting(true, hideToast);
                 }
                 return;
               }

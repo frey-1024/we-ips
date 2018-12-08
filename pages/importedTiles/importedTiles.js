@@ -1,15 +1,76 @@
-import { $wuxSelect } from '../../dist/index'
-
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
+
   data: {
-    user: null,
-    selectedBrand: '',
-    selectedStyle: '',
+    tid: '',
+    brandFilterList: [],
+    brandFilterListName: [1],
+    brandStyleFilterList: [],
+    brandStyleFilterListName: [1],
+    selectedBrandIndex: '',
+    selectedBrandText: '',
+    selectedBrandStyleIndex: '',
+    selectedBrandStyleText: '',
+    previewList: [],
+  },
+  selectingBrandFilter(e) {
+    var that = this;
+    const val = e.detail.value;
+    this.setData({
+      selectedBrandIndex: val,
+      selectedBrandText: that.data.brandFilterListName[val],
+    });
+    this.packagePreviewUrlList('&brand='+that.data.selectedBrandIndex+'&style=' + that.data.selectedBrandStyleIndex);
+  },
+  selectingBrandStyleFilter(e) {
+    var that = this;
+    const val = e.detail.value;
+    this.setData({
+      selectedBrandStyleIndex: val,
+      selectedBrandStyleText: that.data.brandStyleFilterListName[val],
+    });
+    this.packagePreviewUrlList('&brand='+that.data.selectedBrandIndex+'&style=' + that.data.selectedBrandStyleIndex);
+  },
+  packagePreviewUrlList(params) {
+   var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    });
+    params = params || '';
+    wx.request({
+      url: app.globalData.base_url + '/materials/images?materialsId=' + that.data.tid + params,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取图片列表失败， 请重试');
+        if (!aipStatus) {
+          return;
+        }
+        that.setData({
+          previewList: data.data.rows,
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取图片列表失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
+    })
   },
 
   /**
@@ -17,84 +78,85 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(app.globalData.userInfo);
-    wx.getUserInfo({
-      success: res => {
-        console.log(res.userInfo);
-        that.setData({
-          user: res.userInfo,
-        })
-      }
-    });
     wx.setNavigationBarTitle({
-      title: '进口瓷砖'
+      title: options.name
     });
+    that.setData({
+      tid: options.tid
+    });
+    console.log(options);
+    if (options.tid == 0) {
+      that.getBrandFilterList();
+      that.getBrandStyleFilterList();
+      that.packagePreviewUrlList();
+    } else {
+      that.packagePreviewUrlList();
+    }
   },
-  selectingBrand() {
-    $wuxSelect('#wux-select1').open({
-      value: this.data.selectedBrand,
-      options: [
-        '全部',
-        'Coem',
-        'Cerdomus',
-        'Caesar',
-        'Refin',
-        'Emigres',
-        'Fioranese',
-        'Marca corona',
-        'Oranmenta',
-        'Settecento'
-      ],
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            selectedBrand: value,
-          })
-        }
-      },
-    })
+  getName(list) {
+    var result = [];
+    list.forEach((item) => {
+      result.push(item.name);
+    });
+    return result;
   },
-  selectingStyle() {
-    $wuxSelect('#wux-select2').open({
-      value: this.data.selectedStyle,
-      options: [
-        '全部',
-        '布纹',
-        '大理石纹',
-        '花砖',
-        '经典',
-        '木纹',
-        '水磨石',
-        '水泥面',
-        '岩石',
-        '异形砖'
-      ],
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            selectedStyle: value,
-          })
-        }
-      },
-    })
-  },
-  getDataByFilter() {
+  getBrandFilterList() {
     var that = this;
-
     wx.request({
-      url: 'test.php',
-      data: {
-        type: '',
-        style: '',
-      },
+      url: app.globalData.base_url + '/materials/brands',
       header: {
-        'sessionid': '444b8422ec9357120e4ca14a1f7f91f7',
-        'content-type': 'application/json' // 默认值
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
       },
-      success (res) {
-        console.log(res.data)
+      method: "POST",
+      success: function(res){
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取建材品牌失败');
+        if (!aipStatus) {
+          return;
+        }
+        that.setData({
+          brandFilterList: data.data,
+          brandFilterListName: that.getName(data.data),
+        });
+      },
+      fail: function(err){
+        wx.showToast({
+          title: '获取建材品牌失败',
+          icon: 'none',
+          duration: 3000
+        });
+      }
+    })
+  },
+  getBrandStyleFilterList() {
+    var that = this;
+    wx.request({
+      url: app.globalData.base_url + '/materials/styles',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取建材款式失败');
+        if (!aipStatus) {
+          return;
+        }
+        that.setData({
+          brandStyleFilterList: data.data,
+          brandStyleFilterListName: that.getName(data.data),
+        });
+      },
+      fail: function(err){
+        wx.showToast({
+          title: '获取建材款式失败',
+          icon: 'none',
+          duration: 3000
+        });
       }
     })
   },

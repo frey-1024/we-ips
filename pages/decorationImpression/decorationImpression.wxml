@@ -2,7 +2,6 @@
     <picker mode="selector" value="{{selectedIndex}}" bindchange="selectingFilter" range="{{filterList}}">
         <wux-cell-group>
             <wux-cell class="select-type">
-                    <!--<text wx:if="{{!selectedValue}}">筛选</text>-->
                 <text>{{selectedText}}</text>
             </wux-cell>
         </wux-cell-group>

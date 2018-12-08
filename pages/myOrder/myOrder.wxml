@@ -1,5 +1,5 @@
 <view class="container my-order">
-    <wux-tabs default-current="1" bindchange="onChange" class="tabs">
+    <wux-tabs controlled current="{{ current }}" bindchange="onChange" class="tabs">
         <wux-tab key="1" title="全部"></wux-tab>
         <wux-tab key="2" title="服务中"></wux-tab>
         <wux-tab key="3" title="已完成"></wux-tab>

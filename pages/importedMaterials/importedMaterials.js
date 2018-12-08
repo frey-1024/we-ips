@@ -1,19 +1,55 @@
+var stringUtil = require('../../utils/stringUtil.js');
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: [],
   },
-
+  goMetarials: function(e) {
+    const tid = e.currentTarget.dataset.id;
+    const name = e.currentTarget.dataset.name;
+    wx.navigateTo({
+      url: '../importedTiles/importedTiles?tid=' + tid + '&name=' + name
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.setNavigationBarTitle({
       title: '进口建材'
     });
+
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/materials/list',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取失败');
+        if (!aipStatus) {
+          return;
+        }
+        that.setData({
+          list: data.data.rows
+        })
+      },
+      fail: function(err){
+        wx.hideLoading();
+        that.alertErrorToast('获取失败');
+      }
+    })
   },
 
   /**

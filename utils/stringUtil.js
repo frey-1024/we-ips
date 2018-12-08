@@ -119,7 +119,36 @@ function toolEffectEnList() {
   ];
 }
 
+function brandList() {
+  return [
+    '全部',
+    'Coem',
+    'Cerdomus',
+    'Caesar',
+    'Refin',
+    'Emigres',
+    'Fioranese',
+    'Marca corona',
+    'Oranmenta',
+    'Settecento'
+  ];
+}
 
+
+function brandStyleList() {
+  return [
+    '全部',
+    '布纹',
+    '大理石纹',
+    '花砖',
+    '经典',
+    '木纹',
+    '水磨石',
+    '水泥面',
+    '岩石',
+    '异形砖'
+  ];
+}
 
 module.exports = {
   splitAddress: splitAddress,
@@ -132,4 +161,6 @@ module.exports = {
   decorationImpressionEnList: decorationImpressionEnList,
   toolEffectList: toolEffectList,
   toolEffectEnList: toolEffectEnList,
+  brandList: brandList,
+  brandStyleList: brandStyleList,
 };
