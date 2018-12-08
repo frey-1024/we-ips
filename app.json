@@ -17,6 +17,7 @@
     "pages/score/score",
     "pages/myOrder/myOrder",
     "pages/applyMaterials/applyMaterials",
+    "pages/applyConstruction/applyConstruction",
     "pages/mapSelect/mapSelect",
     "pages/applySuccess/applySuccess",
     "pages/about/about",

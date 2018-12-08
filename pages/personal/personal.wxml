@@ -15,8 +15,8 @@
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-home.png" title="我的报修" is-link></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="设计报名" is-link bind:click="goApplyDesign"></wux-cell>
             <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-j.png" title="建材报名" is-link bind:click="goApplyMaterials"></wux-cell>
-            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-s.png" title="施工报名" is-link></wux-cell>
-            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-c.png" title="橱柜申请" is-link></wux-cell>
+            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-s.png" title="施工报名" is-link bind:click="goApplyConstruction"></wux-cell>
+            <wux-cell thumb="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/p-c.png" title="橱柜申请" is-link bind:click="goApplyDesign"></wux-cell>
         </wux-cell-group>
     </view>
 </view>

@@ -1,5 +1,3 @@
-var uploadImage = require('../../libs/uploadFile.js');
-var util = require('../../libs/util.js');
 var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 Page({
@@ -8,14 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isPreviewDetail: false,
-    imgList: [],
+    typeList: ['家装', '工装'],
+    selectedType: '',
+    selectedTypeIndex: '',
     budgetList: ['20-50万', '50-100万', '100万以上'],
     area: '',
     contacts: '',
     phone: '',
     selectedBudget: '',
     selectedBudgetIndex: '',
+  },
+  selectingType(e) {
+    const val = e.detail.value;
+    this.setData({
+      selectedType: this.data.typeList[val],
+      selectedTypeIndex: val,
+    });
   },
   goMapPage() {
     wx.navigateTo({
@@ -44,58 +50,6 @@ Page({
     this.setData({
       address: e.detail.value,
     });
-  },
-  clearImg(e) {
-    var deleteIndex = e.target.dataset.index;
-    var list = this.data.imgList;
-    list.splice(deleteIndex, 1);
-    this.setData({
-      imgList: list
-    });
-  },
-  //选择照片
-  joinPicture(){
-    var that = this;
-    var imgListLength = that.data.imgList.length;
-    if (imgListLength >= 3) {
-      return;
-    }
-    wx.chooseImage({
-      count: 3 - imgListLength, // 默认最多一次选择9张图
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        var nowTime = util.formatTime(new Date());
-
-        //支持多图上传
-        for (var i = 0; i < tempFilePaths.length; i++) {
-          //显示消息提示框
-          wx.showLoading({
-            title: '上传中...',
-            mask: true
-          });
-          uploadImage(tempFilePaths[i], 'cbb/' + nowTime + '/',
-            function (result) {
-              wx.hideLoading();
-              var imgList = that.data.imgList;
-              imgList.push(result);
-              that.setData({
-                imgList: imgList,
-              });
-            }, function () {
-              wx.hideLoading();
-              that.alertErrorToast('上传图片失败，请重试');
-            }
-          )
-        }
-      },
-      fail: function (err) {
-        that.alertErrorToast('上传图片失败，请重试');
-      },
-      complete: function (e) {}
-    })
   },
   alertErrorToast(tip) {
     wx.showToast({
@@ -128,25 +82,25 @@ Page({
       that.alertErrorToast('请填写详细地址');
       return;
     }
-    if (data.selectedBudgetIndex === '') {
-      that.alertErrorToast('请选择装修预算');
+    if (data.selectedTypeIndex === '') {
+      that.alertErrorToast('请选择报修类型');
       return;
     }
-    if (!data.imgList.length) {
-      that.alertErrorToast('请上传图片');
+    if (data.selectedBudgetIndex === '') {
+      that.alertErrorToast('请选择装修预算');
       return;
     }
     wx.showLoading({
       title: '提交中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/design/apply',
+      url: app.globalData.base_url + '/construction/apply',
       data:{
         budget: data.selectedBudgetIndex,
         phone: data.phone,
+        type: data.selectedTypeIndex,
         contact: data.contacts,
         address: stringUtil.connAddress(data.area, data.address),
-        imgs: data.imgList,
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -185,7 +139,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '设计申请'
+      title: '施工申请'
     });
   },
 

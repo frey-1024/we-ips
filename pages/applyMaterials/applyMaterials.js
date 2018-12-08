@@ -119,12 +119,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var str = options.detail;
-    this.setData({
-      isPreviewDetail: !!str,
-    });
     wx.setNavigationBarTitle({
-      title: '设计申请'
+      title: '建材申请'
     });
   },
 

@@ -17,6 +17,11 @@ Page({
       url: '../applyMaterials/applyMaterials'
     });
   },
+  goApplyConstruction() {
+    wx.navigateTo({
+      url: '../applyConstruction/applyConstruction'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
