@@ -7,7 +7,7 @@
     </wux-tabs>
     <view wx:if="{{previewOrders && previewOrders.length}}" class="list-wrapper">
         <view class="list-item" wx:for="{{previewOrders}}" wx:for-item="item" wx:key="item.tid" data-id="{{item.tid}}" bindtap="goOrderDetail">
-            <view class="flex-row col-center title">
+            <view class="flex-row col-center title-b">
                 <text class="left-title text">维修大类</text>
                 <text class="right-title">订单编号{{item.tid}}</text>
             </view>
