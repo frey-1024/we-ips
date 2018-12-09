@@ -1,3 +1,4 @@
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 Page({
 
@@ -18,23 +19,163 @@ Page({
     })
   },
   goApplyDesign() {
-    wx.navigateTo({
-      url: '../applyDesign/applyDesign'
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/design/applies?offset=0&limit=199999999',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
+        if (!aipStatus) {
+          wx.hideLoading();
+          return;
+        }
+        var rows = data.data.rows;
+        if (rows && rows.length) {
+          wx.navigateTo({
+            url: '../designDetail/designDetail?tid=' + rows[0].tid
+          });
+          return;
+        }
+        wx.navigateTo({
+          url: '../applyDesign/applyDesign'
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取申请信息失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   },
   goApplyMaterials() {
-    wx.navigateTo({
-      url: '../applyMaterials/applyMaterials'
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/materials/applies?offset=0&limit=199999999',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
+        if (!aipStatus) {
+          return;
+        }
+        var rows = data.data.rows;
+        if (rows && rows.length) {
+          wx.navigateTo({
+            url: '../materialsDetail/materialsDetail?tid=' + rows[0].tid
+          });
+          return;
+        }
+        wx.navigateTo({
+          url: '../applyMaterials/applyMaterials'
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取申请信息失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   },
   goApplyConstruction() {
-    wx.navigateTo({
-      url: '../applyConstruction/applyConstruction'
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/construction/applies?offset=0&limit=199999999',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
+        if (!aipStatus) {
+          wx.hideLoading();
+          return;
+        }
+        var rows = data.data.rows;
+        if (rows && rows.length) {
+          wx.navigateTo({
+            url: '../constructionDetail/constructionDetail?tid=' + rows[0].tid
+          });
+          return;
+        }
+        wx.navigateTo({
+          url: '../applyConstruction/applyConstruction'
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取申请信息失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   },
   goApplyCabinet() {
-    wx.navigateTo({
-      url: '../applyCabinet/applyCabinet'
+    wx.showLoading({
+      title: '加载中...',
+    });
+    wx.request({
+      url: app.globalData.base_url + '/cupboard/applies?offset=0&limit=199999999',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        console.log(res);
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
+        if (!aipStatus) {
+          return;
+        }
+        var rows = data.data.rows;
+        if (rows && rows.length) {
+          wx.navigateTo({
+            url: '../cabinetsDetail/cabinetsDetail?tid=' + rows[0].tid
+          });
+          return;
+        }
+        wx.navigateTo({
+          url: '../applyCabinet/applyCabinet'
+        });
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取申请信息失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
     });
   },
   getUserInfo: function(e) {
