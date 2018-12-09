@@ -8,6 +8,8 @@
     "pages/goodDesign/goodDesign",
     "pages/importedTiles/importedTiles",
     "pages/importedMaterials/importedMaterials",
+    "pages/materialsDetail/materialsDetail",
+    "pages/cabinetsDetail/cabinetsDetail",
     "pages/decorationImpression/decorationImpression",
     "pages/toolingEffect/toolingEffect",
     "pages/importedCabinets/importedCabinets",

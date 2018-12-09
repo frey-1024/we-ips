@@ -13,6 +13,24 @@
         </view>
     </view>
     <view class="btn">
-        <wux-button block type="calm" bind:click="submitApply">定制橱柜申请</wux-button>
+        <button wx:if="{{!phoneInfo}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+        <wux-button block type="calm" bind:click="goApply">定制橱柜申请</wux-button>
+    </view>
+    <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
+        <view class="box">
+            <view class="authorize-warning-title">授权IPS咻咻咻</view>
+            <view class="content">
+                <image class='logo-img' mode="scaleToFill" src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/home/logo.png'></image>
+                <view class="content-tips1">
+                    需要手机号授权后使用：
+                </view>
+                <view class="content-tips2">
+                    报修、设计、施工、进口建材服务
+                </view>
+            </view>
+            <view class="footer">
+                <button class="authorize" open-type="getPhoneNumber" bindtap="hidePhoneModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
+            </view>
+        </view>
     </view>
 </view>
