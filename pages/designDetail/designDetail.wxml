@@ -1,0 +1,31 @@
+<view class="container order-detail">
+    <view class="content">
+        <wux-cell-group>
+            <wux-cell title="联系人" extra="{{info.contact}}"></wux-cell>
+            <wux-cell title="联系电话" extra="{{info.phone}}"></wux-cell>
+            <wux-cell>
+                <view class="flex-row col-center">
+                    <text class="flex-1">所在区域</text>
+                    <text class="flex-2 text-break text-right text-gray">{{info.area}}</text>
+                </view>
+            </wux-cell>
+            <wux-cell>
+                <view class="flex-row col-center">
+                    <text class="flex-1">详细地址</text>
+                    <text class="flex-2 text-break text-right text-gray">{{info.address}}</text>
+                </view>
+            </wux-cell>
+            <wux-cell title="装修预算" extra="{{info.budgetStr}}"></wux-cell>
+            <wux-cell>
+                <view class="flex-row row-left col-center upload-img-list">
+                    <view class="img-wrapper" wx:for="{{info.imgs}}" wx:for-item="item" wx:key="item">
+                        <image src="{{item}}" mode="scaleToFill" class="upload-img"></image>
+                    </view>
+                </view>
+            </wux-cell>
+        </wux-cell-group>
+    </view>
+    <view class="btn flex-row">
+        <wux-button type="light" block disabled class="flex-1">已申请</wux-button>
+    </view>
+</view>

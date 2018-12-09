@@ -77,6 +77,16 @@ page{
     background-color: #11c1f3;
 }
 
+.get-phone-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 3;
+}
+
 .authorize-warning{
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
@@ -95,7 +105,7 @@ page{
     background-color: #fff;
     border-radius: 10rpx 10rpx;
 }
-.authorize-warning-title{
+.title{
     font-size: 35rpx;
     font-weight: bold;
     text-align: center;
@@ -157,13 +167,13 @@ page{
     background-color: #888;
     border-radius: 50% 50%;
 }
-
-.get-phone-btn{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    z-index: 3;
+.authorize-warning-title{
+    font-size: 35rpx;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25rpx 10rpx;
 }

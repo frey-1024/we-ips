@@ -1,12 +1,10 @@
+var stringUtil = require('../../utils/stringUtil.js');
 const app = getApp();
 
 Page({
   data: {
-    isShowPhoneWarning: false,
     phoneInfo: app.globalData.phoneInfo,
-  },
-  onChange(e) {
-    console.log(e.detail.key);
+    isShowPhoneWarning: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -15,21 +13,14 @@ Page({
     wx.setNavigationBarTitle({
       title: '好的设计，从一而终'
     });
-    wx.checkSession({
-      success: function () {
-      },
-      fail:function(err){
-        app.wxLogin();
-      },
-    });
   },
-  getDesignDetail() {
+  goApply() {
     var that = this;
     wx.showLoading({
       title: '加载中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/repair/applies?offset=0&limit=199999999',
+      url: app.globalData.base_url + '/design/applies?offset=0&limit=199999999',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
@@ -38,23 +29,31 @@ Page({
       success: function(res){
         console.log(res);
         var data = res.data;
-        if (data.code !== 200) {
-          that.alertErrorToast('获取列表失败，请重试');
+        var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
+        if (!aipStatus) {
+          wx.hideLoading();
           return;
         }
-        var orders = data.data.rows;
-        that.setData({
-          orders: orders,
-          previewOrders: orders
+        var rows = data.data.rows;
+        if (rows && rows.length) {
+          wx.navigateTo({
+            url: '../designDetail/designDetail?tid=' + rows[0].tid
+          });
+          return;
+        }
+        wx.navigateTo({
+          url: '../applyDesign/applyDesign'
         });
       },
       fail: function(err){
-        that.alertErrorToast(err.msg || '获取列表失败，请重试');
-      },//请求失败
-      complete: function(){
         wx.hideLoading();
-      }//请求完成后执行的函数
-    })
+        wx.showToast({
+          title: '获取申请信息失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
+      }
+    });
   },
   getPhoneNumber(e) {
     var that = this;
@@ -65,7 +64,7 @@ Page({
     } else {
       app.getPhoneInfo(e.detail, function(phoneInfo) {
         app.globalData.phoneInfo = phoneInfo;
-        that.getDesignDetail();
+        that.goApply();
       });
     }
   },
@@ -74,16 +73,6 @@ Page({
       isShowPhoneWarning: false
     });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     if (app.globalData.phoneInfo) {
       this.setData({
@@ -97,7 +86,19 @@ Page({
         });
       }
     };
+    app.removePhoneInfoCallback = () => {
+      this.setData({
+        phoneInfo: null,
+      });
+    };
   },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
 
   /**
    * 生命周期函数--监听页面隐藏

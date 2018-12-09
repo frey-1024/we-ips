@@ -10,6 +10,8 @@
     "pages/importedMaterials/importedMaterials",
     "pages/materialsDetail/materialsDetail",
     "pages/cabinetsDetail/cabinetsDetail",
+    "pages/designDetail/designDetail",
+    "pages/constructionDetail/constructionDetail",
     "pages/decorationImpression/decorationImpression",
     "pages/toolingEffect/toolingEffect",
     "pages/importedCabinets/importedCabinets",

@@ -18,17 +18,17 @@ Page({
     console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
-      title: '建材申请'
+      title: '设计申请'
     });
     var tid = options.tid;
     that.setData({
       tid: tid
     });
-    wx.showLoading({
-      title: '加载中...',
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    // });
     wx.request({
-      url: app.globalData.base_url + '/materials/detail/apply/'+ tid,
+      url: app.globalData.base_url + '/construction/detail/apply/'+ tid,
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
@@ -46,6 +46,10 @@ Page({
         var addressInfo = stringUtil.splitAddress(detail.address);
         detail.address = addressInfo.address;
         detail.area = addressInfo.area;
+        var budgetList = ['20-50万', '50-100万', '100万以上'];
+        var typeList = ['家装', '工装'];
+        detail.budgetStr = budgetList[detail.budget];
+        detail.typeStr = typeList[detail.type];
         that.setData({
           info: detail,
         });

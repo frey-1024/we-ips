@@ -146,7 +146,7 @@ Page({
         phone: data.phone,
         contact: data.contacts,
         address: stringUtil.connAddress(data.area, data.address),
-        imgs: data.imgList,
+        imglink: data.imgList.toString(),
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
