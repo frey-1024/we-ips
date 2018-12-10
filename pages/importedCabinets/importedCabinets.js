@@ -10,7 +10,7 @@ Page({
     filterList: stringUtil.cabinetsList(),
     selectedIndex: 0,
     selectedText: stringUtil.cabinetsList()[0],
-    previewList: [],
+    previewList: null,
   },
   selectingFilter(e) {
     const val = e.detail.value;
@@ -25,8 +25,9 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
+    var style = that.data.selectedIndex === 0 ? '' : that.data.selectedIndex;
     wx.request({
-      url: app.globalData.base_url + '/cupboard/list?offset=0&limit=199999999&style=' + that.data.selectedIndex,
+      url: app.globalData.base_url + '/cupboard/list?offset=0&limit=199999999&style=' + style,
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid

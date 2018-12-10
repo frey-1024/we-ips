@@ -10,14 +10,17 @@ Page({
   data: {
     tid: '',
     brandFilterList: [],
-    brandFilterListName: [1],
+    brandFilterListName: [],
     brandStyleFilterList: [],
-    brandStyleFilterListName: [1],
+    brandStyleFilterListName: [],
     selectedBrandIndex: '',
     selectedBrandText: '',
     selectedBrandStyleIndex: '',
     selectedBrandStyleText: '',
-    previewList: [],
+    previewList: null,
+  },
+  getIndex(val) {
+    return val <= 0 ? '' : val;
   },
   selectingBrandFilter(e) {
     var that = this;
@@ -26,7 +29,7 @@ Page({
       selectedBrandIndex: val,
       selectedBrandText: that.data.brandFilterListName[val],
     });
-    this.packagePreviewUrlList('&brand='+that.data.selectedBrandIndex+'&style=' + that.data.selectedBrandStyleIndex);
+    this.packagePreviewUrlList('&brand='+that.getIndex(that.data.selectedBrandIndex)+'&style=' + that.getIndex(that.data.selectedBrandStyleIndex));
   },
   selectingBrandStyleFilter(e) {
     var that = this;
@@ -35,7 +38,7 @@ Page({
       selectedBrandStyleIndex: val,
       selectedBrandStyleText: that.data.brandStyleFilterListName[val],
     });
-    this.packagePreviewUrlList('&brand='+that.data.selectedBrandIndex+'&style=' + that.data.selectedBrandStyleIndex);
+    this.packagePreviewUrlList('&brand='+that.getIndex(that.data.selectedBrandIndex)+'&style=' + that.getIndex(that.data.selectedBrandStyleIndex));
   },
   packagePreviewUrlList(params) {
    var that = this;
@@ -85,7 +88,7 @@ Page({
       tid: options.tid
     });
     console.log(options);
-    if (options.tid == 0) {
+    if (options.tid == 1) {
       that.getBrandFilterList();
       that.getBrandStyleFilterList();
       that.packagePreviewUrlList();
@@ -116,9 +119,14 @@ Page({
         if (!aipStatus) {
           return;
         }
+        var list = data.data;
+        list.unshift({
+          name: '全部',
+          tid: -1
+        });
         that.setData({
-          brandFilterList: data.data,
-          brandFilterListName: that.getName(data.data),
+          brandFilterList: list,
+          brandFilterListName: that.getName(list),
         });
       },
       fail: function(err){
@@ -146,9 +154,14 @@ Page({
         if (!aipStatus) {
           return;
         }
+        var list = data.data;
+        list.unshift({
+          name: '全部',
+          tid: -1
+        });
         that.setData({
-          brandStyleFilterList: data.data,
-          brandStyleFilterListName: that.getName(data.data),
+          brandStyleFilterList: list,
+          brandStyleFilterListName: that.getName(list),
         });
       },
       fail: function(err){

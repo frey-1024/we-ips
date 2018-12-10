@@ -14,7 +14,7 @@ Page({
     selectedText: stringUtil.toolEffectList()[0],
     user: null,
     selectedValue: '',
-    previewList: [],
+    previewList: null,
   },
   selectingFilter(e) {
     const val = e.detail.value;

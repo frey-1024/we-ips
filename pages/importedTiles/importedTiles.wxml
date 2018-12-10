@@ -1,5 +1,5 @@
 <view class="container decoration-impression">
-    <view class="flex-row row-list fixed-header" wx:if="{{tid == 0}}">
+    <view class="flex-row row-list fixed-header" wx:if="{{tid == 1}}">
         <picker class="flex-1" mode="selector" value="{{selectedBrandIndex}}" bindchange="selectingBrandFilter" range="{{brandFilterListName}}">
             <view class="type-item">
                 <text wx:if="{{!selectedBrandText}}">按品牌筛选</text>
@@ -13,10 +13,22 @@
             </view>
         </picker>
     </view>
+    <view class="cover_h" wx:if="{{tid == 1}}"></view>
     <view class="imgs-wrapper">
-        <view class="imgs-item" wx:for="{{previewList}}" wx:for-item="item" wx:key="item.tid">
-            <image class="imgs-content" src="{{item.imglink}}" mode="widthFix"></image>
+        <view class="imgs-list-left">
+            <view class="imgs-item" wx:for="{{previewList}}" wx:if="{{index%2 == 0}}" wx:for-item="item" wx:key="item.tid">
+                <image class="imgs-content" src="{{item.imglink}}" mode="widthFix"></image>
+            </view>
         </view>
+        <view class="imgs-list-right">
+            <view class="imgs-item" wx:for="{{previewList}}" wx:if="{{index%2 != 0}}" wx:for-item="item" wx:key="item.tid">
+                <image class="imgs-content" src="{{item.imglink}}" mode="widthFix"></image>
+            </view>
+        </view>
+    </view>
+    <view class="empty-wrapper" wx:if="{{previewList && !previewList.length}}">
+        <image class="empty-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/empty.png" mode="widthFix"></image>
+        <text class="empty-msg text">此分类下没有图片</text>
     </view>
     <view class="btn">
         <wux-button block type="calm" bind:click="submitApply">建材申请</wux-button>
