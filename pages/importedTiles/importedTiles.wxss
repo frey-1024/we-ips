@@ -1,9 +1,6 @@
 page{
-  height: 100%;
 }
 .decoration-impression{
-  background-color: #eee;
-  height: 100%;
   position: relative;
 }
 
@@ -19,16 +16,32 @@ page{
 .border-left{
   border-left: 1px solid #eee;
 }
-
+.cover_h{
+  height: 95rpx;
+}
 .imgs-wrapper{
   padding: 5rpx 20rpx;
-  overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
 }
-.imgs-item{
-  float: left;
+.imgs-list-left, .imgs-list-right{
   width: 50%;
   box-sizing: border-box;
-  padding: 5rpx;
+  display: flex;
+  flex-direction: column;
+}
+.imgs-list-left{
+  padding-right: 5rpx;
+}
+.imgs-list-right{
+  padding-left: 5rpx;
+}
+.imgs-item{
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 10rpx;
 }
 .imgs-content{
   width: 100%;
@@ -133,7 +146,7 @@ page{
   background-color: #888;
   border-radius: 50% 50%;
 }
-.authorize-warning-title{
+.authorize-warning-title {
   font-size: 35rpx;
   font-weight: bold;
   text-align: center;
@@ -141,5 +154,18 @@ page{
   display: block;
   width: 100%;
   box-sizing: border-box;
-  padding: 25rpx 10rpx;
+  padding: 25rpx 10 rpx;
+}
+
+.empty-wrapper{
+  margin-top: 210rpx;
+  text-align: center;
+}
+.empty-img{
+  width: 130rpx;
+}
+.empty-msg{
+  display: block;
+  font-size: 30rpx;
+  padding-top: 30rpx;
 }

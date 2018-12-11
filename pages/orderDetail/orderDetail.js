@@ -116,12 +116,8 @@ Page({
                   ordernum: ''
                 });
                 //用onLoad周期方法重新加载，实现当前页面的刷新
-                that.onLoad()
+                that.onLoad({tid: that.data.tid});
               }});
-              console.log(res);
-              wx.navigateBack({
-                delta: 1
-              })
             },
             fail:function(err){
               wx.hideLoading();

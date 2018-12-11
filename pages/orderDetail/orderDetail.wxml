@@ -1,5 +1,5 @@
 <view class="container order-detail">
-    <image class="order-img" src="{{info.statusImg}}" mode="widthFix"></image>
+    <image class="order-img" wx:if="{{info.statusImg}}" src="{{info.statusImg}}" mode="widthFix"></image>
     <view class="content">
         <wux-cell-group>
             <wux-cell title="订单号" extra="{{info.tid}}"></wux-cell>

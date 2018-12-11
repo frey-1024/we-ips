@@ -1,5 +1,5 @@
 <view class="container import-materials">
-    <view wx:for="{{list}}" wx:for-item="item" wx:key="item.type" class="item flex-row row-left col-center" data-id="{{item.type}}" data-name="{{item.name}}" bindtap="goMetarials">
+    <view wx:for="{{list}}" wx:for-item="item" wx:key="item.type" class="item flex-row row-left col-center" data-id="{{item.tid}}" data-name="{{item.name}}" bindtap="goMetarials">
         <image class='item-img' mode="scaleToFill" src="{{item.imglink}}"></image>
         <view class="flex-col item-text">
             <text class="text">{{item.name}}</text>
