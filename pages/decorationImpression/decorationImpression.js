@@ -1,6 +1,7 @@
 var stringUtil = require('../../utils/stringUtil.js');
 
 const app = getApp();
+var timer = null, timer2 = null;
 Page({
 
   /**
@@ -22,6 +23,29 @@ Page({
     });
     this.packagePreviewUrlList();
   },
+  currentPreviewList(list) {
+    var that = this;
+    const firstList = list.slice(0, 10);
+    that.setData({
+      previewList: firstList,
+    });
+    if (timer) {
+      clearTimeout(timer);
+    }
+    if (timer2) {
+      clearTimeout(timer2);
+    }
+    timer = setTimeout(() => {
+      that.setData({
+        previewList: list.slice(11, 20),
+      });
+    }, 300);
+    timer2 = setTimeout(() => {
+      that.setData({
+        previewList: list,
+      });
+    }, 1000);
+  },
   packagePreviewUrlList() {
     var that = this;
     var selectedIndex = that.data.selectedIndex;
@@ -37,9 +61,7 @@ Page({
           previewList.push(baseImgUrl + '/' + i + '-' + fileName + '/' + fileName + z + '.jpg');
         }
       }
-      that.setData({
-        previewList: previewList,
-      });
+      that.currentPreviewList(previewList);
       return;
     }
 
@@ -47,9 +69,7 @@ Page({
     for (z = 1; z <= imgNumberList[selectedIndex -1]; z++) {
       previewList.push(baseImgUrl + '/' + selectedIndex + '-' + fileName + '/' + fileName + z + '.jpg');
     }
-    that.setData({
-      previewList: previewList,
-    });
+    that.currentPreviewList(previewList);
   },
   /**
    * 生命周期函数--监听页面加载

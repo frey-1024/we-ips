@@ -18,7 +18,7 @@ Page({
     console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
-      title: '设计申请'
+      title: '施工申请'
     });
     var tid = options.tid;
     that.setData({
