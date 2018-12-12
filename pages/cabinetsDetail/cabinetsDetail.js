@@ -28,7 +28,7 @@ Page({
       title: '加载中...',
     });
     wx.request({
-      url: app.globalData.base_url + '/materials/detail/apply/'+ tid,
+      url: app.globalData.base_url + '/cupboard/detail/apply/'+ tid,
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
