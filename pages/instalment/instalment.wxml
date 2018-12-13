@@ -10,6 +10,10 @@
             硬装、软装、家具、家电等百万商户都可以任选，最高50万专享额度，日常用卡不用愁，最长可以分
             36期，百分之百0利息，享受超低费率优惠。</text>
     </view>
+    <view class="btn">
+        <button wx:if="{{!phoneInfo}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+        <wux-button block type="calm" bind:click="goApply">立即前往分期</wux-button>
+    </view>
     <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
         <view class="box">
             <view class="authorize-warning-title">授权IPS咻咻咻</view>
@@ -23,11 +27,8 @@
                 </view>
             </view>
             <view class="footer">
-                <button class="authorize" open-type="getPhoneNumber" bindtap="hideModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
+                <button class="authorize" open-type="getPhoneNumber" bindtap="hidePhoneModal" bindgetphonenumber="getPhoneNumber">前往授权</button>
             </view>
         </view>
-    </view>
-    <view class="btn">
-        <button class="flex-1 btn-click btn-click-calm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即前往分期</button>
     </view>
 </view>

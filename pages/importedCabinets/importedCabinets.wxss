@@ -149,7 +149,7 @@ page{
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 25rpx 10 rpx;
+    padding: 25rpx 10rpx;
 }
 .empty-wrapper{
     margin-top: 210rpx;
