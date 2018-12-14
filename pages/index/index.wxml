@@ -1,5 +1,5 @@
 <view class="container home">
-  <image class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner.png" mode="widthFix"></image>
+  <image class="banner" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/banner2.png" mode="widthFix"></image>
   <view class="userinfo">
     <view class="repair-wrapper">
         <button wx:if="{{!phoneInfo}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>

@@ -174,6 +174,22 @@ Page({
       url: '../score/score?tid=' + that.data.tid
     });
   },
+  phoneCell() {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认拨打维修师电话？',
+      success: function(res) {
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: '18625531739'
+          });
+        } else if (res.cancel) {
+        }
+      }
+    });
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

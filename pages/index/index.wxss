@@ -37,6 +37,7 @@
    padding: 15rpx;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 }
 .repair-text, .design-text{
    padding: 15rpx 20rpx;

@@ -81,7 +81,7 @@ Page({
     var that = this;
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo;
-      app.wxLogin(e.detail);
+      app.wxLogin(e.detail, true);
       app.userSessionIdReadyCallback = res => {
         that.setData({
           hasUserInfo: true

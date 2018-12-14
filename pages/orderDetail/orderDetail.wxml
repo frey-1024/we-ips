@@ -25,7 +25,7 @@
     </view>
     <view class="content mt-20" wx:if="{{info.status !== 0 && info.maintenanceman !== ''}}">
         <wux-cell-group>
-            <wux-cell title="维修师傅" is-link extra="{{info.maintenanceman}}"></wux-cell>
+            <wux-cell title="维修师傅" bind:click="phoneCell" is-link extra="{{info.maintenanceman}}"></wux-cell>
         </wux-cell-group>
     </view>
     <view class="btn flex-row" wx:if="{{info.status <= 1}}">
