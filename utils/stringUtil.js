@@ -1,22 +1,23 @@
 var moment = require('../libs/moment.js');
-const splitCode = '@@##%%';
+const splitCode = ',';
 
 function splitAddress(val) {
   if (!val) {
     return {};
   }
-  const arr = val.split(splitCode);
-  if (arr.length > 1) {
-    return {
-      address: arr[1],
-      area: arr[0]
-    }
-  } else if (arr.length){
-    return {
-      area: arr[0]
-    }
+  const index = val.indexOf(',');
+  var firstVal, lastVal;
+  if (index >= 0) {
+    firstVal = val.substring(0, index);
+    lastVal = val.substring(index + 1);
+  } else {
+    firstVal = val;
+    lastVal = '';
   }
-  return {};
+  return {
+    address: lastVal,
+    area: firstVal
+  }
 }
 function connAddress(val1, val2) {
   val1 = val1 || '';
