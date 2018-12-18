@@ -174,7 +174,7 @@ Page({
       url: '../score/score?tid=' + that.data.tid
     });
   },
-  phoneCell() {
+  phoneCell(e) {
     var that = this;
     wx.showModal({
       title: '提示',
@@ -182,7 +182,7 @@ Page({
       success: function(res) {
         if (res.confirm) {
           wx.makePhoneCall({
-            phoneNumber: '18625531739'
+            phoneNumber: e.currentTarget.dataset.id
           });
         } else if (res.cancel) {
         }

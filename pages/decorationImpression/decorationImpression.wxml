@@ -6,18 +6,17 @@
             </wux-cell>
         </wux-cell-group>
     </picker>
-    <view class="imgs-wrapper">
-        <view class="imgs-list-left">
-            <view class="imgs-item" wx:for="{{previewList}}" wx:if="{{index%2 == 0}}" wx:for-item="item" wx:key="item">
-                <image class="imgs-content" src="{{item}}" mode="widthFix"></image>
-            </view>
-        </view>
-        <view class="imgs-list-right">
-            <view class="imgs-item" wx:for="{{previewList}}" wx:if="{{index%2 != 0}}" wx:for-item="item" wx:key="item">
-                <image class="imgs-content" src="{{item}}" mode="widthFix"></image>
-            </view>
-        </view>
+    <view style='display: none'>
+        <image wx:for='{{dataList}}' wx:key='item' src='{{item.src}}' bindload='loadImage' data-index='{{index}}'/>
     </view>
+    <scroll-view class="main" scroll-y='true' style="height:{{windowHeight}}px" bindscrolltolower='loadMoreImages'>
+        <view class='view_left'>
+            <image wx:for='{{firstList}}' wx:key='item' src='{{item.src}}' style='margin-left: {{imgMargin}}px; width: {{imgWidth}}px; height:{{item.height}}px; margin-top: {{imgMargin}}px;' bindtap='previewImg' data-index='{{index}}' data-type='1'/>
+        </view>
+        <view class='view_right'>
+            <image wx:for='{{secondList}}' wx:key='item' src='{{item.src}}' style='margin-left: {{imgMargin/2}}px; width: {{imgWidth}}px; height:{{item.height}}px; margin-top: {{imgMargin}}px;' bindtap='previewImg' data-index='{{index}}' data-type='2'/>
+        </view>
+    </scroll-view>
     <view class="empty-wrapper" wx:if="{{previewList && !previewList.length}}">
         <image class="empty-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/empty.png" mode="widthFix"></image>
         <text class="empty-msg text">此分类下没有图片</text>

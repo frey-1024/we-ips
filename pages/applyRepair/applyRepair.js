@@ -220,7 +220,7 @@ Page({
       success: function(res){
         wx.hideLoading();
         var data = res.data;
-        var aipStatus = stringUtil.apiError(app, data.code, '删除失败，请重试');
+        var aipStatus = stringUtil.apiError(app, data.code, '报修申请失败，请重试');
         if (!aipStatus) {
           return;
         }

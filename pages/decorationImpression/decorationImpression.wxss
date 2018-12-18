@@ -10,12 +10,12 @@ page{
 .select-type{
     text-align: center;
 }
-.imgs-wrapper{
-    padding: 5rpx 20rpx;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
+.main{
+    width: 100%; height: 100%; position: relative;
+}
+.main view { display: inline-block; width: 50%; vertical-align: top; }
+.main image {
+    display: block;
 }
 .imgs-list-left, .imgs-list-right{
     width: 50%;
