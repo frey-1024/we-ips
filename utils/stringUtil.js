@@ -1,3 +1,4 @@
+var moment = require('../libs/moment.js');
 const splitCode = '@@##%%';
 
 function splitAddress(val) {
@@ -112,7 +113,9 @@ function decorationImpressionEnList() {
     'modernChinese',
   ];
 }
-
+function localFormat(date) {
+  return moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
+}
 function toolEffectList() {
   return [
     '全部',
@@ -176,4 +179,5 @@ module.exports = {
   brandList: brandList,
   brandStyleList: brandStyleList,
   cabinetsList: cabinetsList,
+  localFormat: localFormat,
 };

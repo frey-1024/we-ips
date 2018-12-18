@@ -140,7 +140,6 @@ Page({
         }
       },
       fail: function (err) {
-        that.alertErrorToast('上传图片失败，请重试');
       },
       complete: function (e) {}
     })
@@ -152,8 +151,10 @@ Page({
       duration: 2000
     });
   },
-  submitApply() {
+  submitApply(e) {
     var that = this;
+    var formId = e.detail.formId;
+    console.log(formId);
     var data = that.data;
     if (data.selectedTypeIndex === '') {
       that.alertErrorToast('请选择报修类型');
@@ -211,6 +212,7 @@ Page({
         address: stringUtil.connAddress(data.area, data.address),
         description: data.describe,
         imgs: data.imgList,
+        formId: formId,
       },
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -235,7 +237,6 @@ Page({
       },
       fail: function(err){
         wx.hideLoading();
-        that.alertErrorToast('报修申请失败，请重试');
       }
     })
   },

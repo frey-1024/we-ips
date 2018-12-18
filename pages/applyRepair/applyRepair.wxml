@@ -68,6 +68,8 @@
         </wux-cell-group>
     </view>
     <view class="btn">
-        <wux-button block type="calm" bind:click="submitApply">提交</wux-button>
+        <form bindsubmit="submitApply" report-submit='true' >
+            <button type="default" style="background-color: #11c1f3; color: #fff; border: none;" plain='true' class="btn-bg" form-type="submit">提交</button>
+        </form>
     </view>
 </view>

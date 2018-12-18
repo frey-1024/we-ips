@@ -46,7 +46,6 @@ Page({
         var addressInfo = stringUtil.splitAddress(detail.address);
         detail.address = addressInfo.address;
         detail.area = addressInfo.area;
-        detail.tid = tid;
         detail.typeStr =  stringUtil.typeList()[detail.type];
         detail.categoryStr =  stringUtil.categoryList()[detail.category];
         detail.tid = tid;
@@ -95,9 +94,6 @@ Page({
 
           wx.request({
             url: app.globalData.base_url + '/repair/cancel/' + that.data.tid,
-            data:{
-              ordernum: that.data.ordernum,
-            },
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "sessionid": app.globalData.sessionid
@@ -113,7 +109,6 @@ Page({
               wx.showToast({title: '删除成功', success: res => {
                 that.setData({
                   info: {},
-                  ordernum: ''
                 });
                 //用onLoad周期方法重新加载，实现当前页面的刷新
                 that.onLoad({tid: that.data.tid});
@@ -153,15 +148,10 @@ Page({
         wx.showToast({title: '已确认完成', success: res => {
           that.setData({
             info: {},
-            ordernum: ''
           });
           //用onLoad周期方法重新加载，实现当前页面的刷新
-          that.onLoad()
+           that.onLoad({tid: that.data.tid});
         }});
-        console.log(res);
-        wx.navigateBack({
-          delta: 1
-        })
       },
       fail:function(err){
         wx.hideLoading();
@@ -175,19 +165,21 @@ Page({
     });
   },
   phoneCell(e) {
-    var that = this;
-    wx.showModal({
-      title: '提示',
-      content: '确认拨打维修师电话？',
-      success: function(res) {
-        if (res.confirm) {
-          wx.makePhoneCall({
-            phoneNumber: e.currentTarget.dataset.id
-          });
-        } else if (res.cancel) {
-        }
-      }
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.id
     });
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '确认拨打维修师电话？',
+    //   success: function(res) {
+    //     if (res.confirm) {
+    //       wx.makePhoneCall({
+    //         phoneNumber: e.currentTarget.dataset.id
+    //       });
+    //     } else if (res.cancel) {
+    //     }
+    //   }
+    // });
 
   },
   /**

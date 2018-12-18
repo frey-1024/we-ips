@@ -92,7 +92,6 @@ Page({
         }
       },
       fail: function (err) {
-        that.alertErrorToast('上传图片失败，请重试');
       },
       complete: function (e) {}
     })
