@@ -75,7 +75,7 @@ Page({
         ordernum: parseInt(that.data.tid),
       },
       header: {
-        "Content-Type": "applciation/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "sessionid": app.globalData.sessionid
       },
       method: "POST",
