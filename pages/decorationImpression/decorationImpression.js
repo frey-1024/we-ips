@@ -31,6 +31,7 @@ Page({
       selectedIndex: val,
     });
     this.packagePreviewUrlList();
+    this.loadMoreImages(); //初始化数据
   },
   packagePreviewUrlList() {
     var that = this;
