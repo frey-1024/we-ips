@@ -30,13 +30,16 @@ Page({
     this.setData({
       selectedText: this.data.filterList[val],
       selectedIndex: val,
+      dataList: [],
+      firstList: [], //第一列数组
+      secondList: [], //第二列数组
+      topArr: [0, 0], //存储每列的累积top
     });
-    this.packagePreviewUrlList();
+    this.packagePreviewUrlList(val);
     this.loadMoreImages(); //初始化数据
   },
-  packagePreviewUrlList() {
+  packagePreviewUrlList(selectedIndex) {
     var that = this;
-    var selectedIndex = that.data.selectedIndex;
     var filterEnList = that.data.filterEnList;
     var imgNumberList = that.data.imgNumberList;
     var baseImgUrl = app.globalData.base_img_url + '/industrydesign';
@@ -51,10 +54,6 @@ Page({
       }
       that.setData({
         previewList: previewList,
-        dataList: [],
-        firstList: [], //第一列数组
-        secondList: [], //第二列数组
-        topArr: [0, 0], //存储每列的累积top
       });
       return;
     }
@@ -65,10 +64,6 @@ Page({
     }
     that.setData({
       previewList: previewList,
-      dataList: [],
-      firstList: [], //第一列数组
-      secondList: [], //第二列数组
-      topArr: [0, 0], //存储每列的累积top
     });
   },
   /**
@@ -81,7 +76,6 @@ Page({
   },
 //加载图片
   loadImage: function (e) {
-
     var index = e.currentTarget.dataset.index; //图片所在索引
     var imgW = e.detail.width, imgH = e.detail.height; //图片实际宽度和高度
     var imgWidth = this.data.imgWidth; //图片宽度
@@ -115,15 +109,21 @@ Page({
   },
   loadMoreImages() {
     var that = this;
+    var prevDataList = that.data.dataList;
+    var previewList = that.data.previewList;
     var tmpArr = [];
-    for (let i = that.data.dataList.length, l = that.data.previewList.length; i < l; i++) {
+    for (let i = prevDataList.length, l = i + 11; i < l; i++) {
+      if (i >= previewList.length) {
+        break;
+      }
       var obj = {
-        src: that.data.previewList[i],
+        src: previewList[i],
         height: 0,
       };
       tmpArr.push(obj);
     }
-    var dataList = this.data.dataList.concat(tmpArr);
+    var dataList = prevDataList.concat(tmpArr);
+    console.log('dataList', dataList.length);
     this.setData({ dataList: dataList });
   },
   /**
@@ -137,7 +137,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.packagePreviewUrlList();
+    this.packagePreviewUrlList(0);
     var that = this;
     //获取页面宽高度
     wx.getSystemInfo({

@@ -16,37 +16,6 @@ page{
 .border-left{
   border-left: 1px solid #eee;
 }
-.cover_h{
-  height: 95rpx;
-}
-.imgs-wrapper{
-  padding: 5rpx 20rpx;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-}
-.imgs-list-left, .imgs-list-right{
-  width: 50%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.imgs-list-left{
-  padding-right: 5rpx;
-}
-.imgs-list-right{
-  padding-left: 5rpx;
-}
-.imgs-item{
-  width: 100%;
-  box-sizing: border-box;
-  padding-bottom: 10rpx;
-}
-.imgs-content{
-  width: 100%;
-  display: block;
-}
 
 .btn{
   position: fixed;
@@ -157,6 +126,36 @@ page{
   padding: 25rpx 10rpx;
 }
 
+.main{
+  width: 100%; height: 100%; position: relative;
+  padding-top: 95rpx;
+}
+.main view { display: inline-block; width: 50%; vertical-align: top; }
+.main image {
+  display: block;
+}
+.imgs-list-left, .imgs-list-right{
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.imgs-list-left{
+  padding-right: 5rpx;
+}
+.imgs-list-right{
+  padding-left: 5rpx;
+}
+.imgs-item{
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 10rpx;
+}
+.imgs-content{
+  width: 100%;
+  display: block;
+}
+
 .empty-wrapper{
   margin-top: 210rpx;
   text-align: center;
@@ -168,4 +167,10 @@ page{
   display: block;
   font-size: 30rpx;
   padding-top: 30rpx;
+}
+.fixed-header{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
 }

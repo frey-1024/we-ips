@@ -17,6 +17,7 @@ page{
 }
 .main{
   width: 100%; height: 100%; position: relative;
+  padding-top: 85rpx;
 }
 .main view { display: inline-block; width: 50%; vertical-align: top; }
 .main image {
@@ -55,4 +56,10 @@ page{
   display: block;
   font-size: 30rpx;
   padding-top: 30rpx;
+}
+.fixed-header{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
 }

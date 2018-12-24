@@ -20,6 +20,15 @@ Page({
     selectedBrandStyleIndex: '',
     selectedBrandStyleText: '',
     previewList: null,
+
+    dataList: [],
+    firstList: [], //第一列数组
+    secondList: [], //第二列数组
+    windowWidth: 0, //页面视图宽度
+    windowHeight: 0, //视图高度
+    imgMargin: 6, //图片边距: 单位px
+    imgWidth: 0,  //图片宽度: 单位px
+    topArr: [0, 0], //存储每列的累积top
   },
   getIndex(val) {
     return val <= 0 ? '' : val;
@@ -28,6 +37,10 @@ Page({
     var that = this;
     const val = e.detail.value;
     this.setData({
+      dataList: [],
+      firstList: [], //第一列数组
+      secondList: [], //第二列数组
+      topArr: [0, 0], //存储每列的累积top
       selectedBrandIndex: val,
       selectedBrandText: that.data.brandFilterListName[val],
     });
@@ -37,6 +50,10 @@ Page({
     var that = this;
     const val = e.detail.value;
     this.setData({
+      dataList: [],
+      firstList: [], //第一列数组
+      secondList: [], //第二列数组
+      topArr: [0, 0], //存储每列的累积top
       selectedBrandStyleIndex: val,
       selectedBrandStyleText: that.data.brandStyleFilterListName[val],
     });
@@ -66,6 +83,7 @@ Page({
         that.setData({
           previewList: data.data.rows,
         });
+        that.loadMoreImages(data.data.rows); //初始化数据
       },
       fail: function(err){
         wx.hideLoading();
@@ -77,7 +95,60 @@ Page({
       }
     })
   },
+//加载图片
+  loadImage: function (e) {
+    var index = e.currentTarget.dataset.index; //图片所在索引
+    var imgW = e.detail.width, imgH = e.detail.height; //图片实际宽度和高度
+    var imgWidth = this.data.imgWidth; //图片宽度
+    var imgScaleH = imgWidth / imgW * imgH; //计算图片应该显示的高度
 
+    var dataList = this.data.dataList;
+    var margin = this.data.imgMargin;  //图片间距
+
+    //第一列的累积top，和第二列的累积top
+    var firtColH = this.data.topArr[0], secondColH = this.data.topArr[1];
+    var firstList = this.data.firstList, secondList = this.data.secondList;
+    var obj = dataList[index];
+
+    obj.height = imgScaleH;
+
+    if (firtColH <= secondColH) { //表示新图片应该放到第一列
+      firtColH += margin + obj.height;
+      firstList.push(obj);
+    }
+    else { //放到第二列
+      secondColH += margin + obj.height;
+      secondList.push(obj);
+    }
+
+    this.setData({
+      dataList: dataList,
+      firstList: firstList,
+      secondList: secondList,
+      topArr: [firtColH, secondColH],
+    });
+  },
+  loadMoreImages() {
+    var that = this;
+    var prevDataList = that.data.dataList;
+    var previewList = that.data.previewList;
+    console.log(previewList, 'previewList2');
+    var tmpArr = [];
+    for (let i = prevDataList.length, l = i + 11; i < l; i++) {
+      if (i >= previewList.length) {
+        break;
+      }
+      console.log(previewList[i], i);
+      var obj = {
+        src: previewList[i].imglink,
+        height: 0,
+      };
+      tmpArr.push(obj);
+    }
+    var dataList = prevDataList.concat(tmpArr);
+    console.log('dataList', dataList.length);
+    this.setData({ dataList: dataList });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -258,7 +329,25 @@ Page({
         phoneInfo: null,
       });
     };
+
+    var that = this;
+    //获取页面宽高度
+    wx.getSystemInfo({
+      success: function (res) {
+        var windowWidth = res.windowWidth;
+        var imgMargin = that.data.imgMargin;
+        //两列，每列的图片宽度
+        var imgWidth = (windowWidth - imgMargin * 3) / 2;
+
+        that.setData({
+          windowWidth: windowWidth,
+          windowHeight: res.windowHeight,
+          imgWidth: imgWidth
+        });
+      },
+    })
   },
+
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -1,15 +1,15 @@
 <view class="container decoration-impression">
-    <picker mode="selector" value="{{selectedIndex}}" bindchange="selectingFilter" range="{{filterList}}">
+    <picker mode="selector" class="fixed-header" value="{{selectedIndex}}" bindchange="selectingFilter" range="{{filterList}}">
         <wux-cell-group>
             <wux-cell class="select-type">
                 <text>{{selectedText}}</text>
             </wux-cell>
         </wux-cell-group>
     </picker>
-    <view style='display: none'>
+    <view style='display: none' wx:if="{{dataList && dataList.length}}">
         <image wx:for='{{dataList}}' wx:key='item' src='{{item.src}}' bindload='loadImage' data-index='{{index}}'/>
     </view>
-    <scroll-view class="main" scroll-y='true' style="height:{{windowHeight}}px" bindscrolltolower='loadMoreImages'>
+    <scroll-view wx:if="{{previewList && previewList.length}}" class="main" scroll-y='true' style="height:{{windowHeight}}px" bindscrolltolower='loadMoreImages'>
         <view class='view_left'>
             <image wx:for='{{firstList}}' wx:key='item' src='{{item.src}}' style='margin-left: {{imgMargin}}px; width: {{imgWidth}}px; height:{{item.height}}px; margin-top: {{imgMargin}}px;' bindtap='previewImg' data-index='{{index}}' data-type='1'/>
         </view>
