@@ -11,7 +11,6 @@ App({
       // 登录
       wx.login({
         success: res => {
-          console.log(res);
           that.globalData.code = res.code;
           if (that.userSessionIdReadyCallback) {
             that.userSessionIdReadyCallback(res);
@@ -33,7 +32,6 @@ App({
               iv: user.iv
             },
             success: sessionData => {
-              console.log(sessionData, 'sessionData166');
               if (sessionData.data.code !== 200) {
                 if (!hideToast) {
                   wx.hideLoading();
@@ -76,8 +74,6 @@ App({
     };
 
     that.getPhoneInfo = function (info, fn) {
-      console.log(info);
-      console.log(that.globalData, 'aaaaaaaaaaaaaaaa');
       wx.showLoading({
         title: '加载中...',
       });
@@ -94,9 +90,7 @@ App({
         },
         success: phoneData => {
           wx.hideLoading();
-          console.log(phoneData, 'sessi/////////onid');
           if (phoneData.data.code !== 200) {
-            console.log('aaaaa');
             wx.showToast({
               title: '获取手机号码失败, 请重试',
               icon: 'none',
@@ -110,7 +104,6 @@ App({
             icon: 'success',
             duration: 2000
           });
-          console.log('get phone success////');
           that.globalData.phoneInfo = phoneData.data.data;
           if (that.userPhoneReadyCallback) {
             that.userPhoneReadyCallback(phoneData.data.data)
@@ -136,7 +129,6 @@ App({
           if (res.authSetting['scope.userInfo']) {
             wx.getUserInfo({
               success: user => {
-                console.log(user);
                 that.globalData.userInfo = user.userInfo;
                 if (that.userInfoReadyCallback) {
                   that.userInfoReadyCallback(user)
