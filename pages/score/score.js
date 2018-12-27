@@ -14,19 +14,16 @@ Page({
   },
 
   speed(e) {
-    console.log(e.detail.value);
     this.setData({
       speed: e.detail.value
     });
   },
   attitude(e) {
-    console.log(e.detail.value);
     this.setData({
       attitude: e.detail.value
     });
   },
   effect(e) {
-    console.log(e.detail.value);
     this.setData({
       effect: e.detail.value
     });
@@ -81,7 +78,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '提交失败，请重试');
         if (!aipStatus) {

@@ -154,7 +154,6 @@ Page({
   submitApply(e) {
     var that = this;
     var formId = e.detail.formId;
-    console.log(formId);
     var data = that.data;
     if (data.selectedTypeIndex === '') {
       that.alertErrorToast('请选择报修类型');
@@ -200,7 +199,6 @@ Page({
     wx.showLoading({
       title: '提交中...',
     });
-    console.log(app.globalData);
     wx.request({
       url: app.globalData.base_url + '/repair/apply',
       data:{
@@ -244,7 +242,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.phoneInfo);
     if (app.globalData.phoneInfo) {
       this.setData({
         phone: app.globalData.phoneInfo.phoneNumber,

@@ -109,7 +109,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '申请失败，请重试');
         if (!aipStatus) {
@@ -141,7 +140,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '施工申请'
     });
-    console.log(app.globalData.phoneInfo);
     if (app.globalData.phoneInfo) {
       this.setData({
         phone: app.globalData.phoneInfo.phoneNumber,

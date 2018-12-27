@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
       title: '建材申请'
@@ -36,7 +35,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取详情失败，请重试');
         if (!aipStatus) {

@@ -13,10 +13,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(app.globalData.userInfo);
     wx.getUserInfo({
       success: res => {
-        console.log(res.userInfo);
         that.setData({
           user: res.userInfo,
         })

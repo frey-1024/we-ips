@@ -8,8 +8,6 @@ Page({
    */
   data: {
     filterList: stringUtil.decorationImpressionList(),
-    filterEnList: stringUtil.decorationImpressionEnList(),
-    imgNumberList: [24, 24, 25, 52, 19, 32, 25, 29, 42, 34, 26],
     selectedIndex: 0,
     selectedText: stringUtil.decorationImpressionList()[0],
     previewList: null,
@@ -26,49 +24,59 @@ Page({
   selectingFilter(e) {
     const val = e.detail.value;
     this.setData({
-      selectedText: this.data.filterList[val],
-      selectedIndex: val,
       dataList: [],
       firstList: [], //第一列数组
       secondList: [], //第二列数组
       topArr: [0, 0], //存储每列的累积top
+      selectedText: this.data.filterList[val],
+      selectedIndex: val,
     });
-    this.packagePreviewUrlList(val);
-    this.loadMoreImages(); //初始化数据
+    this.packagePreviewUrlList();
   },
-  packagePreviewUrlList(selectedIndex) {
+  packagePreviewUrlList() {
     var that = this;
-    var filterEnList = that.data.filterEnList;
-    var imgNumberList = that.data.imgNumberList;
-    var baseImgUrl = app.globalData.base_img_url + '/homedesign';
-    var previewList = [], i, l, fileName, z;
-    // 全部
-    if (selectedIndex == 0) {
-      for (i = 1, l = filterEnList.length, fileName; i <= l; i++) {
-        fileName = filterEnList[i - 1];
-        for (z = 1; z <= imgNumberList[i - 1]; z++) {
-          previewList.push(baseImgUrl + '/' + i + '-' + fileName + '/' + fileName + z + '.jpg');
+    wx.showLoading({
+      title: '加载中...',
+    });
+    var style = that.data.selectedIndex === 0 ? '' : that.data.selectedIndex;
+    wx.request({
+      url: app.globalData.base_url + '/design/cases?type=0&offset=0&limit=199999999&style=' + style,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "sessionid": app.globalData.sessionid
+      },
+      method: "POST",
+      success: function(res){
+        wx.hideLoading();
+        var data = res.data;
+        var aipStatus = stringUtil.apiError(app, data.code, '获取图片列表失败， 请重试');
+        if (!aipStatus) {
+          return;
         }
+        that.setData({
+          previewList: data.data.rows,
+        });
+        that.loadMoreImages(data.data.rows); //初始化数据
+      },
+      fail: function(err){
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取图片列表失败， 请重试',
+          icon: 'none',
+          duration: 3000
+        });
       }
-      that.setData({
-        previewList: previewList,
-
-      });
-      return;
-    }
-
-    fileName = filterEnList[selectedIndex - 1];
-    for (z = 1; z <= imgNumberList[selectedIndex -1]; z++) {
-      previewList.push(baseImgUrl + '/' + selectedIndex + '-' + fileName + '/' + fileName + z + '.jpg');
-    }
-    console.log('previewList', previewList.length);
-    that.setData({
-      previewList: previewList,
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '装修效果图'
     });
   },
-  //加载图片
   loadImage: function (e) {
-    console.log('loadImage', this.data.dataList.length);
     var index = e.currentTarget.dataset.index; //图片所在索引
     var imgW = e.detail.width, imgH = e.detail.height; //图片实际宽度和高度
     var imgWidth = this.data.imgWidth; //图片宽度
@@ -100,14 +108,6 @@ Page({
       topArr: [firtColH, secondColH],
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '装修效果图'
-    });
-  },
   loadMoreImages() {
     var that = this;
     var prevDataList = that.data.dataList;
@@ -118,13 +118,12 @@ Page({
         break;
       }
       var obj = {
-        src: previewList[i],
+        src: previewList[i].imglink,
         height: 0,
       };
       tmpArr.push(obj);
     }
     var dataList = prevDataList.concat(tmpArr);
-    console.log('dataList', dataList.length);
     this.setData({ dataList: dataList });
   },
   /**
@@ -152,8 +151,6 @@ Page({
           windowWidth: windowWidth,
           windowHeight: res.windowHeight,
           imgWidth: imgWidth
-        }, function () {
-          that.loadMoreImages(); //初始化数据
         });
       },
     })

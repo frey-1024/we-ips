@@ -40,7 +40,6 @@ Page({
       },
       method: "POST",
       success: function(res){
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
         if (!aipStatus) {

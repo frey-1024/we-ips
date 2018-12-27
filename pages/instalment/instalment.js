@@ -44,7 +44,6 @@ Page({
       },
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '申请失败， 请重试');
         if (!aipStatus) {

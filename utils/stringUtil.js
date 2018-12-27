@@ -1,4 +1,3 @@
-var moment = require('../libs/moment.js');
 const splitCode = ',';
 
 function splitAddress(val) {
@@ -99,24 +98,6 @@ function cabinetsList() {
     '维多利亚风',
   ];
 }
-function decorationImpressionEnList() {
-  return [
-    'bohemia',
-    'miniextra',
-    'simpleEuropean',
-    'Americanretro',
-    'Americanmodern',
-    'fashionclassic',
-    'fashionsimplicity',
-    'pastoral',
-    'modernduplex',
-    'Modernclassic',
-    'modernChinese',
-  ];
-}
-function localFormat(date) {
-  return moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
-}
 function toolEffectList() {
   return [
     '全部',
@@ -126,45 +107,9 @@ function toolEffectList() {
     '银行'
   ];
 }
-function toolEffectEnList() {
-  return [
-    'office',
-    'hotel',
-    'restaurant',
-    'bank'
-  ];
-}
-
-function brandList() {
-  return [
-    '全部',
-    'Coem',
-    'Cerdomus',
-    'Caesar',
-    'Refin',
-    'Emigres',
-    'Fioranese',
-    'Marca corona',
-    'Oranmenta',
-    'Settecento'
-  ];
-}
 
 
-function brandStyleList() {
-  return [
-    '全部',
-    '布纹',
-    '大理石纹',
-    '花砖',
-    '经典',
-    '木纹',
-    '水磨石',
-    '水泥面',
-    '岩石',
-    '异形砖'
-  ];
-}
+
 
 module.exports = {
   splitAddress: splitAddress,
@@ -174,11 +119,6 @@ module.exports = {
   categoryList: categoryList,
   typeList: typeList,
   decorationImpressionList: decorationImpressionList,
-  decorationImpressionEnList: decorationImpressionEnList,
   toolEffectList: toolEffectList,
-  toolEffectEnList: toolEffectEnList,
-  brandList: brandList,
-  brandStyleList: brandStyleList,
   cabinetsList: cabinetsList,
-  localFormat: localFormat,
 };

@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
       title: '橱柜申请'
@@ -36,7 +35,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取详情失败，请重试');
         if (!aipStatus) {
@@ -96,7 +94,6 @@ Page({
                 //用onLoad周期方法重新加载，实现当前页面的刷新
                 that.onLoad()
               }});
-              console.log(res);
               wx.navigateBack({
                 delta: 1
               })
@@ -140,7 +137,6 @@ Page({
           //用onLoad周期方法重新加载，实现当前页面的刷新
           that.onLoad()
         }});
-        console.log(res);
         wx.navigateBack({
           delta: 1
         })

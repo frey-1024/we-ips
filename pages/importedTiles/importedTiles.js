@@ -74,7 +74,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取图片列表失败， 请重试');
         if (!aipStatus) {
@@ -132,13 +131,11 @@ Page({
     var that = this;
     var prevDataList = that.data.dataList;
     var previewList = that.data.previewList;
-    console.log(previewList, 'previewList2');
     var tmpArr = [];
     for (let i = prevDataList.length, l = i + 11; i < l; i++) {
       if (i >= previewList.length) {
         break;
       }
-      console.log(previewList[i], i);
       var obj = {
         src: previewList[i].imglink,
         height: 0,
@@ -146,7 +143,6 @@ Page({
       tmpArr.push(obj);
     }
     var dataList = prevDataList.concat(tmpArr);
-    console.log('dataList', dataList.length);
     this.setData({ dataList: dataList });
   },
   /**
@@ -160,7 +156,6 @@ Page({
     that.setData({
       tid: options.tid
     });
-    console.log(options);
     if (options.tid == 1) {
       that.getBrandFilterList();
       that.getBrandStyleFilterList();
@@ -186,7 +181,6 @@ Page({
       },
       method: "POST",
       success: function(res){
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取建材品牌失败');
         if (!aipStatus) {
@@ -221,7 +215,6 @@ Page({
       },
       method: "POST",
       success: function(res){
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取建材款式失败');
         if (!aipStatus) {
@@ -266,7 +259,6 @@ Page({
       method: "POST",
       success: function(res){
         wx.hideLoading();
-        console.log(res);
         var data = res.data;
         var aipStatus = stringUtil.apiError(app, data.code, '获取申请信息失败， 请重试');
         if (!aipStatus) {
