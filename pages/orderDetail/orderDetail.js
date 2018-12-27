@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var that = this;
     wx.setNavigationBarTitle({
       title: '订单详情'
@@ -66,6 +65,8 @@ Page({
           case 4:
             detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail3.png';
             break;
+          default:
+            detail.statusImg = 'https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/imgs/detail4.png';
         }
         that.setData({
           info: detail,

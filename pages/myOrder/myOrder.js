@@ -38,7 +38,7 @@ Page({
         previewOrders: list
       });
     } else if (key == 3){
-      list = that.findListByFilter(3);
+      list = that.findListByFilter(3, 5);
       that.setData({
         previewOrders: list
       });
@@ -127,7 +127,6 @@ Page({
     }
   },
   goOrderDetail(e) {
-    console.log(e);
     const tid = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../orderDetail/orderDetail?tid=' + tid
@@ -165,7 +164,6 @@ Page({
       },
       method: "POST",
       success: function(res){
-        console.log(res);
         var data = res.data;
         if (data.code !== 200) {
           that.alertErrorToast('获取列表失败，请重试');
@@ -197,6 +195,10 @@ Page({
               break;
             case 4:
               item.statusStr = '已取消';
+              item.statusClass = 'text-gray';
+              break;
+            case 5:
+              item.statusStr = '已完成';
               item.statusClass = 'text-gray';
               break;
           }
