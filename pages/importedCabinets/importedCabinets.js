@@ -70,6 +70,25 @@ Page({
       }
     })
   },
+  /**预览图片 */
+  previewImg: function (e) {
+
+    var index = e.currentTarget.dataset.index;
+    var type = e.currentTarget.dataset.type;
+
+    var currentSrc = '';
+
+    if (type == 1){
+      currentSrc = this.data.firstList[index].src;
+    }
+    else{
+      currentSrc = this.data.secondList[index].src;
+    }
+
+    wx.previewImage({
+      urls: [currentSrc],
+    })
+  },
   //加载图片
   loadImage: function (e) {
     var index = e.currentTarget.dataset.index; //图片所在索引

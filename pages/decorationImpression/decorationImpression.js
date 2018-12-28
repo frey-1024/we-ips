@@ -75,6 +75,23 @@ Page({
     wx.setNavigationBarTitle({
       title: '装修效果图'
     });
+    this.packagePreviewUrlList(0);
+    var that = this;
+    //获取页面宽高度
+    wx.getSystemInfo({
+      success: function (res) {
+        var windowWidth = res.windowWidth;
+        var imgMargin = that.data.imgMargin;
+        //两列，每列的图片宽度
+        var imgWidth = (windowWidth - imgMargin * 3) / 2;
+
+        that.setData({
+          windowWidth: windowWidth,
+          windowHeight: res.windowHeight,
+          imgWidth: imgWidth
+        });
+      },
+    })
   },
   loadImage: function (e) {
     var index = e.currentTarget.dataset.index; //图片所在索引
@@ -126,6 +143,25 @@ Page({
     var dataList = prevDataList.concat(tmpArr);
     this.setData({ dataList: dataList });
   },
+  /**预览图片 */
+  previewImg: function (e) {
+
+    var index = e.currentTarget.dataset.index;
+    var type = e.currentTarget.dataset.type;
+
+    var currentSrc = '';
+
+    if (type == 1){
+      currentSrc = this.data.firstList[index].src;
+    }
+    else{
+      currentSrc = this.data.secondList[index].src;
+    }
+
+    wx.previewImage({
+      urls: [currentSrc],
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -137,23 +173,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.packagePreviewUrlList(0);
-    var that = this;
-    //获取页面宽高度
-    wx.getSystemInfo({
-      success: function (res) {
-        var windowWidth = res.windowWidth;
-        var imgMargin = that.data.imgMargin;
-        //两列，每列的图片宽度
-        var imgWidth = (windowWidth - imgMargin * 3) / 2;
 
-        that.setData({
-          windowWidth: windowWidth,
-          windowHeight: res.windowHeight,
-          imgWidth: imgWidth
-        });
-      },
-    })
   },
 
   /**

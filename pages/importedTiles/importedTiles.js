@@ -245,6 +245,25 @@ Page({
   onReady: function () {
 
   },
+  /**预览图片 */
+  previewImg: function (e) {
+
+    var index = e.currentTarget.dataset.index;
+    var type = e.currentTarget.dataset.type;
+
+    var currentSrc = '';
+
+    if (type == 1){
+      currentSrc = this.data.firstList[index].src;
+    }
+    else{
+      currentSrc = this.data.secondList[index].src;
+    }
+
+    wx.previewImage({
+      urls: [currentSrc],
+    })
+  },
   goApply() {
     var that = this;
     wx.showLoading({
