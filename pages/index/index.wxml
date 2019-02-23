@@ -36,7 +36,7 @@
       </view>
       <view class="jiazhuang-wrapper" bindtap="goDecorationImpression">
           <text class="jiazhuang-text text">家装效果图</text>
-          <image class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jazhuang.png" mode="widthFix"></image>
+          <image class="jiazhuang-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/imgs/jazhuang.jpeg" mode="widthFix"></image>
       </view>
       <view class="jiazhuang-wrapper" bindtap="goToolingEffect">
           <text class="jiazhuang-text text">专业工装案例</text>
