@@ -57,6 +57,11 @@
       "selectedIconPath": "pages/index/imgs/myIcon_active.png"
     }]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位效果展示"
+    }
+  },
   "usingComponents": {
     "wux-button": "../../dist/button/index",
     "wux-cell-group": "../../dist/cell-group/index",
