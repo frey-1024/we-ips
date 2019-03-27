@@ -44,6 +44,7 @@ Page({
         var addressInfo = stringUtil.splitAddress(detail.address);
         detail.address = addressInfo.address;
         detail.area = addressInfo.area;
+        detail.areaAndAddress = addressInfo.area ? addressInfo.area + ', ' + addressInfo.address : addressInfo.address;
         detail.typeStr =  stringUtil.typeList()[detail.type];
         detail.categoryStr =  stringUtil.categoryList()[detail.category];
         detail.tid = tid;

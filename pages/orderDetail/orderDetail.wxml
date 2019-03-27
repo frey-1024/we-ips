@@ -10,7 +10,7 @@
             <wux-cell>
                 <view class="flex-row col-center">
                     <text class="flex-1">服务地址</text>
-                    <text class="flex-2 text-break text-right text-gray">{{info.area}},{{info.address}}</text>
+                    <text class="flex-2 text-break text-right text-gray">{{info.areaAndAddress}}</text>
                 </view>
             </wux-cell>
             <wux-cell title="问题描述" extra="{{info.description}}"></wux-cell>

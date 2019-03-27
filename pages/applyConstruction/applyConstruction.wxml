@@ -10,7 +10,7 @@
             <wux-cell hover-class="none" bind:click="goMapPage">
                 <view class="flex-row select-wrapper col-center">
                     <text class="select-label">所在区域</text>
-                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!area}}">请选择</text>
+                    <text class="flex-1 placeholderStyle select-content" wx:if="{{!area}}">请选择（非必填）</text>
                     <text class="flex-1 placeholderStyle select-content selected" wx:else>{{area}}</text>
                     <image class="right-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/materials/list/right.png" mode="widthFix"></image>
                 </view>

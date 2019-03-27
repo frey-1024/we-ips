@@ -60,10 +60,10 @@ Page({
       that.alertErrorToast('请填写正确的联系电话');
       return;
     }
-    if (data.area === '') {
-      that.alertErrorToast('请选择所在区域');
-      return;
-    }
+    // if (data.area === '') {
+    //   that.alertErrorToast('请选择所在区域');
+    //   return;
+    // }
     if (data.address === '') {
       that.alertErrorToast('请填写详细地址');
       return;
