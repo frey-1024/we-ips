@@ -67,6 +67,13 @@ Page({
       });
     }
   },
+  goDesignerList(e) {
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
+    wx.navigateTo({
+      url: '../designWorkList/designWorkList?tid=' + index
+    });
+  },
   hidePhoneModal() {
     this.setData({
       isShowPhoneWarning: false

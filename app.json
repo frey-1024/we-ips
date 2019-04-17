@@ -6,6 +6,7 @@
     "pages/orderDetail/orderDetail",
     "pages/applyDesign/applyDesign",
     "pages/goodDesign/goodDesign",
+    "pages/designWorkList/designWorkList",
     "pages/importedTiles/importedTiles",
     "pages/importedMaterials/importedMaterials",
     "pages/materialsDetail/materialsDetail",

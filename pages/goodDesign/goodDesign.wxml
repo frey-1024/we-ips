@@ -24,33 +24,8 @@
     </swiper>
     <view class="good-more-list">
         <image class="good-more" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/good-more.png" mode="widthFix"></image>
-        <view class="flex-row">
-            <view class="flex-1">
-                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer1.jpg" mode="widthFix"></image>
-            </view>
-            <view class="flex-1">
-                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer2.jpg" mode="widthFix"></image>
-            </view>
-            <view class="flex-1">
-                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer3.jpg" mode="widthFix"></image>
-            </view>
-        </view>
-        <view class="flex-row">
-            <view class="flex-1">
-                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer4.jpg" mode="widthFix"></image>
-            </view>
-            <view class="flex-1">
-                <image class="good-img" src="https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/design/designer5.jpg" mode="widthFix"></image>
-            </view>
-            <view class="flex-1 bg-white"></view>
-        </view>
-        <view class="flex-row">
-            <view class="flex-1 bg-blue h-125">
-            </view>
-            <view class="flex-1 bg-white h-125">
-            </view>
-            <view class="flex-1 bg-blue h-125">
-            </view>
+        <view class="flex-row" style="flex-wrap: wrap;">
+            <image class='good-img2 h-125' wx:for='{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]}}' wx:key='item' src='https://ips-source.oss-cn-hangzhou.aliyuncs.com/ipsimg/designer/{{item}}.png' bindtap="goDesignerList" data-index='{{item}}'/>
         </view>
     </view>
     <view class="authorize-warning" hidden="{{!isShowPhoneWarning}}">
